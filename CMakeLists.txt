@@ -12,8 +12,14 @@ add_executable(wall_e src/main.cpp
         src/model/Scene.cpp
 )
 
-target_link_libraries(wall_e -lGLEW)
-target_link_libraries(wall_e -lglut)
-target_link_libraries(wall_e -lGL)
-target_link_libraries(wall_e -lGLU)
-target_link_libraries(wall_e -lSOIL)
+if(LINUX)
+    target_link_libraries(wall_e -lGLEW)
+    target_link_libraries(wall_e -lglut)
+    target_link_libraries(wall_e -lGL)
+    target_link_libraries(wall_e -lGLU)
+    target_link_libraries(wall_e -lSOIL)
+endif(LINUX)
+
+if (APPLE)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework GLUT -framework OpenGL")
+endif(APPLE)
