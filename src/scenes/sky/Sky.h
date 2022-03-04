@@ -9,7 +9,7 @@
  */
 class Sky: public Scene {
 public:
-    void draw() const override;
+    void draw(unsigned int frameIndex) const override;
 };
 
 #endif //WALL_E_SKY_H

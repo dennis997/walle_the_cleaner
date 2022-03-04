@@ -1,7 +1,7 @@
 #include "TrashCube.h"
 #include <GL/glut.h>
 
-void TrashCube::draw() const {
+void TrashCube::draw(const unsigned int frameIndex) const {
     glPushMatrix();
     {
         glColor3f(.3, .3, .3);
@@ -10,5 +10,5 @@ void TrashCube::draw() const {
         printDebug(0.3);
         glutSolidCube(.1);
     }
-    Scene::draw();
+    Scene::draw(frameIndex);
 }

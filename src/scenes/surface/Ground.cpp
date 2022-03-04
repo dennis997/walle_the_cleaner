@@ -8,10 +8,10 @@ Ground::Ground() {
     calculate(size, groundHeight);
 }
 
-void Ground::draw() const {
+void Ground::draw(const unsigned int frameIndex) const {
     printDebug(.5);
     drawPlate();
-    Scene::draw();
+    Scene::draw(frameIndex);
 }
 
 void Ground::drawPlate() const {

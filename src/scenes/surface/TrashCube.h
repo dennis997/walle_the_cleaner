@@ -12,7 +12,7 @@
 class TrashCube: public Scene {
 private:
 public:
-    void draw() const override;
+    void draw(unsigned int frameIndex) const override;
 };
 
 #endif //WALL_E_TRASHCUBE_H

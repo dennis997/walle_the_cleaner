@@ -29,10 +29,10 @@ void buildSceneGraph() {
  *
  * All added nodes in the buildSceneGraph function will be drawn cascadingly
  */
-void printSceneGraph() {
-    surface.draw();
-    sky.draw();
-    robot.draw();
+void printSceneGraph(const unsigned int frameIndex) {
+    surface.draw(frameIndex);
+    sky.draw(frameIndex);
+    robot.draw(frameIndex);
 }
 
 #endif //WALL_E_SCENEGRAPH_H

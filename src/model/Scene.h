@@ -40,8 +40,10 @@ public:
      * This method is getting called by the renderer
      *
      * All child nodes will be drawn by a cascaded depth first invocation
+     *
+     * @param frameIndex frame counter incremented by the renderer
      */
-    virtual void draw() const;
+    virtual void draw(unsigned int frameIndex) const;
 };
 
 #endif //WALL_E_THE_CLEANER_COMPONENT_H
