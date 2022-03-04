@@ -12,13 +12,13 @@ add_executable(wall_e src/main.cpp
         src/model/Scene.cpp
 )
 
-if(LINUX)
+if(UNIX AND NOT APPLE)
     target_link_libraries(wall_e -lGLEW)
     target_link_libraries(wall_e -lglut)
     target_link_libraries(wall_e -lGL)
     target_link_libraries(wall_e -lGLU)
     target_link_libraries(wall_e -lSOIL)
-endif(LINUX)
+endif()
 
 if (APPLE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework GLUT -framework OpenGL")
