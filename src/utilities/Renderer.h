@@ -1,11 +1,21 @@
 #ifndef WALL_E_RENDERER_H
 #define WALL_E_RENDERER_H
 
-#include <iostream>
+#ifdef __APPLE__
+/* Defined before OpenGL and GLUT includes to avoid deprecation messages */
+#define GL_SILENCE_DEPRECATION
+#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
+
+#else
 #include <GL/glew.h>
 #include <GL/glut.h>
+#endif
+
+#include <iostream>
 #include <chrono>
 #include "../events/KeyInput.h"
+
 
 #include "SceneGraph.h"
 
@@ -53,7 +63,10 @@ void reshape(int width, int height) {
  * Init render configurations
  */
 void initRenderer(int argc, char** argv) {
-    glewInit();
+    #ifdef __APPLE__
+    #else
+        glewInit();
+    #endif
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(800,800);

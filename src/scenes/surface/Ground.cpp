@@ -1,5 +1,12 @@
 #include "Ground.h"
+
+#ifdef __APPLE__
+/* Defined before OpenGL and GLUT includes to avoid deprecation messages */
+#define GL_SILENCE_DEPRECATION
+#include <GLUT/glut.h>
+#else
 #include <GL/glut.h>
+#endif
 
 Ground::Ground() {
     float groundHeight = 0;

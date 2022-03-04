@@ -1,7 +1,7 @@
 #ifndef WALL_E_COMPONENT
 #define WALL_E_COMPONENT
 
-#include <GL/glew.h>
+
 #include "Scene.h"
 
 void Scene::printDebug(const float size) const {
