@@ -1,21 +1,10 @@
 #ifndef WALL_E_RENDERER_H
 #define WALL_E_RENDERER_H
 
-#ifdef __APPLE__
-/* Defined before OpenGL and GLUT includes to avoid deprecation messages */
-#define GL_SILENCE_DEPRECATION
-#include <OpenGL/gl.h>
-#include <GLUT/glut.h>
-
-#else
-#include <GL/freeglut.h>
-
-#endif
-
+#include "../vendor/glut.h"
 #include <iostream>
 #include <chrono>
 #include "../events/KeyInput.h"
-
 #include "SceneGraph.h"
 
 int waitDuration = 10; // in milliseconds

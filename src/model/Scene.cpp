@@ -1,8 +1,8 @@
 #ifndef WALL_E_COMPONENT
 #define WALL_E_COMPONENT
 
-
 #include "Scene.h"
+#include "../vendor/glut.h"
 
 void Scene::printDebug(const float size) const {
     glBegin( GL_LINE_STRIP );

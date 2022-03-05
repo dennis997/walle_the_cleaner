@@ -1,6 +1,7 @@
 #ifndef WALL_E_SCENEGRAPH_H
 #define WALL_E_SCENEGRAPH_H
-#include <GL/freeglut.h>
+
+#include "../vendor/glut.h"
 #include "../scenes/surface/Ground.h"
 #include "../scenes/surface/Surface.h"
 #include "../scenes/robot/Robot.h"
