@@ -8,14 +8,13 @@
 #include <GLUT/glut.h>
 
 #else
-#include <GL/glew.h>
-#include <GL/glut.h>
+#include <GL/freeglut.h>
+
 #endif
 
 #include <iostream>
 #include <chrono>
 #include "../events/KeyInput.h"
-
 
 #include "SceneGraph.h"
 
@@ -65,7 +64,7 @@ void reshape(int width, int height) {
 void initRenderer(int argc, char** argv) {
     #ifdef __APPLE__
     #else
-        glewInit();
+       // glewInit();
     #endif
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);

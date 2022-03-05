@@ -33,4 +33,5 @@
 - Gameplay: Timer
 - Animation of WALL-E: Rotating chains
 - WALL-E's light can be turned on and off
+- If Wall-E has not moved for 10 seconds > easteregg
 

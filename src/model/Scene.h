@@ -7,6 +7,7 @@
 #define GL_SILENCE_DEPRECATION
 #include "/usr/local/include/GL/glew.h"
 #else
+#include <GL/freeglut.h>
 #endif
 
 
