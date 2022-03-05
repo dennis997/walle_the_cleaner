@@ -1,8 +1,8 @@
 #ifndef WALL_E_COMPONENT
 #define WALL_E_COMPONENT
 
-
 #include "Scene.h"
+#include "../vendor/glut.h"
 
 void Scene::printDebug(const float size) const {
     glBegin( GL_LINE_STRIP );
@@ -30,9 +30,9 @@ void Scene::printDebug(const float size) const {
     glEnd();
 }
 
-void Scene::draw() const {
-    for (const Scene *c : children) {
-        c->draw();
+void Scene::draw(const unsigned int frameIndex) const {
+    for (const Scene *scene : children) {
+        scene->draw(frameIndex);
     }
 }
 

@@ -2,14 +2,6 @@
 #define WALL_E_THE_CLEANER_COMPONENT_H
 
 #include <list>
-#ifdef __APPLE__
-/* Defined before OpenGL and GLUT includes to avoid deprecation messages */
-#define GL_SILENCE_DEPRECATION
-#include "/usr/local/include/GL/glew.h"
-#else
-#include <GL/freeglut.h>
-#endif
-
 
 /**
  * A scene is a node in the scene graph.
@@ -48,8 +40,10 @@ public:
      * This method is getting called by the renderer
      *
      * All child nodes will be drawn by a cascaded depth first invocation
+     *
+     * @param frameIndex frame counter incremented by the renderer
      */
-    virtual void draw() const;
+    virtual void draw(unsigned int frameIndex) const;
 };
 
 #endif //WALL_E_THE_CLEANER_COMPONENT_H

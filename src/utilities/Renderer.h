@@ -1,20 +1,10 @@
 #ifndef WALL_E_RENDERER_H
 #define WALL_E_RENDERER_H
 
-#ifdef __APPLE__
-/* Defined before OpenGL and GLUT includes to avoid deprecation messages */
-#define GL_SILENCE_DEPRECATION
-#include <OpenGL/gl.h>
-#include <GLUT/glut.h>
-
-#else
-#include <GL/freeglut.h>
-
-#endif
-
+#include "../vendor/glut.h"
 #include <iostream>
 #include <chrono>
-
+#include "../events/KeyInput.h"
 #include "SceneGraph.h"
 
 int waitDuration = 10; // in milliseconds
@@ -25,7 +15,7 @@ int waitDuration = 10; // in milliseconds
 void animate(int value) {
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
 
-    printSceneGraph();
+    printSceneGraph(value);
 
     glutPostRedisplay();
     glutTimerFunc(waitDuration, animate, ++value);
@@ -72,6 +62,9 @@ void initRenderer(int argc, char** argv) {
     glutDisplayFunc(renderScene);
     glutReshapeFunc(reshape);
     glutTimerFunc(waitDuration,animate,0);
+    glutKeyboardFunc(keyInputListener);
+
+
 
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_NORMALIZE);

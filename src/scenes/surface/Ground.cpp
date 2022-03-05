@@ -1,12 +1,6 @@
 #include "Ground.h"
 
-#ifdef __APPLE__
-/* Defined before OpenGL and GLUT includes to avoid deprecation messages */
-#define GL_SILENCE_DEPRECATION
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
+#include "../../vendor/glut.h"
 
 Ground::Ground() {
     float groundHeight = 0;
@@ -15,10 +9,10 @@ Ground::Ground() {
     calculate(size, groundHeight);
 }
 
-void Ground::draw() const {
+void Ground::draw(const unsigned int frameIndex) const {
     printDebug(.5);
     drawPlate();
-    Scene::draw();
+    Scene::draw(frameIndex);
 }
 
 void Ground::drawPlate() const {

@@ -33,8 +33,10 @@ public:
 
     /**
      * Access method that is getting called by the renderer
+     *
+     * @param frameIndex counter from the renderer
      */
-    void draw() const override;
+    void draw(unsigned int frameIndex) const override;
 };
 
 
