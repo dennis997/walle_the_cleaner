@@ -8,7 +8,7 @@
  */
 class Parameter {
 private:
-    static Parameter* instance;
+    inline static Parameter* instance;
 
     Orientation startOrientation = Orientation::EAST;
     Position startPosition = Position(1,1,0);
