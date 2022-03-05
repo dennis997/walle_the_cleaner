@@ -11,6 +11,9 @@ add_executable(wall_e src/main.cpp
         src/scenes/robot/Body.cpp
         src/scenes/sky/Sky.cpp
         src/model/Scene.cpp
+        src/model/Handler.cpp
+        src/handler/CameraHandler.cpp
+        src/handler/RoboterHandler.cpp
 )
 
 if (APPLE)

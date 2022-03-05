@@ -6,32 +6,34 @@
 #include <chrono>
 #include "../events/KeyInput.h"
 #include "SceneGraph.h"
+#include "HandlerManager.h"
 
 int waitDuration = 10; // in milliseconds
 
 /**
  * Callback every frame for the scene graph components
  */
-void animate(int value) {
+void animate(int frameIndex) {
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+    glClear(GL_COLOR_BUFFER_BIT);
+    invokeHandlers(frameIndex);
 
-    printSceneGraph(value);
+    printSceneGraph(frameIndex);
 
     glutPostRedisplay();
-    glutTimerFunc(waitDuration, animate, ++value);
+    glutTimerFunc(waitDuration, animate, ++frameIndex);
 
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    std::cout << "glut: " << glutGet(GLUT_ELAPSED_TIME) / value << std::endl;
-    std::cout << "Time difference = " << std::chrono::duration_cast<std::chrono::milliseconds> (end - begin).count() << "[ms]" << std::endl;
+    std::cout << "Frametime: " << std::chrono::duration_cast<std::chrono::milliseconds> (end - begin).count() << "[ms]" << std::endl;
 }
 
 /**
  * Callback every frame for display parameters
  */
 void renderScene() {
-    glLoadIdentity ();
+    glLoadIdentity();
     glClear( GL_DEPTH_BUFFER_BIT);
-    gluLookAt(.3, .5, 1, 0, 0, 0, 0, 1, 0);
+
 
     glutSwapBuffers();
 }
@@ -67,10 +69,6 @@ void initRenderer(int argc, char** argv) {
 
 
     glEnable(GL_DEPTH_TEST);
-    glEnable(GL_NORMALIZE);
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glutMainLoop();
 }
