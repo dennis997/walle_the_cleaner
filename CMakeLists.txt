@@ -22,4 +22,7 @@ if(UNIX)
     target_link_libraries(wall_e -lGL)
     target_link_libraries(wall_e -lGLU)
     target_link_libraries(wall_e -lSOIL)
+   # target_link_libraries(wall_e ${ASSIMP_LIBRARIES})
+    target_link_libraries(wall_e assimp)
+
 endif(UNIX)

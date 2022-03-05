@@ -4,5 +4,6 @@
 int main(int argc, char **argv) {
     buildSceneGraph();
     initRenderer(argc, argv);
+
     return 0;
 }

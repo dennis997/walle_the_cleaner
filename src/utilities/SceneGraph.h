@@ -1,6 +1,10 @@
 #ifndef WALL_E_SCENEGRAPH_H
 #define WALL_E_SCENEGRAPH_H
 #include <GL/freeglut.h>
+#include <assimp/Importer.hpp>      // C++ importer interface
+#include <assimp/scene.h>           // Output data structure
+#include <assimp/postprocess.h>     // Post processing flags
+
 #include "../scenes/surface/Ground.h"
 #include "../scenes/surface/Surface.h"
 #include "../scenes/robot/Robot.h"
@@ -22,6 +26,9 @@ TrashCube trashCube;
 void buildSceneGraph() {
     surface.add(&ground);
     surface.add(&trashCube);
+
+    Assimp
+
 }
 
 /**
