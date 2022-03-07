@@ -19,6 +19,8 @@ endif(APPLE)
 
 include(ExternalProject)
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
+
+
 ExternalProject_Add(assimp
     GIT_REPOSITORY https://github.com/assimp/assimp.git
     CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
@@ -30,7 +32,7 @@ link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 add_dependencies(wall_e assimp)
 
 
-if(UNIX)
+if(UNIX AND NOT APPLE)
     target_link_libraries(wall_e -lglut)
     target_link_libraries(wall_e -lGL)
     target_link_libraries(wall_e -lGLU)
