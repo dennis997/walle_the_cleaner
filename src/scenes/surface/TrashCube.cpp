@@ -11,5 +11,7 @@ void TrashCube::draw(const unsigned int frameIndex) const {
         printDebug(0.3);
         glutSolidCube(.1);
     }
+    glPopMatrix();
+
     Scene::draw(frameIndex);
 }

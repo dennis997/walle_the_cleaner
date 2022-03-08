@@ -10,10 +10,11 @@ class Parameter {
 private:
     inline static Parameter* instance;
 
+    // roboter
     Orientation startOrientation = Orientation::EAST;
     Position startPosition = Position(1,1,0);
 
-    int moveSpeed = 5; // pixel per frame -> //TODO: not the best solution bc the frame rate can change dynamically
+    int movementSpeed = 5; // in pixel
 
 public:
     /**
@@ -37,8 +38,8 @@ public:
         return startPosition;
     }
 
-    int getMoveSpeed() const {
-        return moveSpeed;
+    int getMovementSpeed() const {
+        return movementSpeed;
     }
 };
 
