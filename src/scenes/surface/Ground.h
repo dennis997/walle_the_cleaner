@@ -3,6 +3,7 @@
 
 #include "../../model/Scene.h"
 #include "../../api/vertex.h"
+#include "../../vendor/glut.h"
 
 /**
  * Includes following scenes:
@@ -14,6 +15,7 @@ private:
      * Four vertices for a 2d plate
      */
     VERTEX xz, x_z, _xz, _x_z;
+    static GLuint tex_2d;
 
     /**
      * Actual draw method that draws one object. For this example a 2d plate

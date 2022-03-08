@@ -31,7 +31,7 @@ void animate(int value) {
 void renderScene() {
     glLoadIdentity ();
     glClear( GL_DEPTH_BUFFER_BIT);
-    gluLookAt(.3, .5, 1, 0, 0, 0, 0, 1, 0);
+    gluLookAt(3, 2, 1, 0, 0, 0, 0, 1, 0);
 
     glutSwapBuffers();
 }
