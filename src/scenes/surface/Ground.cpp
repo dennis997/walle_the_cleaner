@@ -27,10 +27,10 @@ void Ground::drawPlate() const {
         glColor3f(0, .6, 0);
         glBegin(GL_QUADS);
         {
-            glVertex3f(_xz.x, _xz.y, _xz.z);
-            glVertex3f(xz.x, xz.y, xz.z);
-            glVertex3f(x_z.x, x_z.y, x_z.z);
-            glVertex3f(_x_z.x, _x_z.y, _x_z.z);
+            glVertex3f(_xz.Position.x, _xz.Position.y, _xz.Position.z);
+            glVertex3f(xz.Position.x, xz.Position.y, xz.Position.z);
+            glVertex3f(x_z.Position.x, x_z.Position.y, x_z.Position.z);
+            glVertex3f(_x_z.Position.x, _x_z.Position.y, _x_z.Position.z);
         }
         glEnd();
     }

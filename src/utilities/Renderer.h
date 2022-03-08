@@ -61,10 +61,7 @@ void reshape(int width, int height) {
  * Init render configurations
  */
 void initRenderer(int argc, char** argv) {
-    #ifdef __APPLE__
-    #else
-       // glewInit();
-    #endif
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(800,800);
@@ -79,7 +76,15 @@ void initRenderer(int argc, char** argv) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glutMainLoop();
+    glewExperimental = GL_TRUE;
+    GLenum err = glewInit();
+    if (GLEW_OK != err)
+    {
+        /* Problem: glewInit failed, something is seriously wrong. */
+        std::cerr << "Error:" << glewGetErrorString(err) << std::endl;
+    }
+
+
 }
 
 #endif //WALL_E_RENDERER_H

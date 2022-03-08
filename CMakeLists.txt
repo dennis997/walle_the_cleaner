@@ -10,7 +10,9 @@ add_executable(wall_e src/main.cpp
         src/scenes/robot/Robot.cpp
         src/scenes/sky/Sky.cpp
         src/model/Scene.cpp
-)
+        src/api/Texture.h
+        src/api/Mesh.cpp
+        src/api/Mesh.h src/api/Shader.cpp src/api/Shader.h)
 
 if (APPLE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework GLUT -framework OpenGL")
@@ -34,4 +36,6 @@ if(UNIX)
     target_link_libraries(wall_e -lGL)
     target_link_libraries(wall_e -lGLU)
     target_link_libraries(wall_e -lSOIL)
+    target_link_libraries(wall_e -lassimp)
+    target_link_libraries(wall_e -lGLEW)
 endif(UNIX)
