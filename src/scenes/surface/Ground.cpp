@@ -3,10 +3,14 @@
 #include "../../vendor/glut.h"
 #include "../../vendor/SOIL.h"
 
+
 Ground::Ground() {
     float groundHeight = 0;
     float size = 2;
-
+    tex_2d = SOIL_load_OGL_texture("../../textures/bottom_texture.jpg",
+                                   SOIL_LOAD_AUTO,
+                                   SOIL_CREATE_NEW_ID,
+                                   SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT );
     calculate(size, groundHeight);
 }
 
@@ -20,10 +24,7 @@ void Ground::drawPlate() const {
     glPushMatrix();
     {
         glClearColor(1.0, 1.0, 0.0, 1.0);
-        tex_2d = SOIL_load_OGL_texture("../../textures/bottom_texture.jpg",
-                                       SOIL_LOAD_AUTO,
-                                       SOIL_CREATE_NEW_ID,
-                                       SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT );
+
         glBindTexture(GL_TEXTURE_2D, tex_2d);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
