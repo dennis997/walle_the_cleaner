@@ -6,6 +6,7 @@
 #include "../scenes/surface/Surface.h"
 #include "../scenes/robot/Robot.h"
 #include "../scenes/sky/Sky.h"
+#include "../scenes/sky/Sun.h"
 #include "../scenes/surface/TrashCube.h"
 
 // top level nodes
@@ -16,6 +17,7 @@ Sky sky;
 // shapes (nodes)
 Ground ground;
 TrashCube trashCube;
+Sun sun;
 
 /**
  * Add shapes to top level nodes or underneath nodes
@@ -23,6 +25,8 @@ TrashCube trashCube;
 void buildSceneGraph() {
     surface.add(&ground);
     surface.add(&trashCube);
+
+    sky.add(&sun);
 }
 
 /**

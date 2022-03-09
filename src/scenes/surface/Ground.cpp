@@ -4,13 +4,13 @@
 
 Ground::Ground() {
     float groundHeight = 0;
-    float size = .4;
+    float size = 5;
 
     calculate(size, groundHeight);
 }
 
 void Ground::draw(const unsigned int frameIndex) const {
-    printDebug(.5);
+    drawDebug(1);
     drawPlate();
     Scene::draw(frameIndex);
 }
