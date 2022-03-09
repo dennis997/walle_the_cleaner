@@ -14,19 +14,14 @@ Surface surface;
 Robot robot;
 Sky sky;
 
-// shapes (nodes)
-Ground ground;
-TrashCube trashCube;
-Sun sun;
-
 /**
  * Add shapes to top level nodes or underneath nodes
  */
 void buildSceneGraph() {
-    surface.add(&ground);
-    surface.add(&trashCube);
+    surface.add(new Ground);
+    surface.add(new TrashCube);
 
-    sky.add(&sun);
+    sky.add(new Sun);
 }
 
 /**

@@ -33,6 +33,7 @@ link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
 add_dependencies(wall_e assimp)
 
+FILE(COPY res DESTINATION ${CMAKE_BINARY_DIR})
 
 if(UNIX)
     target_link_libraries(wall_e -lglut)
