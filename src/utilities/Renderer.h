@@ -33,8 +33,6 @@ void animate(int frameIndex) {
 void renderScene() {
     glLoadIdentity();
     glClear( GL_DEPTH_BUFFER_BIT);
-    gluLookAt(3, 2, 1, 0, 0, 0, 0, 1, 0);
-
     glutSwapBuffers();
 }
 
@@ -65,8 +63,6 @@ void initRenderer(int argc, char** argv) {
     glutReshapeFunc(reshape);
     glutTimerFunc(waitDuration,animate,0);
     glutKeyboardFunc(keyInputListener);
-
-
 
     glEnable(GL_DEPTH_TEST);
 
