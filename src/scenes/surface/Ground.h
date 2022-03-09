@@ -30,6 +30,11 @@ private:
      */
     void calculate(float size, float groundHeight);
 
+    /**
+     * Initial Construction of Groundplate to draw later
+     */
+    void init();
+
 public:
     Ground();
 

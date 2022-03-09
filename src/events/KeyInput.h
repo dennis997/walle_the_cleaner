@@ -1,13 +1,12 @@
 #ifndef WALL_E_KEYINPUT_H
 #define WALL_E_KEYINPUT_H
 
-#include "../handler/robotHandler.h"
+#include "../utilities/HandlerManager.h"
 
 void keyInputListener(unsigned char key, int x, int y) {
 
     switch(key) {
         case 'w':
-            moveUp();
             break;
 
         case 'a':
@@ -17,6 +16,14 @@ void keyInputListener(unsigned char key, int x, int y) {
             break;
 
         case 'd':
+            break;
+
+        case 'b':
+            cameraHandler.setBirdPerspective();
+            break;
+
+        case 'r':
+            cameraHandler.setRoboterPerspective();
             break;
     }
 }

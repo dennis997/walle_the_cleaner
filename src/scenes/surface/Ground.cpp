@@ -3,14 +3,11 @@
 #include "../../vendor/glut.h"
 #include "../../vendor/SOIL.h"
 
-
 Ground::Ground() {
     float groundHeight = 0;
-    float size = 2;
-    tex_2d = SOIL_load_OGL_texture("../../textures/bottom_texture.jpg",
-                                   SOIL_LOAD_AUTO,
-                                   SOIL_CREATE_NEW_ID,
-                                   SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT );
+    float size = .4;
+
+    init();
     calculate(size, groundHeight);
 }
 
@@ -18,6 +15,14 @@ void Ground::draw(const unsigned int frameIndex) const {
     printDebug(.5);
     drawPlate();
     Scene::draw(frameIndex);
+}
+
+void Ground::init() {
+    // Loading texture for groundplate from disk
+    tex_2d = SOIL_load_OGL_texture("../../textures/bottom_texture.jpg",
+                                   SOIL_LOAD_AUTO,
+                                   SOIL_CREATE_NEW_ID,
+                                   SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT );
 }
 
 void Ground::drawPlate() const {
