@@ -1,6 +1,7 @@
 #ifndef WALL_E_GROUND_H
 #define WALL_E_GROUND_H
 
+#include <GL/glu.h>
 #include "../../model/Scene.h"
 #include "../../api/vertex.h"
 
@@ -14,6 +15,8 @@ private:
      * Four vertices for a 2d plate
      */
     VERTEX xz, x_z, _xz, _x_z;
+
+    GLuint surfaceImage;
 
     /**
      * Actual draw method that draws one object. For this example a 2d plate

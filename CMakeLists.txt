@@ -10,6 +10,7 @@ add_executable(wall_e src/main.cpp
         src/scenes/robot/Robot.cpp
         src/scenes/robot/Body.cpp
         src/scenes/sky/Sky.cpp
+        src/scenes/sky/Sun.cpp
         src/model/Scene.cpp
         src/model/Handler.cpp
         src/handler/CameraHandler.cpp
@@ -34,6 +35,7 @@ link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
 add_dependencies(wall_e assimp)
 
+FILE(COPY res DESTINATION ${CMAKE_BINARY_DIR})
 
 if(UNIX AND NOT APPLE)
     target_link_libraries(wall_e -lglut)

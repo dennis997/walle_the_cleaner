@@ -1,7 +1,8 @@
 #ifndef WALL_E_PARAMETERS_H
 #define WALL_E_PARAMETERS_H
 
-#include "../api/position.h"
+#include "../api/orientation.h"
+#include "../api/vertex.h"
 
 /**
  * Singleton pattern for a parameter bucket
@@ -12,7 +13,7 @@ private:
 
     // roboter
     Orientation startOrientation = Orientation::EAST;
-    Position startPosition = Position(1,1,0);
+    VERTEX startPosition = VERTEX(1,1,0);
 
     int movementSpeed = 5; // in pixel
 
@@ -34,7 +35,7 @@ public:
         return startOrientation;
     }
 
-    const Position &getStartPosition() const {
+    const VERTEX &getStartPosition() const {
         return startPosition;
     }
 

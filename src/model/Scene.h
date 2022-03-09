@@ -9,7 +9,7 @@
  * It can be either a leaf with zero children or a component with n children.
  * Both types are able to draw things to the rendered scene in the draw method.
  *
- * To debug a scene call printDebug(.5) in your draw method.
+ * To debug a scene call drawDebug(.5) in your draw method.
  */
 class Scene {
 protected:
@@ -25,7 +25,7 @@ protected:
      *
      * @param size length of the coord lines
      */
-    void printDebug(float size) const;
+    void drawDebug(float size) const;
 
 public:
     virtual ~Scene() = default;

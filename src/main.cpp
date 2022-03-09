@@ -2,7 +2,10 @@
 #include "utilities/Renderer.h"
 
 int main(int argc, char **argv) {
-    buildSceneGraph();
     initRenderer(argc, argv);
+    buildSceneGraph();
+
+    startRendering();
+
     return 0;
 }

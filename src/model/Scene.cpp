@@ -4,7 +4,7 @@
 #include "Scene.h"
 #include "../vendor/glut.h"
 
-void Scene::printDebug(const float size) const {
+void Scene::drawDebug(const float size) const {
     glBegin( GL_LINE_STRIP );
     {
         glColor3f(1.,0,0);

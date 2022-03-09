@@ -2,8 +2,9 @@
 #define WALL_E_ROBOT_H
 
 #include "../../model/Scene.h"
-#include "../../api/position.h"
+#include "../../api/orientation.h"
 #include "../../utilities/Parameters.h"
+#include "../../api/vertex.h"
 
 /**
  * Includes following scenes:
@@ -11,7 +12,7 @@
  */
 class Robot: public Scene {
 private:
-    Position position;
+    VERTEX position;
     Orientation currentOrientation;
 
 public:
