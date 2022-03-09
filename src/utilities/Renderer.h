@@ -7,8 +7,11 @@
 #include "../events/KeyInput.h"
 #include "SceneGraph.h"
 #include "HandlerManager.h"
+#include "../vendor/SOIL.h"
 
 int waitDuration = 10; // in milliseconds
+GLuint tex_2d;
+
 
 /**
  * Callback every frame for the scene graph components
@@ -65,7 +68,9 @@ void initRenderer(int argc, char** argv) {
     glutKeyboardFunc(keyInputListener);
 
     glEnable(GL_DEPTH_TEST);
+}
 
+void startRendering() {
     glutMainLoop();
 }
 

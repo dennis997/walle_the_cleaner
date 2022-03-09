@@ -3,22 +3,22 @@
 
 CameraHandler::CameraHandler() {
     // default
-    setBirdPerspective();
+    setRoboterPerspective();
 }
 
 void CameraHandler::executeStep(const unsigned int frameIndex) {
-    gluLookAt(cameraPos.x, cameraPos.y, cameraPos.z, 0, 0, 0, 0, 1, 0);
+    gluLookAt(cameraPos.x, cameraPos.y, cameraPos.z, .15, 0, 0, 0, 1, 0);
 }
 
 void CameraHandler::setRoboterPerspective() {
     //TODO get roboter position
-    cameraPos.x = -.3;
-    cameraPos.y = .1;
-    cameraPos.z = .2;
+    cameraPos.x = .15;
+    cameraPos.y = .05;
+    cameraPos.z = 1;
 }
 
 void CameraHandler::setBirdPerspective() {
-    cameraPos.x = .3;
-    cameraPos.y = .5;
-    cameraPos.z = 1;
+    cameraPos.x = 0;
+    cameraPos.y = 3;
+    cameraPos.z = 0;
 }

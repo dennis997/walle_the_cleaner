@@ -1,6 +1,7 @@
 #ifndef WALL_E_GROUND_H
 #define WALL_E_GROUND_H
 
+#include <GL/glu.h>
 #include "../../model/Scene.h"
 #include "../../api/vertex.h"
 #include "../../vendor/glut.h"
@@ -16,6 +17,8 @@ private:
      */
     VERTEX xz, x_z, _xz, _x_z;
     GLuint tex_2d;
+
+    GLuint surfaceImage;
 
     /**
      * Actual draw method that draws one object. For this example a 2d plate

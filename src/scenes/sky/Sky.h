@@ -5,7 +5,7 @@
 
 /**
  * Includes following scenes:
- * - ....
+ * - Sun
  */
 class Sky: public Scene {
 public:
