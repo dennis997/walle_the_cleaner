@@ -1,17 +1,15 @@
 #include "Ground.h"
-
 #include "../../vendor/glut.h"
 #include "../../vendor/SOIL.h"
 
 Ground::Ground() {
-    float groundHeight = 0;
-    float size = 5;
->>>>>>> main
-
     init();
-    calculate(size, groundHeight);
+    groundHeight = 0;
+    groundSize = 2;
 
-    surfaceImage = SOIL_load_OGL_texture("sun.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+    calculate(groundSize, groundHeight);
+
+    surfaceImage = SOIL_load_OGL_texture("../res/textures/bottom_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                                    SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB |
                                    SOIL_FLAG_COMPRESS_TO_DXT);
 
@@ -31,11 +29,11 @@ void Ground::init() {
     glShadeModel(GL_SMOOTH);
 
     // Loading texture for groundplate from disk
-    tex_2d = SOIL_load_OGL_texture("/res/textures/bottom_texture.jpg",
+    surfaceImage = SOIL_load_OGL_texture("/res/textures/bottom_texture.jpg",
                                    SOIL_LOAD_AUTO,
                                    SOIL_CREATE_NEW_ID,
                                    SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT );
-    glBindTexture(GL_TEXTURE_2D, tex_2d);
+    glBindTexture(GL_TEXTURE_2D, surfaceImage);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC0_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
@@ -63,11 +61,19 @@ void Ground::drawPlate() const {
     glPopMatrix();
 }
 
-void Ground::calculate(float size, const float groundHeight) {
-    float halfSize = size / 2;
+void Ground::calculate(float groundSize, const float groundHeight) {
+    float halfSize = groundSize / 2;
 
     xz = VERTEX(halfSize, groundHeight, halfSize);
     _xz = VERTEX(-halfSize, groundHeight, halfSize);
     x_z = VERTEX(halfSize, groundHeight, -halfSize);
     _x_z = VERTEX(-halfSize, groundHeight, -halfSize);
+}
+
+std::list<VERTEX> Ground::getCoordinates() const {
+    return std::list<VERTEX>{xz, x_z, _xz, _x_z};
+}
+
+float Ground::getGroundSize() const {
+    return groundSize;
 }
