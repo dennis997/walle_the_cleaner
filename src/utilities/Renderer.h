@@ -20,7 +20,7 @@ HandlerManager* _handlerManager = nullptr;
  */
 void animate(int frameIndex) {
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     _handlerManager->invokeHandlers(frameIndex);
 
     printSceneGraph(frameIndex);
@@ -72,10 +72,10 @@ void initRenderer(int argc, char** argv) {
     });
 
     glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
     glEnable(GL_COLOR_MATERIAL);
     glShadeModel(GL_SMOOTH);
     glEnable(GL_BLEND);
+    glEnable(GL_NORMALIZE);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glEnable(GL_DEPTH_TEST);
@@ -90,6 +90,13 @@ void startRendering() {
         std::cerr << "you have to initialize the handler manager first" << std::endl;
         return;
     }
+
+    GLfloat light_position[] = {5,0,5, 0};
+    GLfloat spot_direction[] = { 5, 10, 5 };
+
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, spot_direction);
+    glEnable(GL_LIGHT0);
 
     glutMainLoop();
 }

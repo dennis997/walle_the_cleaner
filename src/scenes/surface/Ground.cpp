@@ -23,15 +23,13 @@ void Ground::loadImage() {
                                          SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB |
                                          SOIL_FLAG_COMPRESS_TO_DXT);
 
-    glBindTexture(GL_TEXTURE_2D, surfaceImage);
 }
 
 void Ground::drawPlate() const {
     glPushMatrix();
     {
-        glClearColor(0.0, 0.0, 0.4, 1.0);
         glColor3f(1, 1, 1);
-
+        glBindTexture(GL_TEXTURE_2D, surfaceImage);
         glEnable(GL_TEXTURE_2D);
         glBegin(GL_QUADS);
         {
@@ -46,6 +44,7 @@ void Ground::drawPlate() const {
         }
         glEnd();
         glDisable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
     glPopMatrix();
 }

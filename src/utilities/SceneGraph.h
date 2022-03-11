@@ -38,8 +38,8 @@ inline void buildSceneGraph() {
  * All added nodes in the buildSceneGraph function will be drawn cascadingly
  */
 inline void printSceneGraph(const unsigned int frameIndex) {
-    surface.draw(frameIndex);
     sky.draw(frameIndex);
+    surface.draw(frameIndex);
     robot.draw(frameIndex);
 }
 
