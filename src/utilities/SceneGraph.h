@@ -5,23 +5,36 @@
 #include "../scenes/surface/Ground.h"
 #include "../scenes/surface/Surface.h"
 #include "../scenes/robot/Robot.h"
+#include "../scenes/robot/Body.h"
+#include "../scenes/robot/Wheel.h"
 #include "../scenes/sky/Sky.h"
 #include "../scenes/sky/Sun.h"
 #include "../scenes/surface/TrashCube.h"
+#include "../scenes/surface/Wall.h"
 
 // top level nodes
-Surface surface;
-Robot robot;
-Sky sky;
+inline Surface surface;
+inline Robot robot;
+inline Sky sky;
 
 /**
  * Add shapes to top level nodes or underneath nodes
  */
-void buildSceneGraph() {
+inline void buildSceneGraph() {
     surface.add(new Ground);
     surface.add(new TrashCube);
+    surface.add(new Wall(LEFT));
+    surface.add(new Wall(RIGHT));
+    surface.add(new Wall(BACK));
+    surface.add(new Wall(FRONT));
 
     sky.add(new Sun);
+
+    Body* body = new Body();
+    body->add(new Wheel(WheelOrientation::LEFT, body->getSize()));
+    body->add(new Wheel(WheelOrientation::RIGHT, body->getSize()));
+    robot.add(body);
+
 }
 
 /**
@@ -29,9 +42,9 @@ void buildSceneGraph() {
  *
  * All added nodes in the buildSceneGraph function will be drawn cascadingly
  */
-void printSceneGraph(const unsigned int frameIndex) {
-    surface.draw(frameIndex);
+inline void printSceneGraph(const unsigned int frameIndex) {
     sky.draw(frameIndex);
+    surface.draw(frameIndex);
     robot.draw(frameIndex);
 }
 

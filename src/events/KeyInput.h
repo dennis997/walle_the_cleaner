@@ -3,29 +3,36 @@
 
 #include "../utilities/HandlerManager.h"
 
-void keyInputListener(unsigned char key, int x, int y) {
+void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerManager) {
+    CameraHandler* cameraHandler = handlerManager->getCameraHandler();
 
     switch(key) {
         case 'w':
+            robot.moveForward();
+            cameraHandler->update();
             break;
 
         case 'a':
+            robot.moveLeft();
             break;
 
         case 's':
+            robot.moveBack();
             break;
 
         case 'd':
+            robot.moveRight();
             break;
 
         case 'b':
-            cameraHandler.setBirdPerspective();
+            cameraHandler->setBirdPerspective();
             break;
 
         case 'r':
-            cameraHandler.setRoboterPerspective();
+            cameraHandler->setEgoPerspective();
             break;
     }
 }
+
 
 #endif //WALL_E_KEYINPUT_H

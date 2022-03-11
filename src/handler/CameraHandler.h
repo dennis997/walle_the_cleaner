@@ -3,18 +3,30 @@
 
 #include "../model/Handler.h"
 #include "../api/vertex.h"
+#include "glm/vec3.hpp"
+
+struct LookAt {
+    glm::vec3 position;
+    glm::vec3 center;
+    glm::vec3 up;
+};
+
+enum class Perspective {
+    EGO, BIRD
+};
 
 class CameraHandler: Handler {
 private:
-    VERTEX cameraPos;
-    VERTEX lookAt;
-    VERTEX up;
+    LookAt lookAt;
+    Perspective currentPerspective;
 
 public:
     CameraHandler();
     void executeStep(unsigned int frameIndex) override;
 
-    void setRoboterPerspective();
+    void update();
+
+    void setEgoPerspective();
     void setBirdPerspective();
 };
 

@@ -1,35 +1,60 @@
 #include "Sun.h"
 #include "../../vendor/glut.h"
 
+#include "../../utilities/Parameters.h"
+#include "../../vendor/SOIL.h"
+
 Sun::Sun() {
-    radius = .15;
-    setPosition();
+    radius = .3;
+
+    Parameter* parameters = Parameter::getInstance();
+
+    setPosition(parameters->getFieldSize());
+    loadImage();
 }
 
 void Sun::draw(unsigned int frameIndex) const {
-    drawSun();
     drawLight();
+    drawSun(frameIndex);
 
     Scene::draw(frameIndex);
 }
 
-void Sun::drawSun() const {
+void Sun::drawSun(unsigned int frameIndex) const {
     glPushMatrix();
     {
-        glColor3f(.945, .952, .647);
+        glColor3f(1, 1, 1);
+
+        GLUquadric* quadric = gluNewQuadric();
+        gluQuadricOrientation(quadric, GLU_OUTSIDE);
+        gluQuadricTexture(quadric, GL_TRUE);
+        gluQuadricNormals(quadric, GLU_SMOOTH);	// Create Smooth Normals
+
         glTranslatef(position.x, position.y, position.z);
-        gluSphere(gluNewQuadric(), radius, 40, 40);
+
+        glBindTexture(GL_TEXTURE_2D, sunImageId);
+        glEnable(GL_TEXTURE_2D);
+
+        gluSphere(quadric, radius, 30, 30);
+
+        glDisable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
     glPopMatrix();
 }
 
-void Sun::setPosition() {
-    position.x = .4;
-    position.y = .5;
-    position.z = -1;
+void Sun::setPosition(const int size) {
+    position.x = size / 2;
+    position.y = 2;
+    position.z = 0;//-size;
 }
 
 void Sun::drawLight() const {
-    GLfloat light_position[] = {position.x, position.y, 0, 1};
-    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+}
+
+void Sun::loadImage() {
+    sunImageId = SOIL_load_OGL_texture("res/textures/inferno.png",
+                                         SOIL_LOAD_AUTO,
+                                         SOIL_CREATE_NEW_ID,
+                                         SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB);
 }

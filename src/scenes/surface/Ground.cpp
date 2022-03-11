@@ -1,19 +1,15 @@
 #include "Ground.h"
-
-#include "../../vendor/glut.h"
 #include "../../vendor/SOIL.h"
 
+#include "../../utilities/Parameters.h"
+
 Ground::Ground() {
-    float groundHeight = 0;
-    float size = 5;
+    groundHeight = 0;
 
-    calculate(size, groundHeight);
+    Parameter* parameters = Parameter::getInstance();
 
-    surfaceImage = SOIL_load_OGL_texture("sun.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
-                                   SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB |
-                                   SOIL_FLAG_COMPRESS_TO_DXT);
-
-    glBindTexture(GL_TEXTURE_2D, surfaceImage);
+    calculate(parameters->getFieldSize(), groundHeight);
+    loadImage();
 }
 
 void Ground::draw(const unsigned int frameIndex) const {
@@ -22,13 +18,19 @@ void Ground::draw(const unsigned int frameIndex) const {
     Scene::draw(frameIndex);
 }
 
+void Ground::loadImage() {
+    surfaceImage = SOIL_load_OGL_texture("res/textures/bottom_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+                                         SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB |
+                                         SOIL_FLAG_COMPRESS_TO_DXT);
+}
+
 void Ground::drawPlate() const {
     glPushMatrix();
     {
         glColor3f(1, 1, 1);
-
+        glBindTexture(GL_TEXTURE_2D, surfaceImage);
         glEnable(GL_TEXTURE_2D);
-        glBegin(GL_QUADS);
+        glBegin(GL_POLYGON);
         {
             glTexCoord2f(0, 0);
             glVertex3f(_xz.x, _xz.y, _xz.z);
@@ -41,15 +43,18 @@ void Ground::drawPlate() const {
         }
         glEnd();
         glDisable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, 0);
     }
     glPopMatrix();
 }
 
-void Ground::calculate(float size, const float groundHeight) {
-    float halfSize = size / 2;
+void Ground::calculate(float groundSize, const float groundHeight) {
+    xz = VERTEX(groundSize, groundHeight, groundSize);
+    _xz = VERTEX(0, groundHeight, groundSize);
+    x_z = VERTEX(groundSize, groundHeight, 0);
+    _x_z = VERTEX(0, groundHeight, 0);
+}
 
-    xz = VERTEX(halfSize, groundHeight, halfSize);
-    _xz = VERTEX(-halfSize, groundHeight, halfSize);
-    x_z = VERTEX(halfSize, groundHeight, -halfSize);
-    _x_z = VERTEX(-halfSize, groundHeight, -halfSize);
+std::list<VERTEX> Ground::getCoordinates() const {
+    return std::list<VERTEX>{xz, x_z, _xz, _x_z};
 }

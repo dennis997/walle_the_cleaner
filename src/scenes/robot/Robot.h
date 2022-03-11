@@ -5,6 +5,9 @@
 #include "../../api/orientation.h"
 #include "../../utilities/Parameters.h"
 #include "../../api/vertex.h"
+#include "glm/glm.hpp"
+#include "../../utilities/HandlerManager.h"
+
 
 /**
  * Includes following scenes:
@@ -12,15 +15,21 @@
  */
 class Robot: public Scene {
 private:
-    VERTEX position;
-    Orientation currentOrientation;
+    glm::vec3 position;
+    glm::vec3 currentOrientation;
 
 public:
     Robot();
 
     void draw(unsigned int frameIndex) const override;
+    const glm::vec3 &getPosition() const;
 
-    void turnUpwards();
+    void moveForward();
+    void moveBack();
+    void moveLeft();
+    void moveRight();
+
+    const glm::vec3 &getCurrentOrientation() const;
 };
 
 
