@@ -36,7 +36,6 @@ void Sun::drawSun(unsigned int frameIndex) const {
         glEnable(GL_TEXTURE_2D);
 
         gluSphere(quadric, radius, 30, 30);
-        drawDebug(1);
 
         glDisable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, 0);

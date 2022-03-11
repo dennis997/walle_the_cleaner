@@ -22,7 +22,6 @@ void Ground::loadImage() {
     surfaceImage = SOIL_load_OGL_texture("res/textures/bottom_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                                          SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB |
                                          SOIL_FLAG_COMPRESS_TO_DXT);
-
 }
 
 void Ground::drawPlate() const {
@@ -31,7 +30,7 @@ void Ground::drawPlate() const {
         glColor3f(1, 1, 1);
         glBindTexture(GL_TEXTURE_2D, surfaceImage);
         glEnable(GL_TEXTURE_2D);
-        glBegin(GL_QUADS);
+        glBegin(GL_POLYGON);
         {
             glTexCoord2f(0, 0);
             glVertex3f(_xz.x, _xz.y, _xz.z);

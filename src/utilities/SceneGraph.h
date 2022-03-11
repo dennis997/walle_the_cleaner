@@ -25,8 +25,8 @@ inline void buildSceneGraph() {
     surface.add(new TrashCube);
     surface.add(new Wall(LEFT));
     surface.add(new Wall(RIGHT));
-    surface.add(new Wall(TOP));
-    surface.add(new Wall(DOWN));
+    surface.add(new Wall(BACK));
+    surface.add(new Wall(FRONT));
 
     sky.add(new Sun);
 

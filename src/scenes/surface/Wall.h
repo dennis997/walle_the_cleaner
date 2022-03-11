@@ -3,24 +3,27 @@
 
 #include "../../model/Scene.h"
 #include <glm/glm.hpp>
+#include <vector>
+#include <GL/gl.h>
+#include "GL/glext.h"
 
 enum WallSide {
-    LEFT, RIGHT, TOP, DOWN
+    LEFT, RIGHT, BACK, FRONT
 };
 
 class Wall: public Scene {
 private:
-    glm::vec3 xz, _xz, x_z, _x_z;
+    std::vector<float> vertices;
+    GLuint img_id;
 
-    void calculate(WallSide wallSide, int fieldSize);
+    void calculate(WallSide wallSide, float fieldSize);
+    void loadImage(WallSide wallSide);
 
 public:
     Wall(WallSide wallSide);
 
 
     void draw(unsigned int frameIndex) const override;
-
-
 };
 
 
