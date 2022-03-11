@@ -8,12 +8,6 @@ Ground::Ground() {
     float size = 5;
 
     calculate(size, groundHeight);
-
-    surfaceImage = SOIL_load_OGL_texture("sun.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
-                                   SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB |
-                                   SOIL_FLAG_COMPRESS_TO_DXT);
-
-    glBindTexture(GL_TEXTURE_2D, surfaceImage);
 }
 
 void Ground::draw(const unsigned int frameIndex) const {
@@ -27,7 +21,6 @@ void Ground::drawPlate() const {
     {
         glColor3f(1, 1, 1);
 
-        glEnable(GL_TEXTURE_2D);
         glBegin(GL_QUADS);
         {
             glTexCoord2f(0, 0);
@@ -40,7 +33,6 @@ void Ground::drawPlate() const {
             glVertex3f(_x_z.x, _x_z.y, _x_z.z);
         }
         glEnd();
-        glDisable(GL_TEXTURE_2D);
     }
     glPopMatrix();
 }

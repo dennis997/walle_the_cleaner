@@ -37,7 +37,6 @@ void renderScene() {
     glLoadIdentity();
     glClear( GL_DEPTH_BUFFER_BIT);
 
-
     glutSwapBuffers();
 }
 
@@ -69,7 +68,10 @@ void initRenderer(int argc, char** argv) {
     glutTimerFunc(waitDuration,animate,0);
     glutKeyboardFunc(keyInputListener);
 
-
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_COLOR_MATERIAL);
+    glShadeModel(GL_SMOOTH);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 

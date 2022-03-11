@@ -1,5 +1,7 @@
 #include "Robot.h"
 
+#include "../../vendor/glut.h"
+
 Robot::Robot() {
     Parameter* parameter = Parameter::getInstance();
 
@@ -8,9 +10,13 @@ Robot::Robot() {
 }
 
 void Robot::draw(const unsigned int frameIndex) const {
-    Scene::draw(frameIndex);
+    glPopMatrix();
+    {
+        glTranslatef(position.x, position.y, position.z);
+        Scene::draw(frameIndex);
+    }
+    glPopMatrix();
 }
 
-void Robot::turnUpwards() {
+void Robot::turnUpwards() {}
 
-}

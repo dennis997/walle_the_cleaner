@@ -5,6 +5,8 @@
 #include "../scenes/surface/Ground.h"
 #include "../scenes/surface/Surface.h"
 #include "../scenes/robot/Robot.h"
+#include "../scenes/robot/Body.h"
+#include "../scenes/robot/Wheel.h"
 #include "../scenes/sky/Sky.h"
 #include "../scenes/sky/Sun.h"
 #include "../scenes/surface/TrashCube.h"
@@ -22,6 +24,12 @@ void buildSceneGraph() {
     surface.add(new TrashCube);
 
     sky.add(new Sun);
+
+    Body* body = new Body();
+    body->add(new Wheel(WheelOrientation::LEFT, body->getSize()));
+    body->add(new Wheel(WheelOrientation::RIGHT, body->getSize()));
+    robot.add(body);
+
 }
 
 /**

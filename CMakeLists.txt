@@ -9,6 +9,7 @@ add_executable(wall_e src/main.cpp
         src/scenes/surface/TrashCube.cpp
         src/scenes/robot/Robot.cpp
         src/scenes/robot/Body.cpp
+        src/scenes/robot/Wheel.cpp
         src/scenes/sky/Sky.cpp
         src/scenes/sky/Sun.cpp
         src/model/Scene.cpp
@@ -25,15 +26,16 @@ include(ExternalProject)
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
 
 
-ExternalProject_Add(assimp
-    GIT_REPOSITORY https://github.com/assimp/assimp.git
-    CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
-)
+ExternalProject_Add(glm
+        GIT_REPOSITORY https://github.com/g-truc/glm.git
+        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
+        )
 
 include_directories(${EXTERNAL_INSTALL_LOCATION}/include)
 link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
-add_dependencies(wall_e assimp)
+add_dependencies(wall_e glm)
+
 
 FILE(COPY res DESTINATION ${CMAKE_BINARY_DIR})
 

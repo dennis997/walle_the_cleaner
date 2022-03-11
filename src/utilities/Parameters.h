@@ -13,7 +13,7 @@ private:
 
     // roboter
     Orientation startOrientation = Orientation::EAST;
-    VERTEX startPosition = VERTEX(1,1,0);
+    VERTEX startPosition = VERTEX(.2,0,.2);
 
     int movementSpeed = 5; // in pixel
 
