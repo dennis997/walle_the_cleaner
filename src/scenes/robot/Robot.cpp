@@ -26,10 +26,11 @@ void Robot::moveForward() {
     Parameter* parameter = Parameter::getInstance();
 
     position -= (position - currentOrientation) * parameter->getMovementSpeed();
+    currentOrientation -= (position - currentOrientation) * parameter->getMovementSpeed();
 }
 
 void Robot::moveBack() {
-
+    
 }
 
 void Robot::moveLeft() {
