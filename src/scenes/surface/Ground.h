@@ -40,7 +40,7 @@ private:
     /**
      * Initial Construction of Groundplate to draw later
      */
-    void init();
+    void loadImage();
 
 public:
     Ground();

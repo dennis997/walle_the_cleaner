@@ -26,6 +26,7 @@ void Robot::moveForward() {
     glm::vec3 newPosition = currentPosition - ((currentPosition - cameraViewPoint) * Parameter::getMovementSpeed());
 
     position = VERTEX(newPosition.x, newPosition.y, newPosition.z);
+
     cameraHandler.setPosition();
 }
 

@@ -13,9 +13,8 @@ void CameraHandler::executeStep(const unsigned int frameIndex) {
 }
 
 void CameraHandler::setRoboterPerspective() {
-    cameraPos.x = robot.getPosition().x;
-    cameraPos.y = robot.getPosition().y;
-    cameraPos.z = robot.getPosition().z;
+    cameraPos = robot.getPosition();
+    cameraPos.y = .5; // TODO set robot head y value when its present
 }
 
 void CameraHandler::setBirdPerspective() {
@@ -25,9 +24,7 @@ void CameraHandler::setBirdPerspective() {
 }
 
 void CameraHandler::setPosition() {
-    cameraPos.x = robot.getPosition().x;
-    cameraPos.y = robot.getPosition().y;
-    cameraPos.z = robot.getPosition().z;
+    setRoboterPerspective();
 }
 
 VERTEX CameraHandler::getLookAt() {

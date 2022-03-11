@@ -1,19 +1,12 @@
 #include "Ground.h"
-#include "../../vendor/glut.h"
 #include "../../vendor/SOIL.h"
 
 Ground::Ground() {
-    init();
     groundHeight = 0;
     groundSize = 2;
 
     calculate(groundSize, groundHeight);
-
-    surfaceImage = SOIL_load_OGL_texture("../res/textures/bottom_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
-                                   SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB |
-                                   SOIL_FLAG_COMPRESS_TO_DXT);
-
-    glBindTexture(GL_TEXTURE_2D, surfaceImage);
+    loadImage();
 }
 
 void Ground::draw(const unsigned int frameIndex) const {
@@ -22,20 +15,12 @@ void Ground::draw(const unsigned int frameIndex) const {
     Scene::draw(frameIndex);
 }
 
-void Ground::init() {
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_COLOR_MATERIAL);
-    glEnable(GL_NORMALIZE);
-    glShadeModel(GL_SMOOTH);
+void Ground::loadImage() {
+    surfaceImage = SOIL_load_OGL_texture("res/textures/bottom_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+                                         SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB |
+                                         SOIL_FLAG_COMPRESS_TO_DXT);
 
-    // Loading texture for groundplate from disk
-    surfaceImage = SOIL_load_OGL_texture("/res/textures/bottom_texture.jpg",
-                                   SOIL_LOAD_AUTO,
-                                   SOIL_CREATE_NEW_ID,
-                                   SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT );
     glBindTexture(GL_TEXTURE_2D, surfaceImage);
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC0_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 void Ground::drawPlate() const {
