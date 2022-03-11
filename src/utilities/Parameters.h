@@ -11,7 +11,7 @@
 class Parameter {
 private:
     inline static Parameter* instance;
-    int fieldSize = 20;
+    int fieldSize = 10;
 
     // roboter
     glm::vec3 startOrientation = glm::vec3(fieldSize / 2, .0f, 0);
