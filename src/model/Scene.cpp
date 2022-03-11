@@ -28,6 +28,7 @@ void Scene::drawDebug(const float size) const {
         glVertex3f( 0, 0, size);
     }
     glEnd();
+
 }
 
 void Scene::draw(const unsigned int frameIndex) const {

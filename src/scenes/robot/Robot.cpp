@@ -18,5 +18,28 @@ void Robot::draw(const unsigned int frameIndex) const {
     glPopMatrix();
 }
 
-void Robot::turnUpwards() {}
+const glm::vec3 &Robot::getPosition() const {
+    return position;
+}
 
+void Robot::moveForward() {
+    Parameter* parameter = Parameter::getInstance();
+
+    position -= (position - currentOrientation) * parameter->getMovementSpeed();
+}
+
+void Robot::moveBack() {
+
+}
+
+void Robot::moveLeft() {
+
+}
+
+void Robot::moveRight() {
+
+}
+
+const glm::vec3 &Robot::getCurrentOrientation() const {
+    return currentOrientation;
+}

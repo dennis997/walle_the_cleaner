@@ -26,7 +26,6 @@ endif(APPLE)
 include(ExternalProject)
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
 
-
 ExternalProject_Add(glm
         GIT_REPOSITORY https://github.com/g-truc/glm.git
         CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${EXTERNAL_INSTALL_LOCATION}
@@ -37,7 +36,6 @@ link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
 add_dependencies(wall_e glm)
 
-
 FILE(COPY res DESTINATION ${CMAKE_BINARY_DIR})
 
 if(UNIX AND NOT APPLE)
@@ -45,4 +43,4 @@ if(UNIX AND NOT APPLE)
     target_link_libraries(wall_e -lGL)
     target_link_libraries(wall_e -lGLU)
     target_link_libraries(wall_e -lSOIL)
-endif(UNIX)
+endif(UNIX AND NOT APPLE)

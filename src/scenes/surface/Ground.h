@@ -4,6 +4,7 @@
 #include <GL/glu.h>
 #include "../../model/Scene.h"
 #include "../../api/vertex.h"
+#include "../../vendor/glut.h"
 
 /**
  * Includes following scenes:
@@ -15,8 +16,12 @@ private:
      * Four vertices for a 2d plate
      */
     VERTEX xz, x_z, _xz, _x_z;
-
+    /**
+     * Texture ID for mapping groud texture
+     */
     GLuint surfaceImage;
+
+    float groundHeight;
 
     /**
      * Actual draw method that draws one object. For this example a 2d plate
@@ -26,13 +31,19 @@ private:
     /**
      * Calculates all vertex positions
      *
-     * @param size of the plate
+     * @param groundSize of the plate
      * @param groundHeight represents the y value
      */
-    void calculate(float size, float groundHeight);
+    void calculate(float groundSize, float groundHeight);
+
+    /**
+     * Initial Construction of Groundplate to draw later
+     */
+    void loadImage();
 
 public:
     Ground();
+    std::list<VERTEX> getCoordinates() const;
 
     /**
      * Access method that is getting called by the renderer

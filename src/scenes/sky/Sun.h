@@ -10,10 +10,14 @@ private:
     VERTEX position;
     float radius;
 
-    void drawSun() const;
+    unsigned int sunImageId;
+
+    void drawSun(unsigned int frameIndex) const;
     void drawLight() const;
 
-    void setPosition();
+    void setPosition(int size);
+
+    void loadImage();
 
 
 public:

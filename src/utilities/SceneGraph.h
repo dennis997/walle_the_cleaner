@@ -13,14 +13,14 @@
 #include "../scenes/surface/Wall.h"
 
 // top level nodes
-Surface surface;
-Robot robot;
-Sky sky;
+inline Surface surface;
+inline Robot robot;
+inline Sky sky;
 
 /**
  * Add shapes to top level nodes or underneath nodes
  */
-void buildSceneGraph() {
+inline void buildSceneGraph() {
     surface.add(new Ground);
     surface.add(new TrashCube);
     surface.add(new Wall(LEFT));
@@ -42,9 +42,9 @@ void buildSceneGraph() {
  *
  * All added nodes in the buildSceneGraph function will be drawn cascadingly
  */
-void printSceneGraph(const unsigned int frameIndex) {
-    surface.draw(frameIndex);
+inline void printSceneGraph(const unsigned int frameIndex) {
     sky.draw(frameIndex);
+    surface.draw(frameIndex);
     robot.draw(frameIndex);
 }
 
