@@ -13,9 +13,9 @@ private:
 
     // roboter
     Orientation startOrientation = Orientation::EAST;
-    VERTEX startPosition = VERTEX(1,1,0);
+    VERTEX startPosition = VERTEX(1,0,0);
 
-    int movementSpeed = 5; // in pixel
+    inline static float movementSpeed = 0.05;
 
 public:
     /**
@@ -39,7 +39,7 @@ public:
         return startPosition;
     }
 
-    int getMovementSpeed() const {
+    static float getMovementSpeed()  {
         return movementSpeed;
     }
 };

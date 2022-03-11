@@ -16,6 +16,8 @@ public:
 
     void setRoboterPerspective();
     void setBirdPerspective();
+    void setPosition();
+    VERTEX getLookAt();
 };
 
 

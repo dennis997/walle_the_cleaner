@@ -7,15 +7,19 @@ void keyInputListener(unsigned char key, int x, int y) {
 
     switch(key) {
         case 'w':
+            robot.moveForward();
             break;
 
         case 'a':
+            robot.moveLeft();
             break;
 
         case 's':
+            robot.moveBack();
             break;
 
         case 'd':
+            robot.moveRight();
             break;
 
         case 'b':
@@ -27,5 +31,6 @@ void keyInputListener(unsigned char key, int x, int y) {
             break;
     }
 }
+
 
 #endif //WALL_E_KEYINPUT_H

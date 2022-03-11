@@ -5,6 +5,9 @@
 #include "../../api/orientation.h"
 #include "../../utilities/Parameters.h"
 #include "../../api/vertex.h"
+#include "glm/glm.hpp"
+#include "../../utilities/HandlerManager.h"
+
 
 /**
  * Includes following scenes:
@@ -19,8 +22,13 @@ public:
     Robot();
 
     void draw(unsigned int frameIndex) const override;
+    VERTEX getPosition() const;
 
     void turnUpwards();
+    void moveForward();
+    void moveBack();
+    void moveLeft();
+    void moveRight();
 };
 
 

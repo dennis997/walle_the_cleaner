@@ -41,6 +41,7 @@ void Ground::init() {
 void Ground::drawPlate() const {
     glPushMatrix();
     {
+        glClearColor(0.0, 0.0, 0.4, 1.0);
         glColor3f(1, 1, 1);
 
         glEnable(GL_TEXTURE_2D);

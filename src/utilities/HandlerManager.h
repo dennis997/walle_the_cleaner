@@ -6,10 +6,10 @@
 #include "../handler/RoboterHandler.h"
 
 
-CameraHandler cameraHandler;
-RoboterHandler roboterHandler;
+inline CameraHandler cameraHandler;
+inline RoboterHandler roboterHandler;
 
-void invokeHandlers(const unsigned int frameIndex) {
+inline void invokeHandlers(const unsigned int frameIndex) {
     cameraHandler.executeStep(frameIndex);
     roboterHandler.executeStep(frameIndex);
 }
