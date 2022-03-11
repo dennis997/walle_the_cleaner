@@ -10,6 +10,7 @@
 #include "../scenes/sky/Sky.h"
 #include "../scenes/sky/Sun.h"
 #include "../scenes/surface/TrashCube.h"
+#include "../scenes/surface/Wall.h"
 
 // top level nodes
 Surface surface;
@@ -22,6 +23,10 @@ Sky sky;
 void buildSceneGraph() {
     surface.add(new Ground);
     surface.add(new TrashCube);
+    surface.add(new Wall(LEFT));
+    surface.add(new Wall(RIGHT));
+    surface.add(new Wall(TOP));
+    surface.add(new Wall(DOWN));
 
     sky.add(new Sun);
 
