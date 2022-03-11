@@ -11,12 +11,14 @@
 class Parameter {
 private:
     inline static Parameter* instance;
+    int fieldSize = 10;
 
     // roboter
-    glm::vec3 startOrientation = glm::vec3(.15f, .0f, .0f);
-    glm::vec3 startPosition = glm::vec3(1,0,0);
+    glm::vec3 startOrientation = glm::vec3(fieldSize / 2, .0f, 0);
+    glm::vec3 startPosition = glm::vec3(fieldSize / 2,0,fieldSize / 2);
 
-    float movementSpeed = 0.05;
+    float movementSpeed = 0.005;
+
 
 public:
     /**
@@ -42,6 +44,10 @@ public:
 
     float getMovementSpeed() const {
         return movementSpeed;
+    }
+
+    int getFieldSize() const {
+        return fieldSize;
     }
 };
 

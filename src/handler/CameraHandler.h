@@ -11,13 +11,20 @@ struct LookAt {
     glm::vec3 up;
 };
 
+enum class Perspective {
+    EGO, BIRD
+};
+
 class CameraHandler: Handler {
 private:
     LookAt lookAt;
+    Perspective currentPerspective;
 
 public:
     CameraHandler();
     void executeStep(unsigned int frameIndex) override;
+
+    void update();
 
     void setEgoPerspective();
     void setBirdPerspective();

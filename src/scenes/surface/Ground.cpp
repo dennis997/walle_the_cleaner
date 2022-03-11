@@ -1,11 +1,14 @@
 #include "Ground.h"
 #include "../../vendor/SOIL.h"
 
+#include "../../utilities/Parameters.h"
+
 Ground::Ground() {
     groundHeight = 0;
-    groundSize = 10;
 
-    calculate(groundSize, groundHeight);
+    Parameter* parameters = Parameter::getInstance();
+
+    calculate(parameters->getFieldSize(), groundHeight);
     loadImage();
 }
 
@@ -48,18 +51,12 @@ void Ground::drawPlate() const {
 }
 
 void Ground::calculate(float groundSize, const float groundHeight) {
-    float halfSize = groundSize / 2;
-
-    xz = VERTEX(halfSize, groundHeight, halfSize);
-    _xz = VERTEX(-halfSize, groundHeight, halfSize);
-    x_z = VERTEX(halfSize, groundHeight, -halfSize);
-    _x_z = VERTEX(-halfSize, groundHeight, -halfSize);
+    xz = VERTEX(groundSize, groundHeight, groundSize);
+    _xz = VERTEX(0, groundHeight, groundSize);
+    x_z = VERTEX(groundSize, groundHeight, 0);
+    _x_z = VERTEX(0, groundHeight, 0);
 }
 
 std::list<VERTEX> Ground::getCoordinates() const {
     return std::list<VERTEX>{xz, x_z, _xz, _x_z};
-}
-
-float Ground::getGroundSize() const {
-    return groundSize;
 }

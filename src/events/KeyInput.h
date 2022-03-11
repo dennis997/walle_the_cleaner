@@ -9,7 +9,7 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
     switch(key) {
         case 'w':
             robot.moveForward();
-            cameraHandler->setEgoPerspective();
+            cameraHandler->update();
             break;
 
         case 'a':

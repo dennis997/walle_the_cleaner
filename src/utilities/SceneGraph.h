@@ -12,14 +12,14 @@
 #include "../scenes/surface/TrashCube.h"
 
 // top level nodes
-static Surface surface;
-static Robot robot;
-static Sky sky;
+inline Surface surface;
+inline Robot robot;
+inline Sky sky;
 
 /**
  * Add shapes to top level nodes or underneath nodes
  */
-static void buildSceneGraph() {
+inline void buildSceneGraph() {
     surface.add(new Ground);
     surface.add(new TrashCube);
 
@@ -37,7 +37,7 @@ static void buildSceneGraph() {
  *
  * All added nodes in the buildSceneGraph function will be drawn cascadingly
  */
-static void printSceneGraph(const unsigned int frameIndex) {
+inline void printSceneGraph(const unsigned int frameIndex) {
     surface.draw(frameIndex);
     sky.draw(frameIndex);
     robot.draw(frameIndex);

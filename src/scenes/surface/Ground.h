@@ -21,7 +21,6 @@ private:
      */
     GLuint surfaceImage;
 
-    float groundSize;
     float groundHeight;
 
     /**
@@ -45,7 +44,6 @@ private:
 public:
     Ground();
     std::list<VERTEX> getCoordinates() const;
-    float getGroundSize() const;
 
     /**
      * Access method that is getting called by the renderer
