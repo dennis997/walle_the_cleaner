@@ -13,13 +13,15 @@ int waitDuration = 10; // in milliseconds
 GLuint tex_2d;
 
 
+HandlerManager* _handlerManager = nullptr;
+
 /**
  * Callback every frame for the scene graph components
  */
 void animate(int frameIndex) {
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
     glClear(GL_COLOR_BUFFER_BIT);
-    invokeHandlers(frameIndex);
+    _handlerManager->invokeHandlers(frameIndex);
 
     printSceneGraph(frameIndex);
 
@@ -65,12 +67,30 @@ void initRenderer(int argc, char** argv) {
     glutDisplayFunc(renderScene);
     glutReshapeFunc(reshape);
     glutTimerFunc(waitDuration,animate,0);
-    glutKeyboardFunc(keyInputListener);
+    glutKeyboardFunc([](unsigned char key, int x, int y) {
+        keyInputListener(key, x, y, _handlerManager);
+    });
+
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_COLOR_MATERIAL);
+    glShadeModel(GL_SMOOTH);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glEnable(GL_DEPTH_TEST);
 }
 
+void setHandlerManager(HandlerManager* handlerManager) {
+    _handlerManager = handlerManager;
+}
+
 void startRendering() {
+    if (_handlerManager == nullptr) {
+        std::cerr << "you have to initialize the handler manager first" << std::endl;
+        return;
+    }
+
     glutMainLoop();
 }
 

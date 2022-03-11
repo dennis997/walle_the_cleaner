@@ -3,6 +3,7 @@
 
 #include "../api/orientation.h"
 #include "../api/vertex.h"
+#include "glm/vec3.hpp"
 
 /**
  * Singleton pattern for a parameter bucket
@@ -12,10 +13,10 @@ private:
     inline static Parameter* instance;
 
     // roboter
-    Orientation startOrientation = Orientation::EAST;
-    VERTEX startPosition = VERTEX(1,0,0);
+    glm::vec3 startOrientation = glm::vec3(.15f, .0f, .0f);
+    glm::vec3 startPosition = glm::vec3(1,0,0);
 
-    inline static float movementSpeed = 0.05;
+    float movementSpeed = 0.05;
 
 public:
     /**
@@ -31,15 +32,15 @@ public:
     }
 
     // getter
-    Orientation getStartOrientation() const {
+    const glm::vec3 &getStartOrientation() const {
         return startOrientation;
     }
 
-    const VERTEX &getStartPosition() const {
+    const glm::vec3 &getStartPosition() const {
         return startPosition;
     }
 
-    static float getMovementSpeed()  {
+    float getMovementSpeed() const {
         return movementSpeed;
     }
 };

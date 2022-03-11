@@ -3,7 +3,7 @@
 
 Ground::Ground() {
     groundHeight = 0;
-    groundSize = 2;
+    groundSize = 10;
 
     calculate(groundSize, groundHeight);
     loadImage();

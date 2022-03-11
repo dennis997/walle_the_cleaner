@@ -5,13 +5,35 @@
 #include "../handler/CameraHandler.h"
 #include "../handler/RoboterHandler.h"
 
+class HandlerManager {
+private:
+    CameraHandler* cameraHandler{};
+    RoboterHandler* roboterHandler{};
 
-inline CameraHandler cameraHandler;
-inline RoboterHandler roboterHandler;
+    void init() {
+        cameraHandler = new CameraHandler;
+        roboterHandler = new RoboterHandler;
+    }
 
-inline void invokeHandlers(const unsigned int frameIndex) {
-    cameraHandler.executeStep(frameIndex);
-    roboterHandler.executeStep(frameIndex);
-}
+public:
+    HandlerManager() {
+        init();
+    }
+
+    void invokeHandlers(const unsigned int frameIndex) {
+        cameraHandler->executeStep(frameIndex);
+        roboterHandler->executeStep(frameIndex);
+    }
+
+    CameraHandler *getCameraHandler() const {
+        return cameraHandler;
+    }
+
+    RoboterHandler *getRoboterHandler() const {
+        return roboterHandler;
+    }
+};
+
+
 
 #endif //WALL_E_HANDLERMANAGER_H

@@ -15,20 +15,21 @@
  */
 class Robot: public Scene {
 private:
-    VERTEX position;
-    Orientation currentOrientation;
+    glm::vec3 position;
+    glm::vec3 currentOrientation;
 
 public:
     Robot();
 
     void draw(unsigned int frameIndex) const override;
-    VERTEX getPosition() const;
+    const glm::vec3 &getPosition() const;
 
-    void turnUpwards();
     void moveForward();
     void moveBack();
     void moveLeft();
     void moveRight();
+
+    const glm::vec3 &getCurrentOrientation() const;
 };
 
 

@@ -3,11 +3,13 @@
 
 #include "../utilities/HandlerManager.h"
 
-void keyInputListener(unsigned char key, int x, int y) {
+void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerManager) {
+    CameraHandler* cameraHandler = handlerManager->getCameraHandler();
 
     switch(key) {
         case 'w':
             robot.moveForward();
+            cameraHandler->setEgoPerspective();
             break;
 
         case 'a':
@@ -23,11 +25,11 @@ void keyInputListener(unsigned char key, int x, int y) {
             break;
 
         case 'b':
-            cameraHandler.setBirdPerspective();
+            cameraHandler->setBirdPerspective();
             break;
 
         case 'r':
-            cameraHandler.setRoboterPerspective();
+            cameraHandler->setEgoPerspective();
             break;
     }
 }

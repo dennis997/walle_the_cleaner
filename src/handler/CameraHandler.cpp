@@ -4,30 +4,26 @@
 
 CameraHandler::CameraHandler() {
     // default
-    setRoboterPerspective();
-    lookAt = VERTEX{.15, 0, 0};
+    setEgoPerspective();
 }
 
 void CameraHandler::executeStep(const unsigned int frameIndex) {
-    gluLookAt(cameraPos.x, cameraPos.y, cameraPos.z, lookAt.x, lookAt.y, lookAt.z, 0, 1, 0);
+    gluLookAt(lookAt.position.x, lookAt.position.y, lookAt.position.z,
+              lookAt.center.x, lookAt.center.y, lookAt.center.z,
+              lookAt.up.x, lookAt.up.y, lookAt.up.z
+    );
 }
 
-void CameraHandler::setRoboterPerspective() {
-    cameraPos = robot.getPosition();
-    cameraPos.y = .5; // TODO set robot head y value when its present
+void CameraHandler::setEgoPerspective() {
+    lookAt.position = robot.getPosition();
+    lookAt.center = robot.getCurrentOrientation();
+
+    lookAt.position.y = .5; // TODO set robot head y value when its present
 }
 
 void CameraHandler::setBirdPerspective() {
-    cameraPos.x = 0;
-    cameraPos.y = 3;
-    cameraPos.z = 0;
-}
-
-void CameraHandler::setPosition() {
-    setRoboterPerspective();
-}
-
-VERTEX CameraHandler::getLookAt() {
-    return lookAt;
+    lookAt.position.x = 0;
+    lookAt.position.y = 3;
+    lookAt.position.z = 0;
 }
 

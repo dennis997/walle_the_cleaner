@@ -1,5 +1,6 @@
 #include "Robot.h"
 
+#include "../../vendor/glut.h"
 
 Robot::Robot() {
     Parameter* parameter = Parameter::getInstance();
@@ -9,25 +10,22 @@ Robot::Robot() {
 }
 
 void Robot::draw(const unsigned int frameIndex) const {
-    Scene::draw(frameIndex);
+    glPopMatrix();
+    {
+        glTranslatef(position.x, position.y, position.z);
+        Scene::draw(frameIndex);
+    }
+    glPopMatrix();
 }
 
-VERTEX Robot::getPosition() const {
+const glm::vec3 &Robot::getPosition() const {
     return position;
 }
 
-void Robot::turnUpwards() {
-
-}
-
 void Robot::moveForward() {
-    glm::vec3 currentPosition {position.x, position.y, position.z};
-    glm::vec3 cameraViewPoint {cameraHandler.getLookAt().x, cameraHandler.getLookAt().y, cameraHandler.getLookAt().z};
-    glm::vec3 newPosition = currentPosition - ((currentPosition - cameraViewPoint) * Parameter::getMovementSpeed());
+    Parameter* parameter = Parameter::getInstance();
 
-    position = VERTEX(newPosition.x, newPosition.y, newPosition.z);
-
-    cameraHandler.setPosition();
+    position -= (position - currentOrientation) * parameter->getMovementSpeed();
 }
 
 void Robot::moveBack() {
@@ -42,3 +40,6 @@ void Robot::moveRight() {
 
 }
 
+const glm::vec3 &Robot::getCurrentOrientation() const {
+    return currentOrientation;
+}

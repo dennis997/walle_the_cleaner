@@ -3,12 +3,14 @@
 
 #include "../../model/Scene.h"
 
-class Body: Scene {
+class Body: public Scene {
 private:
-    float size = .4;
+    float size = .1;
 
 public:
     void draw(unsigned int frameIndex) const override;
+
+    float getSize() const;
 };
 
 
