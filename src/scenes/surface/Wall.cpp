@@ -17,9 +17,9 @@ void Wall::draw(unsigned int frameIndex) const {
         glColor3f(1, 1, 1);
         glBindTexture(GL_TEXTURE_2D, img_id);
         glEnable(GL_TEXTURE_2D);
+        glTranslatef(0,-2,0);
         glBegin(GL_POLYGON);
         {
-
             glTexCoord2f(0, 0);
             glVertex3f(vertices[0], vertices[1], vertices[2]);
             glTexCoord2f(1, 0);
@@ -41,33 +41,35 @@ void Wall::draw(unsigned int frameIndex) const {
 
 
 void Wall::calculate(const WallSide wallSide, const float fieldSize) {
+    float gap = 4;
+
     switch (wallSide) {
         case LEFT:
-            vertices = {0, 0, 0,
-                        0, 0, fieldSize,
-                        0, fieldSize, fieldSize,
-                        0, fieldSize, 0,
+            vertices = {-gap, 0, -gap,
+                        -gap, 0, gap + fieldSize,
+                        -gap, fieldSize, gap + fieldSize,
+                        -gap, fieldSize, -gap,
             };
             break;
         case RIGHT:
-            vertices = {fieldSize, 0, 0,
-                        fieldSize, 0, fieldSize,
-                        fieldSize, fieldSize, fieldSize,
-                        fieldSize, fieldSize, 0,
+            vertices = {gap + fieldSize, 0, -gap,
+                        gap + fieldSize, 0, gap + fieldSize,
+                        gap + fieldSize, fieldSize, gap + fieldSize,
+                        gap + fieldSize, fieldSize, -gap,
             };
             break;
         case BACK:
-            vertices = {0, 0, 0,
-                        fieldSize, 0, 0,
-                        fieldSize, fieldSize, 0,
-                        0, fieldSize, 0,
+            vertices = {-gap, 0, -gap,
+                        gap + fieldSize, 0, -gap,
+                        gap + fieldSize, fieldSize, -gap,
+                        -gap, fieldSize, -gap,
             };
             break;
         case FRONT:
-            vertices = {0, 0, fieldSize,
-                        fieldSize, 0, fieldSize,
-                        fieldSize, fieldSize, fieldSize,
-                        0, fieldSize, fieldSize,
+            vertices = {-gap, 0, gap + fieldSize,
+                        gap + fieldSize, 0, gap + fieldSize,
+                        gap + fieldSize, fieldSize, gap + fieldSize,
+                        -gap, fieldSize, gap + fieldSize,
             };
             break;
     }
