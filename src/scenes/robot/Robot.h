@@ -28,7 +28,7 @@ public:
     void moveBack();
     void moveLeft();
     void moveRight();
-    void calcViewPoint(int degree);
+    void calcViewPoint(int currentDegree);
 
     const glm::vec3 &getCurrentOrientation() const;
 };
