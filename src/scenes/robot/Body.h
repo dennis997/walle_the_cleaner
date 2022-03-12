@@ -5,12 +5,6 @@
 #include "../../vendor/glut.h"
 
 
-struct Cube {
-    float *vertex_normals;
-    float *vertex_texture;
-    float *vertices;
-};
-
 class Body: public Scene {
 private:
     float size;
@@ -18,15 +12,10 @@ private:
     unsigned int bodyImageId;
     void loadImage();
 
-    GLuint cubeBufferId;
-
-    void calculate();
-
 public:
     Body();
 
     void draw(unsigned int frameIndex) const override;
 };
-
 
 #endif //WALL_E_BODY_H

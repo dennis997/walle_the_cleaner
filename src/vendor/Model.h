@@ -10,10 +10,6 @@
 #include <fstream>
 #include <valarray>
 
-#include "../../../Library/loadpng.h"
-#include "../../../Library/process_image.h"
-#include "../../../Library/gl_texture.h"
-
 #include "SOIL.h"
 
 class Model {
@@ -123,16 +119,6 @@ private:
                         break;
                 }
             } else if (line[0] == 'm' && line[1] == 'a') {
-                sscanf(line.c_str(), "map_Kd %s", str);
-                std::string file = prefix + str;
-                Image img;
-                Load_Texture_Swap(&img, file.c_str());
-                glGenTextures(1, &(m->texture));
-                glBindTexture(GL_TEXTURE_2D, m->texture);
-                glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, img.w, img.h, 0, GL_RGBA, GL_UNSIGNED_BYTE, img.img);
-                glBindTexture(GL_TEXTURE_2D, 0);
-                Delete_Image(&img);
             }
         }
     }
@@ -282,11 +268,11 @@ public:
                     }
                 }
             } else if (line[0] == 'm' && line[1] == 't') {
-                sscanf(line.c_str(), "mtllib %s", &str);
+                sscanf(line.c_str(), "mtllib %s", str);
                 std::string file = prefix + str;
                 load_material(file.c_str());
             } else if (line[0] == 'u' && line[1] == 's') {
-                sscanf(line.c_str(), "usemtl %s", &str);
+                sscanf(line.c_str(), "usemtl %s", str);
                 std::string material = str;
                 if (map_material.find(material) != map_material.end())
                     faces.push_back(Face(-1, NULL, NULL, map_material[material]));
@@ -335,13 +321,6 @@ public:
         }
         glEndList();
 
-        printf("Model: %s\n", filename);
-        printf("Vertices: %d\n", vertices.size());
-        printf("Texcoords: %d\n", texcoords.size());
-        printf("Normals: %d\n", normals.size());
-        printf("Faces: %d\n", faces.size());
-        printf("Materials: %d\n", materials.size());
-
         sum_x /= vertices.size();
         sum_y /= vertices.size();
         sum_z /= vertices.size();
@@ -350,10 +329,6 @@ public:
         pos_y /= vertices.size();
         pos_y = -pos_y;
         pos_z = -sqrt(sum_x * sum_x + sum_y * sum_y + sum_z * sum_z) * 15;
-
-        printf("Pos_X: %f\n", pos_x);
-        printf("Pos_Y: %f\n", pos_y);
-        printf("Pos_Z: %f\n", pos_z);
 
         for (Material &material : materials) {
             delete material.ambient;

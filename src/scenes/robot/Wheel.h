@@ -14,11 +14,15 @@ class Wheel: public Scene {
 private:
     glm::vec3 position;
     WheelSide orientation;
+
+    unsigned int wheelImgId;
+
     Model model;
 
     float size;
 
     void calculate(float roboterSize);
+    void loadImage();
 
 public:
     Wheel(WheelSide orientation);

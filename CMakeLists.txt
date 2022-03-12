@@ -37,10 +37,12 @@ link_directories(${EXTERNAL_INSTALL_LOCATION}/lib)
 
 add_dependencies(wall_e glm)
 
+link_directories(../Library)
+
 FILE(COPY res DESTINATION ${CMAKE_BINARY_DIR})
 
-    target_link_libraries(wall_e -lGLEW)
-    target_link_libraries(wall_e -lglut)
-    target_link_libraries(wall_e -lGL)
-    target_link_libraries(wall_e -lGLU)
-    target_link_libraries(wall_e -lSOIL)
+target_link_libraries(wall_e -lGLEW)
+target_link_libraries(wall_e -lglut)
+target_link_libraries(wall_e -lGL)
+target_link_libraries(wall_e -lGLU)
+target_link_libraries(wall_e -lSOIL)

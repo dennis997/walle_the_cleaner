@@ -73,7 +73,7 @@ bool Robot::restrictMovement() {
     float offsetBoarder = 0.8f;
 
     if (position.x > parameter->getFieldSize() - offsetBoarder ||
-        position.z > parameter->getFieldSize() -offsetBoarder ||
+        position.z > parameter->getFieldSize() - offsetBoarder ||
         position.x < 0 + offsetBoarder ||
         position.z < 0 + offsetBoarder)
         return true;

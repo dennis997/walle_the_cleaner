@@ -4,7 +4,6 @@
 #include "../../model/Scene.h"
 #include "../../api/orientation.h"
 #include "../../utilities/Parameters.h"
-#include "../../api/vertex.h"
 #include "glm/glm.hpp"
 #include "../../utilities/HandlerManager.h"
 
