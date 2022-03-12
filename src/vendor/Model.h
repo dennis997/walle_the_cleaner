@@ -376,7 +376,7 @@ public:
         faces.clear();
     }
 
-    void draw() { glCallList(list);
+    void draw() const { glCallList(list) ;
     }
 };
 
