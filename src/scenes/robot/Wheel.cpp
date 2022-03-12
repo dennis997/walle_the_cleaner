@@ -8,6 +8,7 @@ Wheel::Wheel(const WheelSide orientation): orientation(orientation) {
     size = parameters->getRobotSize() / 6.f;
 
     calculate(parameters->getRobotSize());
+    model.load("");
 }
 
 void Wheel::draw(unsigned int frameIndex) const {
@@ -15,7 +16,6 @@ void Wheel::draw(unsigned int frameIndex) const {
     {
         glColor3f(.44, .47, .49);
         glTranslatef(position.x, position.y, position.z);
-        glutSolidCube(size);
     }
     glPopMatrix();
 }

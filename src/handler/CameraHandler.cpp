@@ -67,7 +67,7 @@ void CameraHandler::update() {
 
 void CameraHandler::setDebugPerspective() {
     currentPerspective = Perspective::DEBUG;
-    glEnable(GL_LIGHT1);
+    glDisable(GL_LIGHT1);
 
     lookAt.up.x = 0;
     lookAt.up.y = 1;

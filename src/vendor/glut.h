@@ -7,6 +7,7 @@
 #include "/usr/local/include/GL/glew.h"
 #include <GLUT/glut.h>
 #else
+#define GL_GLEXT_PROTOTYPES
 #include <GL/freeglut.h>
 #endif
 

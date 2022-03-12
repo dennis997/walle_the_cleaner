@@ -4,6 +4,7 @@
 #include "../../model/Scene.h"
 #include <glm/glm.hpp>
 
+#include "../../vendor/Model.h"
 
 enum class WheelSide {
     LEFT, RIGHT
@@ -13,6 +14,7 @@ class Wheel: public Scene {
 private:
     glm::vec3 position;
     WheelSide orientation;
+    Model model;
 
     float size;
 
