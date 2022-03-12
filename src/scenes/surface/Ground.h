@@ -16,8 +16,9 @@ private:
      * Four vertices for a 2d plate
      */
     VERTEX xz, x_z, _xz, _x_z;
+
     /**
-     * Texture ID for mapping groud texture
+     * Texture ID for mapping ground texture
      */
     GLuint surfaceImage;
 

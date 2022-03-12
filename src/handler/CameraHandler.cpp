@@ -27,13 +27,16 @@ void CameraHandler::setEgoPerspective() {
 void CameraHandler::setBirdPerspective() {
     currentPerspective = Perspective::BIRD;
 
-    lookAt.position.x = 5;
-    lookAt.position.y = 13;
-    lookAt.position.z = 5;
+    Parameter* parameters = Parameter::getInstance();
+    int fieldSize = parameters->getFieldSize();
 
-    lookAt.center.x = 5;
+    lookAt.position.x = fieldSize / 2;
+    lookAt.position.y = 13;
+    lookAt.position.z = fieldSize / 2;
+
+    lookAt.center.x = fieldSize / 2;
     lookAt.center.y = 0;
-    lookAt.center.z = 5;
+    lookAt.center.z = fieldSize / 2;
 
     lookAt.up.x = 1;
     lookAt.up.y = 0;

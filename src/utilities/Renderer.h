@@ -10,8 +10,6 @@
 #include "../vendor/SOIL.h"
 
 int waitDuration = 10; // in milliseconds
-GLuint tex_2d;
-
 
 HandlerManager* _handlerManager = nullptr;
 
@@ -20,7 +18,7 @@ HandlerManager* _handlerManager = nullptr;
  */
 void animate(int frameIndex) {
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     _handlerManager->invokeHandlers(frameIndex);
 
     printSceneGraph(frameIndex);
@@ -39,6 +37,8 @@ void renderScene() {
     glLoadIdentity();
     glClear( GL_DEPTH_BUFFER_BIT);
     glutSwapBuffers();
+
+    unsigned int vertex_buffer;
 }
 
 /**
@@ -71,11 +71,10 @@ void initRenderer(int argc, char** argv) {
         keyInputListener(key, x, y, _handlerManager);
     });
 
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
     glEnable(GL_COLOR_MATERIAL);
     glShadeModel(GL_SMOOTH);
     glEnable(GL_BLEND);
+    glEnable(GL_NORMALIZE);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glEnable(GL_DEPTH_TEST);
@@ -90,6 +89,8 @@ void startRendering() {
         std::cerr << "you have to initialize the handler manager first" << std::endl;
         return;
     }
+
+
 
     glutMainLoop();
 }
