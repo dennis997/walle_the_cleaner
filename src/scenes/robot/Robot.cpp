@@ -46,15 +46,15 @@ void Robot::moveBack() {
 void Robot::moveLeft() {
     Parameter* parameter = Parameter::getInstance();
     yAngle += parameter->getMovementAngle();
-
     calcViewPoint(yAngle);
+    movedForward = !movedForward;
 }
 
 void Robot::moveRight() {
     Parameter* parameter = Parameter::getInstance();
     yAngle -= parameter->getMovementAngle();
-
     calcViewPoint(yAngle);
+    movedForward = !movedForward;
 }
 
 const glm::vec3 &Robot::getCurrentOrientation() const {

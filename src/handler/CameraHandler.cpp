@@ -4,7 +4,7 @@
 
 CameraHandler::CameraHandler() {
     // default
-    setDebugPerspective();
+    setThirdPersonPerspective();
 }
 
 void CameraHandler::executeStep(const unsigned int frameIndex) {
@@ -55,8 +55,8 @@ void CameraHandler::update() {
             lookAt.center.y = .5; // TODO set robot head y value when its present
         break;
 
-        case Perspective::DEBUG:
-            lookAt.position = robot.getPosition() + glm::vec3(.0f, .3f, -1.7f);
+        case Perspective::THIRDPERSON:
+            lookAt.position = (robot.getPosition() + glm::vec3(.0f, .3f, -1.7f));
             lookAt.center = robot.getCurrentOrientation() + robot.getPosition();
 
             lookAt.position.y = .5; // TODO set robot head y value when its present
@@ -65,8 +65,8 @@ void CameraHandler::update() {
     }
 }
 
-void CameraHandler::setDebugPerspective() {
-    currentPerspective = Perspective::DEBUG;
+void CameraHandler::setThirdPersonPerspective() {
+    currentPerspective = Perspective::THIRDPERSON;
     glEnable(GL_LIGHT1);
 
     lookAt.up.x = 0;
