@@ -34,5 +34,4 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
     }
 }
 
-
 #endif //WALL_E_KEYINPUT_H

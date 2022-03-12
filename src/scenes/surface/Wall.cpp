@@ -18,8 +18,9 @@ void Wall::draw(unsigned int frameIndex) const {
         glBindTexture(GL_TEXTURE_2D, img_id);
         glEnable(GL_TEXTURE_2D);
         glTranslatef(0,-2,0);
-        glBegin(GL_POLYGON);
+        glBegin(GL_QUADS);
         {
+            glNormal3f(vertex_normal.x, vertex_normal.y, vertex_normal.z);
             glTexCoord2f(0, 0);
             glVertex3f(vertices[0], vertices[1], vertices[2]);
             glTexCoord2f(1, 0);
@@ -50,6 +51,7 @@ void Wall::calculate(const WallSide wallSide, const float fieldSize) {
                         -gap, fieldSize, gap + fieldSize,
                         -gap, fieldSize, -gap,
             };
+            vertex_normal = glm::vec3(-1.f, .0f, .0f);
             break;
         case RIGHT:
             vertices = {gap + fieldSize, 0, -gap,
@@ -57,6 +59,7 @@ void Wall::calculate(const WallSide wallSide, const float fieldSize) {
                         gap + fieldSize, fieldSize, gap + fieldSize,
                         gap + fieldSize, fieldSize, -gap,
             };
+            vertex_normal = glm::vec3(1.f, .0f, .0f);
             break;
         case BACK:
             vertices = {-gap, 0, -gap,
@@ -64,6 +67,7 @@ void Wall::calculate(const WallSide wallSide, const float fieldSize) {
                         gap + fieldSize, fieldSize, -gap,
                         -gap, fieldSize, -gap,
             };
+            vertex_normal = glm::vec3(.0f, .0f, 1.f);
             break;
         case FRONT:
             vertices = {-gap, 0, gap + fieldSize,
@@ -71,6 +75,7 @@ void Wall::calculate(const WallSide wallSide, const float fieldSize) {
                         gap + fieldSize, fieldSize, gap + fieldSize,
                         -gap, fieldSize, gap + fieldSize,
             };
+            vertex_normal = glm::vec3(.0f, 0.f, -1.f);
             break;
     }
 }

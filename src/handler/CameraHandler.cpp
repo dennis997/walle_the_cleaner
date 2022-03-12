@@ -16,6 +16,7 @@ void CameraHandler::executeStep(const unsigned int frameIndex) {
 
 void CameraHandler::setEgoPerspective() {
     currentPerspective = Perspective::EGO;
+    glEnable(GL_LIGHT1);
 
     lookAt.up.x = 0;
     lookAt.up.y = 1;
@@ -26,6 +27,7 @@ void CameraHandler::setEgoPerspective() {
 
 void CameraHandler::setBirdPerspective() {
     currentPerspective = Perspective::BIRD;
+    glDisable(GL_LIGHT1);
 
     Parameter* parameters = Parameter::getInstance();
     int fieldSize = parameters->getFieldSize();

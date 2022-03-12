@@ -11,7 +11,7 @@
 class Parameter {
 private:
     inline static Parameter* instance;
-    int fieldSize = 10;
+    float fieldSize = 10;
 
     // roboter
     glm::vec3 startOrientation = glm::vec3(fieldSize / 2, .0f, 0);
@@ -46,7 +46,7 @@ public:
         return movementSpeed;
     }
 
-    int getFieldSize() const {
+    float getFieldSize() const {
         return fieldSize;
     }
 };

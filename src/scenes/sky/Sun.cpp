@@ -9,14 +9,12 @@ Sun::Sun() {
 
     Parameter* parameters = Parameter::getInstance();
 
-    setPosition(parameters->getFieldSize());
+    calculate(parameters->getFieldSize());
     loadImage();
 }
 
 void Sun::draw(unsigned int frameIndex) const {
-    drawLight();
     drawSun(frameIndex);
-
     Scene::draw(frameIndex);
 }
 
@@ -43,13 +41,10 @@ void Sun::drawSun(unsigned int frameIndex) const {
     glPopMatrix();
 }
 
-void Sun::setPosition(const int size) {
+void Sun::calculate(const int size) {
     position.x = size / 2;
     position.y = 2;
-    position.z = 0;//-size;
-}
-
-void Sun::drawLight() const {
+    position.z = -3;
 }
 
 void Sun::loadImage() {
