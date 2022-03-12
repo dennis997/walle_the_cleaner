@@ -1,5 +1,6 @@
 #include "Robot.h"
 #include "math.h"
+#include <iostream>
 #include "../../vendor/glut.h"
 
 Robot::Robot() {
@@ -25,13 +26,21 @@ const glm::vec3 &Robot::getPosition() const {
 }
 
 void Robot::moveForward() {
+    std::cout << "X: " << position.x << "| Z: " << position.z << std::endl;
     Parameter* parameter = Parameter::getInstance();
-    position += currentOrientation * parameter->getMovementSpeed();
+    if (!restrictMovement() || !movedForward) {
+        position += currentOrientation * parameter->getMovementSpeed();
+        movedForward = true;
+    }
 }
 
 void Robot::moveBack() {
+    std::cout << "X: " << position.x << "| Z: " << position.z << std::endl;
     Parameter* parameter = Parameter::getInstance();
-    position -= currentOrientation * parameter->getMovementSpeed();
+    if (!restrictMovement() || movedForward) {
+        position -= currentOrientation * parameter->getMovementSpeed();
+        movedForward = false;
+    }
 }
 
 void Robot::moveLeft() {
@@ -58,3 +67,16 @@ void Robot::calcViewPoint(int degree) {
     currentOrientation.x = cos(currentDegree) + sin(currentDegree);
     currentOrientation.z = cos(currentDegree) - sin(currentDegree);
 }
+
+bool Robot::restrictMovement() {
+    Parameter* parameter = Parameter::getInstance();
+    float offsetBoarder = 0.8f;
+
+    if (position.x > parameter->getFieldSize() - offsetBoarder ||
+        position.z > parameter->getFieldSize() -offsetBoarder ||
+        position.x < 0 + offsetBoarder ||
+        position.z < 0 + offsetBoarder)
+        return true;
+    return false;
+}
+
