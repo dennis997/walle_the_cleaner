@@ -16,7 +16,7 @@ private:
     std::vector<float> vertices;
     GLuint img_id;
 
-    void calculate(WallSide wallSide, float fieldSize);
+    void calculate(WallSide wallSide, float size);
     void loadImage(WallSide wallSide);
 
 public:
