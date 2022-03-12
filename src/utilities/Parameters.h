@@ -4,6 +4,7 @@
 #include "../api/orientation.h"
 #include "../api/vertex.h"
 #include "glm/vec3.hpp"
+#include <utility>
 
 /**
  * Singleton pattern for a parameter bucket
@@ -20,7 +21,6 @@ private:
     float movementSpeed = 0.1;
     float movementAngle = 5.0;
     int yAngle = 0;
-
 
 public:
     /**
