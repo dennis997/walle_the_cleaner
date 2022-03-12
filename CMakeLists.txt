@@ -7,7 +7,7 @@ add_executable(wall_e src/main.cpp
         src/scenes/surface/Surface.cpp
         src/scenes/surface/Ground.cpp
         src/scenes/surface/TrashCube.cpp
-        src/scenes/surface/Wall.cpp
+        src/scenes/sky/Wall.cpp
         src/scenes/robot/Robot.cpp
         src/scenes/robot/Body.cpp
         src/scenes/robot/Wheel.cpp

@@ -20,7 +20,7 @@ void Wall::draw(unsigned int frameIndex) const {
         glTranslatef(0,-2,0);
         glBegin(GL_QUADS);
         {
-            glNormal3f(vertex_normal.x, vertex_normal.y, vertex_normal.z);
+            glNormal3f(0, 0, 0);
             glTexCoord2f(0, 0);
             glVertex3f(vertices[0], vertices[1], vertices[2]);
             glTexCoord2f(1, 0);

@@ -58,13 +58,11 @@ void initLight_0() {
     Parameter* parameters = Parameter::getInstance();
     float fieldSize = parameters->getFieldSize();
 
-    GLfloat light_position[] = {fieldSize / 2.f, 2.f, 0.f,0.f};
-    GLfloat light_direction[] = {fieldSize / 2.f, 0.f, fieldSize / 2.f};
-    GLfloat light_ambient[] = { .05f, .05f, .001f, 1.f }; // intensity of light
+    GLfloat light_position[] = {fieldSize / 2.f, 2.f, fieldSize / 2.f,0.f};
+    GLfloat light_ambient[] = { .5f, .4f, .25f, 1.f }; // intensity of light
     GLfloat light_diffuse[] = { 0.960f, 0.788f, 0.435f, 1.f }; // color of light
 
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light_direction);
     glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
     glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 1.f);
@@ -79,9 +77,9 @@ void initLight_1() {
 
     GLfloat light_position[] = {0.f, .1f, -.2f,1.f};
 
-    GLfloat light_direction[] = { 0.f, -.3f, -1.f};
+    GLfloat light_direction[] = { 0.f, -.25f, -1.f};
     GLfloat light_ambient[] = { .5f, .5f, .5f, 1.f }; // intensity of light
-    GLfloat light_diffuse[] = { 1.f, 0.f, 0.f, 1.f }; // color of light
+    GLfloat light_diffuse[] = { 0.952f, 0.843f, 0.207f, 1.f }; // color of light
     GLfloat light_specular[] = { 1.f, 1.f, 1.f, 1.f };
 
     glLightfv(GL_LIGHT1, GL_POSITION, light_position);
@@ -90,9 +88,10 @@ void initLight_1() {
     glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
     glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular);
     glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 1.f);
-    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.0f);
-    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.2f);
+    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.1f);
+    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.3f);
     glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 20.f);
+    glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 10.f);
 
     glEnable(GL_LIGHT1);
 }

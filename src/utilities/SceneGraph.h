@@ -10,7 +10,7 @@
 #include "../scenes/sky/Sky.h"
 #include "../scenes/sky/Sun.h"
 #include "../scenes/surface/TrashCube.h"
-#include "../scenes/surface/Wall.h"
+#include "../scenes/sky/Wall.h"
 
 // top level nodes
 inline Surface surface;
@@ -23,12 +23,13 @@ inline Sky sky;
 inline void buildSceneGraph() {
     surface.add(new TrashCube);
     surface.add(new Ground);
-    surface.add(new Wall(LEFT));
-    surface.add(new Wall(RIGHT));
-    surface.add(new Wall(BACK));
-    surface.add(new Wall(FRONT));
+
 
     sky.add(new Sun);
+    sky.add(new Wall(LEFT));
+    sky.add(new Wall(RIGHT));
+    sky.add(new Wall(BACK));
+    sky.add(new Wall(FRONT));
 
     Body* body = new Body();
     body->add(new Wheel(WheelOrientation::LEFT, body->getSize()));

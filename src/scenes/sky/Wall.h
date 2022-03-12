@@ -2,7 +2,7 @@
 #define WALL_E_WALL_H
 
 #include "../../model/Scene.h"
-#include <glm/glm.hpp>
+#include "glm/glm.hpp"
 #include <vector>
 #include <GL/gl.h>
 #include "GL/glext.h"
@@ -16,6 +16,8 @@ private:
     std::vector<float> vertices;
     glm::vec3 vertex_normal;
     GLuint img_id;
+
+    int slices;
 
     void calculate(WallSide wallSide, float size);
     void loadImage(WallSide wallSide);

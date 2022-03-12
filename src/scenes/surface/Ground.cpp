@@ -33,6 +33,7 @@ void Ground::drawPlate() const {
         glBindTexture(GL_TEXTURE_2D, surfaceImage);
         glEnable(GL_TEXTURE_2D);
 
+        glDisable(GL_LIGHT0);
 
         // divide ground into n slices
         float sliceSize = size / slices;
@@ -55,6 +56,8 @@ void Ground::drawPlate() const {
                 glEnd();
             }
         }
+
+        glEnable(GL_LIGHT0);
 
 
         glDisable(GL_TEXTURE_2D);
