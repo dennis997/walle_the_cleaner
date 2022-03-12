@@ -5,12 +5,12 @@
 
 class Body: public Scene {
 private:
-    float size = .1;
+    float size;
 
 public:
-    void draw(unsigned int frameIndex) const override;
+    Body();
 
-    float getSize() const;
+    void draw(unsigned int frameIndex) const override;
 };
 
 

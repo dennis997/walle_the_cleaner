@@ -32,7 +32,7 @@ void Wall::draw(unsigned int frameIndex) const {
         }
         glEnd();
 
-        glBindTexture(GL_TEXTURE_2D, img_id);
+        glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
     }
     glPopMatrix();
@@ -101,6 +101,6 @@ void Wall::loadImage(const WallSide wallSide) {
     imageName.insert(0, "res/textures/skybox/");
 
     img_id = SOIL_load_OGL_texture(imageName.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
-                                         SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB |
+                                         SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_INVERT_Y |
                                          SOIL_FLAG_COMPRESS_TO_DXT);
 }

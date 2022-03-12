@@ -4,7 +4,7 @@
 
 CameraHandler::CameraHandler() {
     // default
-    setEgoPerspective();
+    setDebugPerspective();
 }
 
 void CameraHandler::executeStep(const unsigned int frameIndex) {
@@ -46,11 +46,32 @@ void CameraHandler::setBirdPerspective() {
 }
 
 void CameraHandler::update() {
-    if (currentPerspective == Perspective::EGO) {
-        lookAt.position = robot.getPosition();
-        lookAt.center = robot.getCurrentOrientation() + robot.getPosition();
+    switch (currentPerspective) {
+        case Perspective::EGO:
+            lookAt.position = robot.getPosition();
+            lookAt.center = robot.getCurrentOrientation() + robot.getPosition();
 
-        lookAt.position.y = .5; // TODO set robot head y value when its present
-        lookAt.center.y = .5; // TODO set robot head y value when its present
+            lookAt.position.y = .5; // TODO set robot head y value when its present
+            lookAt.center.y = .5; // TODO set robot head y value when its present
+        break;
+
+        case Perspective::DEBUG:
+            lookAt.position = robot.getPosition() + glm::vec3(.0f, .3f, -1.7f);
+            lookAt.center = robot.getCurrentOrientation() + robot.getPosition();
+
+            lookAt.position.y = .5; // TODO set robot head y value when its present
+            lookAt.center.y = .5; // TODO set robot head y value when its present
+            break;
     }
+}
+
+void CameraHandler::setDebugPerspective() {
+    currentPerspective = Perspective::DEBUG;
+    glEnable(GL_LIGHT1);
+
+    lookAt.up.x = 0;
+    lookAt.up.y = 1;
+    lookAt.up.z = 0;
+
+    update();
 }

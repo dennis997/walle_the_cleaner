@@ -2,24 +2,24 @@
 #define WALL_E_WHEEL_H
 
 #include "../../model/Scene.h"
-#include "../../api/vertex.h"
+#include <glm/glm.hpp>
 
 
-enum class WheelOrientation {
+enum class WheelSide {
     LEFT, RIGHT
 };
 
 class Wheel: public Scene {
 private:
-    VERTEX position;
-    WheelOrientation orientation;
+    glm::vec3 position;
+    WheelSide orientation;
 
     float size;
 
-    void calculate(float bodySize);
+    void calculate(float roboterSize);
 
 public:
-    Wheel(WheelOrientation orientation, float bodySize);
+    Wheel(WheelSide orientation);
 
     void draw(unsigned int frameIndex) const override;
 };

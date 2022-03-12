@@ -7,6 +7,7 @@
 #include "../scenes/robot/Robot.h"
 #include "../scenes/robot/Body.h"
 #include "../scenes/robot/Wheel.h"
+#include "../scenes/robot/Arm.h"
 #include "../scenes/sky/Sky.h"
 #include "../scenes/sky/Sun.h"
 #include "../scenes/surface/TrashCube.h"
@@ -32,9 +33,12 @@ inline void buildSceneGraph() {
     sky.add(new Wall(FRONT));
 
     Body* body = new Body();
-    body->add(new Wheel(WheelOrientation::LEFT, body->getSize()));
-    body->add(new Wheel(WheelOrientation::RIGHT, body->getSize()));
+    body->add(new Wheel(WheelSide::LEFT));
+    body->add(new Wheel(WheelSide::RIGHT));
     robot.add(body);
+
+    body->add(new Arm(ArmSide::LEFT));
+    body->add(new Arm(ArmSide::RIGHT));
 }
 
 /**

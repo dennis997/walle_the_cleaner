@@ -14,6 +14,7 @@ void Robot::draw(const unsigned int frameIndex) const {
     glPopMatrix();
     {
         glTranslatef(position.x, position.y, position.z);
+        glRotatef(yAngle + 45, 0, 1, 0);
         Scene::draw(frameIndex);
     }
     glPopMatrix();

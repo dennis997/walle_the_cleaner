@@ -21,6 +21,8 @@ private:
     float movementAngle = 5.0;
     int yAngle = 0;
 
+    float robotSize = 1.f;
+
 
 public:
     /**
@@ -58,6 +60,10 @@ public:
 
     int getYAngle() const {
         return yAngle;
+    }
+
+    float getRobotSize() const {
+        return robotSize;
     }
 };
 
