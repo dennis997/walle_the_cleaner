@@ -17,7 +17,9 @@ private:
     glm::vec3 startOrientation = glm::vec3(fieldSize / 2, .0f, 0);
     glm::vec3 startPosition = glm::vec3(fieldSize / 2,0,fieldSize / 2);
 
-    float movementSpeed = 0.005;
+    float movementSpeed = 0.01;
+    float movementAngle = 5.0;
+    int yAngle = 0;
 
 
 public:
@@ -46,8 +48,16 @@ public:
         return movementSpeed;
     }
 
+    float getMovementAngle() const {
+        return movementAngle;
+    }
+
     int getFieldSize() const {
         return fieldSize;
+    }
+
+    int getYAngle() const {
+        return yAngle;
     }
 };
 
