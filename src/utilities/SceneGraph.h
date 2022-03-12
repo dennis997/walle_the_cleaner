@@ -21,8 +21,8 @@ inline Sky sky;
  * Add shapes to top level nodes or underneath nodes
  */
 inline void buildSceneGraph() {
-    surface.add(new Ground);
     surface.add(new TrashCube);
+    surface.add(new Ground);
     surface.add(new Wall(LEFT));
     surface.add(new Wall(RIGHT));
     surface.add(new Wall(BACK));
@@ -34,7 +34,6 @@ inline void buildSceneGraph() {
     body->add(new Wheel(WheelOrientation::LEFT, body->getSize()));
     body->add(new Wheel(WheelOrientation::RIGHT, body->getSize()));
     robot.add(body);
-
 }
 
 /**

@@ -5,6 +5,7 @@
 #include "../../model/Scene.h"
 #include "../../api/vertex.h"
 #include "../../vendor/glut.h"
+#include "glm/vec3.hpp"
 
 /**
  * Includes following scenes:
@@ -15,14 +16,24 @@ private:
     /**
      * Four vertices for a 2d plate
      */
-    VERTEX xz, x_z, _xz, _x_z;
+    glm::vec3 xz, x_z, _xz, _x_z;
 
     /**
      * Texture ID for mapping ground texture
      */
     GLuint surfaceImage;
 
+    /**
+     * Y-Coord for the ground
+     */
     float groundHeight;
+
+    /**
+     * Number of polygons that are used to draw the ground
+     */
+    int slices;
+
+    float size;
 
     /**
      * Actual draw method that draws one object. For this example a 2d plate
@@ -44,7 +55,6 @@ private:
 
 public:
     Ground();
-    std::list<VERTEX> getCoordinates() const;
 
     /**
      * Access method that is getting called by the renderer

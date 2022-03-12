@@ -2,23 +2,19 @@
 #define WALL_E_SUN_H
 
 #include "../../model/Scene.h"
-#include "../../api/vertex.h"
+#include "glm/vec3.hpp"
 
 
 class Sun: public Scene {
 private:
-    VERTEX position;
+    glm::vec3 position;
     float radius;
 
-    unsigned int sunImageId;
-
     void drawSun(unsigned int frameIndex) const;
-    void drawLight() const;
+    void calculate(int size);
 
-    void setPosition(int size);
-
+    unsigned int sunImageId;
     void loadImage();
-
 
 public:
     Sun();

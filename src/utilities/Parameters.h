@@ -4,7 +4,6 @@
 #include "../api/orientation.h"
 #include "../api/vertex.h"
 #include "glm/vec3.hpp"
-#include "math.h"
 
 /**
  * Singleton pattern for a parameter bucket
@@ -12,10 +11,10 @@
 class Parameter {
 private:
     inline static Parameter* instance;
-    int fieldSize = 10;
+    float fieldSize = 10;
 
     // roboter
-    glm::vec3 startOrientation = glm::vec3(0, .0f, -1.414);
+    glm::vec3 startOrientation = glm::vec3(0, .0f, +1);
     glm::vec3 startPosition = glm::vec3(fieldSize / 2,0,fieldSize / 2);
 
     float movementSpeed = 0.1;
@@ -53,7 +52,7 @@ public:
         return movementAngle;
     }
 
-    int getFieldSize() const {
+    float getFieldSize() const {
         return fieldSize;
     }
 

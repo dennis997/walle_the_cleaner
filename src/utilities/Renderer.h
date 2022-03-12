@@ -8,6 +8,7 @@
 #include "SceneGraph.h"
 #include "HandlerManager.h"
 #include "../vendor/SOIL.h"
+#include "Parameters.h"
 
 int waitDuration = 10; // in milliseconds
 
@@ -52,6 +53,50 @@ void reshape(int width, int height) {
     glMatrixMode(GL_MODELVIEW);
 }
 
+
+void initLight_0() {
+    Parameter* parameters = Parameter::getInstance();
+    float fieldSize = parameters->getFieldSize();
+
+    GLfloat light_position[] = {fieldSize / 2.f, 2.f, 0.f,0.f};
+    GLfloat light_direction[] = {fieldSize / 2.f, 0.f, fieldSize / 2.f};
+    GLfloat light_ambient[] = { .05f, .05f, .001f, 1.f }; // intensity of light
+    GLfloat light_diffuse[] = { 0.960f, 0.788f, 0.435f, 1.f }; // color of light
+
+    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light_direction);
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+    glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 1.f);
+    glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, .0f);
+    glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.f);
+
+    glEnable(GL_LIGHT0);
+}
+
+void initLight_1() {
+    Parameter* parameters = Parameter::getInstance();
+
+    GLfloat light_position[] = {0.f, .1f, -.2f,1.f};
+
+    GLfloat light_direction[] = { 0.f, -.3f, -1.f};
+    GLfloat light_ambient[] = { .5f, .5f, .5f, 1.f }; // intensity of light
+    GLfloat light_diffuse[] = { 1.f, 0.f, 0.f, 1.f }; // color of light
+    GLfloat light_specular[] = { 1.f, 1.f, 1.f, 1.f };
+
+    glLightfv(GL_LIGHT1, GL_POSITION, light_position);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, light_direction);
+    glLightfv(GL_LIGHT1, GL_AMBIENT, light_ambient);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular);
+    glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 1.f);
+    glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.0f);
+    glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.2f);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 20.f);
+
+    glEnable(GL_LIGHT1);
+}
+
 /**
  * Init render configurations
  */
@@ -71,14 +116,23 @@ void initRenderer(int argc, char** argv) {
         keyInputListener(key, x, y, _handlerManager);
     });
 
-    glEnable(GL_COLOR_MATERIAL);
+
     glShadeModel(GL_SMOOTH);
     glEnable(GL_BLEND);
-    glEnable(GL_NORMALIZE);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    glLightModelf(GL_LIGHT_MODEL_COLOR_CONTROL,GL_SEPARATE_SPECULAR_COLOR);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_COLOR_MATERIAL);
+    initLight_0();
+    initLight_1();
+    glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE ) ;
     glEnable(GL_DEPTH_TEST);
+    glClearDepth(1.0);
+    glEnable(GL_NORMALIZE);
 }
+
+
 
 void setHandlerManager(HandlerManager* handlerManager) {
     _handlerManager = handlerManager;
@@ -86,11 +140,9 @@ void setHandlerManager(HandlerManager* handlerManager) {
 
 void startRendering() {
     if (_handlerManager == nullptr) {
-        std::cerr << "you have to initialize the handler manager first" << std::endl;
+        std::cerr << "You have to initialize the handler manager first" << std::endl;
         return;
     }
-
-
 
     glutMainLoop();
 }

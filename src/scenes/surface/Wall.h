@@ -14,6 +14,7 @@ enum WallSide {
 class Wall: public Scene {
 private:
     std::vector<float> vertices;
+    glm::vec3 vertex_normal;
     GLuint img_id;
 
     void calculate(WallSide wallSide, float size);
