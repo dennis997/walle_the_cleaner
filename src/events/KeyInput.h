@@ -14,14 +14,17 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
 
         case 'a':
             robot.moveLeft();
+            cameraHandler->update();
             break;
 
         case 's':
             robot.moveBack();
+            cameraHandler->update();
             break;
 
         case 'd':
             robot.moveRight();
+            cameraHandler->update();
             break;
 
         case 'b':

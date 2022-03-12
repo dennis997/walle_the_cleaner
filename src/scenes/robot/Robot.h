@@ -11,12 +11,12 @@
 
 /**
  * Includes following scenes:
- * - Body
- */
+w */
 class Robot: public Scene {
 private:
     glm::vec3 position;
     glm::vec3 currentOrientation;
+    int yAngle;
 
 public:
     Robot();
@@ -28,6 +28,7 @@ public:
     void moveBack();
     void moveLeft();
     void moveRight();
+    void calcViewPoint(int currentDegree);
 
     const glm::vec3 &getCurrentOrientation() const;
 };
