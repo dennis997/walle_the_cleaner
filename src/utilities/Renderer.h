@@ -93,7 +93,7 @@ void initLight_1() {
     glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 20.f);
     glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 10.f);
 
-    glEnable(GL_LIGHT1);
+    //glEnable(GL_LIGHT1);
 }
 
 void initLight_2() {
@@ -117,7 +117,7 @@ void initLight_2() {
     glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 20.f);
     glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 10.f);
 
-    glEnable(GL_LIGHT2);
+    //glEnable(GL_LIGHT2);
 }
 
 
