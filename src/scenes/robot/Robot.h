@@ -18,6 +18,7 @@ private:
     glm::vec3 currentOrientation;
     int yAngle;
     bool movedForward;
+    bool lightOn;
 
 public:
     Robot();
@@ -31,6 +32,7 @@ public:
     void moveRight();
     void calcViewPoint(int currentDegree);
     bool restrictMovement();
+    void toggleLight(Perspective currentPerspective);
 
     const glm::vec3 &getCurrentOrientation() const;
     const int getYAngle() const;

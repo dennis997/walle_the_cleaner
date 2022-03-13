@@ -38,6 +38,10 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
         case 't':
             cameraHandler->setThirdPersonPerspective();
             break;
+
+        case 'l':
+            robot.toggleLight(cameraHandler->getCurrentPerspective());
+            break;
     }
 }
 

@@ -9,6 +9,8 @@ Robot::Robot() {
     position = parameter->getStartPosition();
     currentOrientation = parameter->getStartOrientation();
     yAngle = parameter->getYAngle();
+    lightOn = true;
+
 }
 
 void Robot::draw(const unsigned int frameIndex) const {
@@ -83,5 +85,23 @@ bool Robot::restrictMovement() {
         position.z < 0 + offsetBoarder)
         return true;
     return false;
+}
+
+void Robot::toggleLight(Perspective currentPerspective) {
+    if (lightOn) {
+        if (currentPerspective == Perspective::EGO)
+            glDisable(GL_LIGHT1);
+        if (currentPerspective == Perspective::THIRDPERSON)
+            glDisable(GL_LIGHT2);
+        lightOn = false;
+    }
+    else {
+        if (currentPerspective == Perspective::EGO)
+            glEnable(GL_LIGHT1);
+        if (currentPerspective == Perspective::THIRDPERSON)
+            glEnable(GL_LIGHT2);
+        lightOn = true;
+    }
+
 }
 

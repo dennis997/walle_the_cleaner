@@ -30,6 +30,7 @@ void CameraHandler::setEgoPerspective() {
 void CameraHandler::setBirdPerspective() {
     currentPerspective = Perspective::BIRD;
     glDisable(GL_LIGHT1);
+    glDisable(GL_LIGHT2);
 
     Parameter* parameters = Parameter::getInstance();
     int fieldSize = parameters->getFieldSize();
@@ -81,4 +82,8 @@ void CameraHandler::setThirdPersonPerspective() {
     lookAt.up.z = 0;
 
     update();
+}
+
+Perspective CameraHandler::getCurrentPerspective() {
+    return currentPerspective;
 }
