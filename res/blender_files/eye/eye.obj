@@ -1,6 +1,6 @@
 # Blender v2.82 (sub 7) OBJ File: 'WallE.blend'
 # www.blender.org
-mtllib eye_right.mtl
+mtllib eye.mtl
 o ChainLeft_Cube.001
 v 0.940342 0.037886 2.809740
 v 0.940342 0.037886 2.809740

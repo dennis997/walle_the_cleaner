@@ -49,5 +49,5 @@ void LowerArm::calculate() {
     float wheelDistance = 0.f;
     float x = orientation == Side::LEFT ? -wheelDistance : wheelDistance;
 
-    position = glm::vec3(x, 0.f, 0.f);
+    position = glm::vec3(x, 0.f, .2f);
 }

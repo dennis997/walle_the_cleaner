@@ -35,6 +35,7 @@ public:
 
     const glm::vec3 &getCurrentOrientation() const;
     const int getYAngle() const;
+    const bool getLightStatus() const;
 
 };
 
