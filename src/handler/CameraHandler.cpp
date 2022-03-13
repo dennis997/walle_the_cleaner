@@ -73,7 +73,8 @@ void CameraHandler::update() {
 
 void CameraHandler::setThirdPersonPerspective() {
     currentPerspective = Perspective::THIRDPERSON;
-    glEnable(GL_LIGHT1);
+    glDisable(GL_LIGHT1);
+    glEnable(GL_LIGHT2);
 
     lookAt.up.x = 0;
     lookAt.up.y = 1;
