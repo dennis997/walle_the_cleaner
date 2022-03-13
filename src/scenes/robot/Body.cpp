@@ -11,12 +11,12 @@ Body::Body() {
 }
 
 void Body::draw(const unsigned int frameIndex) const {
-    Scene::draw(frameIndex);
-
     glPushMatrix();
     {
-        glColor3f(1, 1, 0);
         glTranslatef(0, size * 2, 0);
+        Scene::draw(frameIndex);
+
+        glColor3f(1, 1, 0);
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, bodyImageId);
 

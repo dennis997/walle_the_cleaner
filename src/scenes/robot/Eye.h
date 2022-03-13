@@ -1,12 +1,12 @@
-#ifndef WALL_E_ARM_H
-#define WALL_E_ARM_H
+#ifndef WALL_E_EYE_H
+#define WALL_E_EYE_H
 
 #include "../../model/Scene.h"
 #include "glm/vec3.hpp"
 #include "../../vendor/Model.h"
 #include "../../api/orientation.h"
 
-class Arm: public Scene {
+class Eye: public Scene {
 private:
     float size;
     Side orientation;
@@ -20,7 +20,7 @@ private:
     void calculate();
 
 public:
-    Arm(Side armSide);
+    Eye(Side);
 
     void draw(unsigned int frameIndex) const override;
 };

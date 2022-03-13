@@ -1,29 +1,25 @@
-#ifndef WALL_E_ARM_H
-#define WALL_E_ARM_H
+#ifndef WALL_E_NECK_H
+#define WALL_E_NECK_H
 
 #include "../../model/Scene.h"
 #include "glm/vec3.hpp"
 #include "../../vendor/Model.h"
-#include "../../api/orientation.h"
 
-class Arm: public Scene {
+class Neck: public Scene {
 private:
     float size;
-    Side orientation;
 
     glm::vec3 position;
 
-    unsigned int eyeImageId;
+    unsigned int neckImageId;
     Model model;
-
     void loadImage();
-    void calculate();
 
 public:
-    Arm(Side armSide);
+    Neck();
 
     void draw(unsigned int frameIndex) const override;
 };
 
 
-#endif
+#endif //WALL_E_NECK_H

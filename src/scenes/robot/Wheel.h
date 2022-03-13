@@ -5,15 +5,12 @@
 #include <glm/glm.hpp>
 
 #include "../../vendor/Model.h"
-
-enum class WheelSide {
-    LEFT, RIGHT
-};
+#include "../../api/orientation.h"
 
 class Wheel: public Scene {
 private:
     glm::vec3 position;
-    WheelSide orientation;
+    Side orientation;
 
     unsigned int wheelImgId;
 
@@ -25,7 +22,7 @@ private:
     void loadImage();
 
 public:
-    Wheel(WheelSide orientation);
+    Wheel(Side orientation);
 
     void draw(unsigned int frameIndex) const override;
 };
