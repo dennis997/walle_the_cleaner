@@ -21,7 +21,7 @@ void Body::draw(const unsigned int frameIndex) const {
 
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, imageId);
-        //model.draw();
+        model.draw();
         glDisable(GL_TEXTURE_2D);
     }
     glPopMatrix();

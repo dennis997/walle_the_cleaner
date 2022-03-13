@@ -15,6 +15,8 @@ private:
     Model model;
     void loadImage();
 
+    void calculate();
+
 public:
     Neck();
 

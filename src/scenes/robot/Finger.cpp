@@ -10,7 +10,7 @@ Finger::Finger(Side eyeSide) {
     orientation = eyeSide;
 
     calculate();
-    model.load("res/blender_files/Wheel.obj");
+    model.load("res/blender_files/finger/finger.obj");
     loadImage();
 }
 
@@ -21,14 +21,14 @@ void Finger::draw(const unsigned int frameIndex) const {
     {
         glScalef(.2f, .2f, .2f);
         glTranslatef(position.x, position.y, position.z);
-        glRotatef(90,1.f, 0.f, 0.f);
-        glRotatef(180,0.f, 1.f, 0.f);
-        glRotatef(90,0.f, 0.f, orientation == Side::LEFT ? 1 : -1);
+        glRotatef(180,1.f, 0.f, 0.f);
+        glRotatef(270,0.f, 1.f, 0.f);
+        glRotatef(180,0.f, 0.f, 1.f);
 
 
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, eyeImageId);
-        //model.draw();
+        model.draw();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
     }
@@ -49,5 +49,5 @@ void Finger::calculate() {
     float wheelDistance = size / 2.f;
     float x = orientation == Side::LEFT ? -wheelDistance : wheelDistance;
 
-    position = glm::vec3(x, size / 4.f, 0.f);
+    position = glm::vec3(0, -0.1f, 0.8f);
 }
