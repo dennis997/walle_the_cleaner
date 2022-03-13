@@ -32,8 +32,6 @@ void Robot::moveForward() {
         position += currentOrientation * parameter->getMovementSpeed();
         movedForward = true;
     }
-
-    std::cout << "X: " << position.x << " | Z: " << position.z << " | Angle: " << yAngle << std::endl;
 }
 
 void Robot::moveBack() {
@@ -43,8 +41,6 @@ void Robot::moveBack() {
         position -= currentOrientation * parameter->getMovementSpeed();
         movedForward = false;
     }
-
-    std::cout << "X: " << position.x << " | Z: " << position.z << " | Angle: " << yAngle << std::endl;
 }
 
 void Robot::moveLeft() {
@@ -52,8 +48,6 @@ void Robot::moveLeft() {
     yAngle += parameter->getMovementAngle();
     calcViewPoint(yAngle);
     movedForward = !movedForward;
-
-    std::cout << "X: " << position.x << " | Z: " << position.z << " | Angle: " << yAngle << std::endl;
 }
 
 void Robot::moveRight() {
@@ -61,8 +55,6 @@ void Robot::moveRight() {
     yAngle -= parameter->getMovementAngle();
     calcViewPoint(yAngle);
     movedForward = !movedForward;
-
-    std::cout << "X: " << position.x << " | Z: " << position.z << " | Angle: " << yAngle << std::endl;
 }
 
 const glm::vec3 &Robot::getCurrentOrientation() const {
@@ -74,7 +66,8 @@ const int Robot::getYAngle() const {
 }
 
 void Robot::calcViewPoint(int degree) {
-    float currentDegree = 0.0175f * degree; // 0.0175 = for approx. conversion to radiant
+    Parameter* parameter = Parameter::getInstance();
+    float currentDegree = parameter->getRadiantApprox() * degree;
 
     currentOrientation.x = cos(currentDegree) + sin(currentDegree);
     currentOrientation.z = cos(currentDegree) - sin(currentDegree);
