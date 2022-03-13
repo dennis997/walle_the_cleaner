@@ -7,19 +7,16 @@
 
 class Neck: public Scene {
 private:
-    float size;
-
+    Model model;
     glm::vec3 position;
 
     unsigned int neckImageId;
-    Model model;
-    void loadImage();
 
+    void loadImage();
     void calculate();
 
 public:
     Neck();
-
     void draw(unsigned int frameIndex) const override;
 };
 

@@ -8,11 +8,8 @@
 
 class Eye: public Scene {
 private:
-    float size;
     Side orientation;
-
     glm::vec3 position;
-
     unsigned int eyeImageId;
     Model model;
 

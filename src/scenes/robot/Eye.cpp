@@ -1,12 +1,8 @@
 #include "Eye.h"
 
 #include "../../vendor/glut.h"
-#include "../../utilities/Parameters.h"
 
 Eye::Eye(Side eyeSide) {
-    Parameter* parameters = Parameter::getInstance();
-    size = parameters->getRobotSize();
-
     orientation = eyeSide;
 
     std::string filename = "res/blender_files/eye/";
@@ -50,8 +46,8 @@ void Eye::loadImage() {
 
 
 void Eye::calculate() {
-    float wheelDistance = .4f;
-    float x = orientation == Side::LEFT ? -wheelDistance : wheelDistance;
+    float eyeDistance = .4f;
+    float x = orientation == Side::LEFT ? -eyeDistance : eyeDistance;
 
     position = glm::vec3(x, .8f, 0.3f);
 }

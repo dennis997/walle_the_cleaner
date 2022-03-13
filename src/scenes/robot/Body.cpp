@@ -1,12 +1,6 @@
 #include "Body.h"
-#include "../../vendor/SOIL.h"
-#include "../../utilities/Parameters.h"
-
 
 Body::Body() {
-    Parameter* parameters = Parameter::getInstance();
-    size = parameters->getRobotSize() / 8.f;
-
     loadImage();
     model.load("res/blender_files/body/body.obj");
 }
@@ -14,7 +8,6 @@ Body::Body() {
 void Body::draw(const unsigned int frameIndex) const {
     glPushMatrix();
     {
-        glColor3f(1, 1, 1);
         glTranslatef(0, .25f, 0);
         Scene::draw(frameIndex);
         glScalef(.2f, .2f,.2f);

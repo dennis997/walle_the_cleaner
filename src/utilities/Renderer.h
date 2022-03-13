@@ -28,7 +28,7 @@ void animate(int frameIndex) {
     glutTimerFunc(waitDuration, animate, ++frameIndex);
 
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    //std::cout << "Frametime: " << std::chrono::duration_cast<std::chrono::milliseconds> (end - begin).count() << "[ms]" << std::endl;
+    std::cout << "Frametime: " << std::chrono::duration_cast<std::chrono::milliseconds> (end - begin).count() << "[ms]" << std::endl;
 }
 
 /**

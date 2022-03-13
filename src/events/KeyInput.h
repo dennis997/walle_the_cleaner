@@ -42,6 +42,10 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
         case 'l':
             robot.toggleLight(cameraHandler->getCurrentPerspective());
             break;
+
+        case 'g':
+            robot.toggleLight(cameraHandler->getCurrentPerspective());
+            break;
     }
 }
 

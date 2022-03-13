@@ -3,16 +3,13 @@
 
 #include "../model/Handler.h"
 #include "../handler/CameraHandler.h"
-#include "../handler/RoboterHandler.h"
 
 class HandlerManager {
 private:
     CameraHandler* cameraHandler{};
-    RoboterHandler* roboterHandler{};
 
     void init() {
         cameraHandler = new CameraHandler;
-        roboterHandler = new RoboterHandler;
     }
 
 public:
@@ -22,15 +19,10 @@ public:
 
     void invokeHandlers(const unsigned int frameIndex) {
         cameraHandler->executeStep(frameIndex);
-        roboterHandler->executeStep(frameIndex);
     }
 
     CameraHandler *getCameraHandler() const {
         return cameraHandler;
-    }
-
-    RoboterHandler *getRoboterHandler() const {
-        return roboterHandler;
     }
 };
 

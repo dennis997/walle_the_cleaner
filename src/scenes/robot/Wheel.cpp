@@ -1,13 +1,9 @@
 #include "Wheel.h"
 
 #include "../../vendor/glut.h"
-#include "../../utilities/Parameters.h"
 
 Wheel::Wheel(const Side orientation): orientation(orientation) {
-    Parameter* parameters = Parameter::getInstance();
-    size = parameters->getRobotSize() / 6.f;
-
-    calculate(parameters->getRobotSize());
+    calculate();
     model.load("res/blender_files/Wheel.obj");
     loadImage();
 }
@@ -42,7 +38,7 @@ void Wheel::loadImage() {
 }
 
 
-void Wheel::calculate(const float roboterSize) {
+void Wheel::calculate() {
     float wheelDistance = .8f;
     float x = orientation == Side::LEFT ? -wheelDistance : wheelDistance;
 

@@ -8,8 +8,6 @@
 
 class Body: public Scene {
 private:
-    float size;
-
     unsigned int imageId;
     void loadImage();
 

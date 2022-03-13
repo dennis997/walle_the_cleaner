@@ -4,10 +4,6 @@
 #include "../../utilities/Parameters.h"
 
 Neck::Neck() {
-    Parameter* parameters = Parameter::getInstance();
-    size = parameters->getRobotSize();
-
-    position = glm::vec3(0.f, size / 2.f, 0.f);
     model.load("res/blender_files/neck/neck.obj");
     loadImage();
 
