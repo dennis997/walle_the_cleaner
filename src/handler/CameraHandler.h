@@ -12,7 +12,7 @@ struct LookAt {
 };
 
 enum class Perspective {
-    EGO, BIRD, THIRDPERSON
+    BIRD=0, EGO=1, THIRDPERSON=2
 };
 
 class CameraHandler: Handler {
@@ -29,6 +29,7 @@ public:
     void setEgoPerspective();
     void setBirdPerspective();
     void setThirdPersonPerspective();
+    Perspective getCurrentPerspective();
 };
 
 
