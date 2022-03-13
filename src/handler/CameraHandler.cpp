@@ -19,6 +19,7 @@ void CameraHandler::executeStep(const unsigned int frameIndex) {
 void CameraHandler::setEgoPerspective() {
     currentPerspective = Perspective::EGO;
     glDisable(GL_LIGHT2);
+
     if (robot.getLightStatus())
         glEnable(GL_LIGHT1);
 

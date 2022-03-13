@@ -14,10 +14,12 @@ w */
 class Robot: public Scene {
 private:
     glm::vec3 position;
+    glm::vec3 prevPos;
     glm::vec3 currentOrientation;
     int yAngle;
     bool movedForward;
     bool lightOn;
+
 
 public:
     Robot();
