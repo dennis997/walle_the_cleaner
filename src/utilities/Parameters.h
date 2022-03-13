@@ -14,7 +14,7 @@ private:
     float fieldSize = 10;
 
     // roboter
-    glm::vec3 startOrientation = glm::vec3(-1, .0f, -1);
+    glm::vec3 startOrientation = glm::vec3(1, .0f, 1);
     glm::vec3 startPosition = glm::vec3(fieldSize / 2,0,fieldSize / 2);
 
     float movementSpeed = 0.1f;
