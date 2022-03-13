@@ -15,7 +15,7 @@ void Robot::draw(const unsigned int frameIndex) const {
     glPopMatrix();
     {
         glTranslatef(position.x, position.y, position.z);
-        glRotatef(yAngle + 45, 0, 1, 0);
+        glRotatef(yAngle + 45, 0, 1, 0);        // 45 degrees because std orientation = half a quadrant with look to 0,0,0
         Scene::draw(frameIndex);
     }
     glPopMatrix();
@@ -32,6 +32,8 @@ void Robot::moveForward() {
         position += currentOrientation * parameter->getMovementSpeed();
         movedForward = true;
     }
+
+    std::cout << "X: " << position.x << " | Z: " << position.z << " | Angle: " << yAngle << std::endl;
 }
 
 void Robot::moveBack() {
@@ -41,6 +43,8 @@ void Robot::moveBack() {
         position -= currentOrientation * parameter->getMovementSpeed();
         movedForward = false;
     }
+
+    std::cout << "X: " << position.x << " | Z: " << position.z << " | Angle: " << yAngle << std::endl;
 }
 
 void Robot::moveLeft() {
@@ -48,6 +52,8 @@ void Robot::moveLeft() {
     yAngle += parameter->getMovementAngle();
     calcViewPoint(yAngle);
     movedForward = !movedForward;
+
+    std::cout << "X: " << position.x << " | Z: " << position.z << " | Angle: " << yAngle << std::endl;
 }
 
 void Robot::moveRight() {
@@ -55,14 +61,20 @@ void Robot::moveRight() {
     yAngle -= parameter->getMovementAngle();
     calcViewPoint(yAngle);
     movedForward = !movedForward;
+
+    std::cout << "X: " << position.x << " | Z: " << position.z << " | Angle: " << yAngle << std::endl;
 }
 
 const glm::vec3 &Robot::getCurrentOrientation() const {
     return currentOrientation;
 }
 
+const int Robot::getYAngle() const {
+    return yAngle;
+}
+
 void Robot::calcViewPoint(int degree) {
-    float currentDegree = 0.0175f * degree;
+    float currentDegree = 0.0175f * degree; // 0.0175 = for approx. conversion to radiant
 
     currentOrientation.x = cos(currentDegree) + sin(currentDegree);
     currentOrientation.z = cos(currentDegree) - sin(currentDegree);

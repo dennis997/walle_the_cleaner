@@ -33,6 +33,8 @@ public:
     bool restrictMovement();
 
     const glm::vec3 &getCurrentOrientation() const;
+    const int getYAngle() const;
+
 };
 
 #endif //WALL_E_ROBOT_H

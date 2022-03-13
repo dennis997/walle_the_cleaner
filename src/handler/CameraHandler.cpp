@@ -1,6 +1,8 @@
 #include "CameraHandler.h"
 #include "../vendor/glut.h"
 #include "../utilities/SceneGraph.h"
+#include <math.h>
+#include "iostream"
 
 CameraHandler::CameraHandler() {
     // default
@@ -57,11 +59,21 @@ void CameraHandler::update() {
 
         case Perspective::THIRDPERSON:
             lookAt.position = (robot.getPosition() + glm::vec3(.0f, .3f, -1.7f));
+            //lookAt.position = (robot.getPosition() - lookAt.center) - abs(lookAt.position - robot.getPosition());
+
+            float offsetX = 1.7f * robot.getCurrentOrientation().x;
+            float offsetZ = 1.7f * robot.getCurrentOrientation().z;
+
+            lookAt.position.x = robot.getPosition().x - offsetX;
+            lookAt.position.z = robot.getPosition().z - offsetZ;
+
             lookAt.center = robot.getCurrentOrientation() + robot.getPosition();
+
+            std::cout << "CamX: " << lookAt.position.x << " | CamZ: " << lookAt.position.z  << std::endl;
 
             lookAt.position.y = .5; // TODO set robot head y value when its present
             lookAt.center.y = .5; // TODO set robot head y value when its present
-            break;
+        break;
     }
 }
 
