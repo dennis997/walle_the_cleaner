@@ -4,9 +4,6 @@
 #include "../../../utilities/Parameters.h"
 
 UpperArm::UpperArm(Side armSide) {
-    Parameter* parameters = Parameter::getInstance();
-    size = parameters->getRobotSize();
-
     orientation = armSide;
 
     calculate();
@@ -18,15 +15,14 @@ void UpperArm::draw(const unsigned int frameIndex) const {
     glPushMatrix();
     {
         glTranslatef(position.x, position.y, position.z);
-        Scene::draw(frameIndex);
-        glScalef(.05f, .05f, .05f);
-
 
         glRotatef(90,1.f, 0.f, 0.f);
-        glRotatef(90,0.f, orientation == Side::LEFT ? -1 : 0, 0.f);
+        glRotatef(180,0.f, 1.f, 0.f);
         glRotatef(90,0.f, 0.f, 1.f);
 
+        Scene::draw(frameIndex);
 
+        glScalef(.2f, .2f, .2f);
 
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, imageId);
@@ -47,8 +43,8 @@ void UpperArm::loadImage() {
 
 
 void UpperArm::calculate() {
-    float wheelDistance = .2f;
-    float x = orientation == Side::LEFT ? -wheelDistance : wheelDistance;
+    float distance = .175f;
+    float x = orientation == Side::LEFT ? -distance : distance;
 
     position = glm::vec3(x, .1f, 0.f);
 }

@@ -15,7 +15,7 @@
 #include "../scenes/sky/Sun.h"
 #include "../scenes/surface/TrashCube.h"
 #include "../scenes/sky/Wall.h"
-#include "../scenes/robot/Finger.h"
+#include "../scenes/robot/arm/Finger.h"
 
 // top level nodes
 inline Surface surface;
@@ -40,14 +40,14 @@ inline void buildSceneGraph() {
 
     Body* body = new Body();
     UpperArm* rightUpperArm = new UpperArm(Side::RIGHT);
-    LowerArm* rightLowerArm = new LowerArm(Side::RIGHT);
-    rightLowerArm->add(new Finger(Side::RIGHT));
+    LowerArm* rightLowerArm = new LowerArm();
+    rightLowerArm->add(new Finger());
     rightUpperArm->add(rightLowerArm);
     body->add(rightUpperArm);
 
     UpperArm* leftUpperArm = new UpperArm(Side::LEFT);
-    LowerArm* leftLowerArm = new LowerArm(Side::LEFT);
-    leftLowerArm->add(new Finger(Side::LEFT));
+    LowerArm* leftLowerArm = new LowerArm();
+    leftLowerArm->add(new Finger());
     leftUpperArm->add(leftLowerArm);
     body->add(leftUpperArm);
 

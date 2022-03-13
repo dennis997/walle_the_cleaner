@@ -34,16 +34,17 @@ void Wheel::draw(unsigned int frameIndex) const {
 }
 
 
+void Wheel::loadImage() {
+    wheelImgId = SOIL_load_OGL_texture("res/textures/robot/chains.png",
+                                       SOIL_LOAD_AUTO,
+                                       SOIL_CREATE_NEW_ID,
+                                       SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB);
+}
+
+
 void Wheel::calculate(const float roboterSize) {
     float wheelDistance = .8f;
     float x = orientation == Side::LEFT ? -wheelDistance : wheelDistance;
 
-    position = glm::vec3(x, 0.f, 0.f);
-}
-
-void Wheel::loadImage() {
-    wheelImgId = SOIL_load_OGL_texture("res/textures/inferno.png",
-                                       SOIL_LOAD_AUTO,
-                                       SOIL_CREATE_NEW_ID,
-                                       SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB);
+    position = glm::vec3(x, 0.1f, 0.f);
 }

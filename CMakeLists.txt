@@ -13,9 +13,9 @@ add_executable(wall_e src/main.cpp
         src/scenes/robot/Wheel.cpp
         src/scenes/robot/arm/LowerArm.cpp
         src/scenes/robot/arm/UpperArm.cpp
+        src/scenes/robot/arm/Finger.cpp
         src/scenes/robot/Neck.cpp
         src/scenes/robot/Eye.cpp
-        src/scenes/robot/Finger.cpp
         src/scenes/sky/Sky.cpp
         src/scenes/sky/Sun.cpp
         src/model/Scene.cpp

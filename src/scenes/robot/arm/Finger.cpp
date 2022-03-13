@@ -1,30 +1,24 @@
 #include "Finger.h"
 
-#include "../../vendor/glut.h"
-#include "../../utilities/Parameters.h"
+#include "../../../vendor/glut.h"
+#include "LowerArm.h"
 
-Finger::Finger(Side eyeSide) {
-    Parameter* parameters = Parameter::getInstance();
-    size = parameters->getRobotSize();
-
-    orientation = eyeSide;
-
-    calculate();
+Finger::Finger() {
     model.load("res/blender_files/finger/finger.obj");
     loadImage();
+    calculate();
 }
 
 void Finger::draw(const unsigned int frameIndex) const {
     Scene::draw(frameIndex);
 
+    float armLength = dynamic_cast<const LowerArm*>(parent)->getArmLength();
+
     glPushMatrix();
     {
-        glScalef(.2f, .2f, .2f);
-        glTranslatef(position.x, position.y, position.z);
-        glRotatef(180,1.f, 0.f, 0.f);
-        glRotatef(270,0.f, 1.f, 0.f);
-        glRotatef(180,0.f, 0.f, 1.f);
-
+        glTranslatef(armLength + .15f, position.y, position.z);
+        glRotatef(90, 1.f, 0.f, 0.f);
+        glRotatef(10, 0.f, 0.f, 1.f);
 
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, eyeImageId);
@@ -44,10 +38,6 @@ void Finger::loadImage() {
                                        SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB);
 }
 
-
 void Finger::calculate() {
-    float wheelDistance = size / 2.f;
-    float x = orientation == Side::LEFT ? -wheelDistance : wheelDistance;
-
-    position = glm::vec3(0, -0.1f, 0.8f);
+    position = glm::vec3(0.f, 0.f,-.1f);
 }

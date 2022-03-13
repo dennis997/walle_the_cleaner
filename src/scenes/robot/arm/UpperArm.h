@@ -8,7 +8,6 @@
 
 class UpperArm: public Scene {
 private:
-    float size;
     Side orientation;
 
     glm::vec3 position;

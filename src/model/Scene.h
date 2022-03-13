@@ -12,8 +12,12 @@
  * To debug a scene call drawDebug(.5) in your draw method.
  */
 class Scene {
+private:
+    void setParent(const Scene* parent);
+
 protected:
     std::list<Scene *> children;
+    const Scene* parent = nullptr;
 
     /**
      * Draws a debug coordinate system

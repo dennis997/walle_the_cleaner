@@ -8,8 +8,7 @@
 
 class LowerArm: public Scene {
 private:
-    float size;
-    Side orientation;
+    float armLength;
 
     glm::vec3 position;
 
@@ -20,7 +19,10 @@ private:
     void calculate();
 
 public:
-    LowerArm(Side armSide);
+    float getArmLength() const;
+
+public:
+    LowerArm();
 
     void draw(unsigned int frameIndex) const override;
 };

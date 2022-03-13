@@ -82,7 +82,7 @@ void CameraHandler::update() {
             lookAt.position.z = robot.getPosition().z - offsetZ;
             lookAt.center = robot.getCurrentOrientation() + robot.getPosition();
 
-            lookAt.position.y = .5; // TODO set robot head y value when its present
+            lookAt.position.y = 1.25f; // TODO set robot head y value when its present
             lookAt.center.y = .5; // TODO set robot head y value when its present
             break;
     }

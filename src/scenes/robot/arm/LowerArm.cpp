@@ -3,11 +3,8 @@
 #include "../../../vendor/glut.h"
 #include "../../../utilities/Parameters.h"
 
-LowerArm::LowerArm(Side armSide) {
-    Parameter* parameters = Parameter::getInstance();
-    size = parameters->getRobotSize();
-
-    orientation = armSide;
+LowerArm::LowerArm() {
+    armLength = .5f;
 
     calculate();
     model.load("res/blender_files/lower_arm/lower_arm.obj");
@@ -15,17 +12,11 @@ LowerArm::LowerArm(Side armSide) {
 }
 
 void LowerArm::draw(const unsigned int frameIndex) const {
-    Scene::draw(frameIndex);
-
     glPushMatrix();
     {
         glScalef(.2f, .2f, .2f);
         glTranslatef(position.x, position.y, position.z);
-
-        glRotatef(90,orientation == Side::LEFT ? 1 : -1, 0.f, 0.f);
-        glRotatef(90,0.f, 1.f, 0.f);
-        glRotatef(90,0.f, 0.f, orientation == Side::LEFT ? 1 : -1);
-
+        Scene::draw(frameIndex);
 
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, imageId);
@@ -44,10 +35,10 @@ void LowerArm::loadImage() {
                                        SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB);
 }
 
-
 void LowerArm::calculate() {
-    float wheelDistance = 0.f;
-    float x = orientation == Side::LEFT ? -wheelDistance : wheelDistance;
+    position = glm::vec3(armLength, 0.f, 0.f);
+}
 
-    position = glm::vec3(x, 0.f, .3f);
+float LowerArm::getArmLength() const {
+    return armLength;
 }

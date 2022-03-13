@@ -9,8 +9,11 @@ Eye::Eye(Side eyeSide) {
 
     orientation = eyeSide;
 
+    std::string filename = "res/blender_files/eye/";
+    filename.append(orientation == Side::LEFT ? "eye_left.obj" : "eye_right.obj");
+
     calculate();
-    model.load("res/blender_files/eye/eye.obj");
+    model.load(filename.c_str());
     loadImage();
 }
 
@@ -22,9 +25,10 @@ void Eye::draw(const unsigned int frameIndex) const {
         glScalef(.2f, .2f, .2f);
         glTranslatef(position.x, position.y, position.z);
 
-        glRotatef(90,orientation == Side::LEFT ? 1 : -1, 0.f, 0.f);
-        glRotatef(270,0.f, orientation == Side::LEFT ? -1 : 1, 0.f);
-        glRotatef(90,0.f, 0.f, orientation == Side::LEFT ? 1 : -1);
+        glRotatef(90,1.f, 0.f, 0.f);
+        glRotatef(270,0.f, 1.f, 0.f);
+        glRotatef(100,0.f, 0.f, 1.f);
+
 
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, eyeImageId);
@@ -49,5 +53,5 @@ void Eye::calculate() {
     float wheelDistance = .4f;
     float x = orientation == Side::LEFT ? -wheelDistance : wheelDistance;
 
-    position = glm::vec3(x, .8f, 0.f);
+    position = glm::vec3(x, .8f, 0.3f);
 }
