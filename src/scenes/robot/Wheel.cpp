@@ -35,13 +35,10 @@ void Wheel::draw(unsigned int frameIndex) const {
 
 
 void Wheel::calculate(const float roboterSize) {
-    float wheelDistance = roboterSize / 2.f;
-
+    float wheelDistance = .8f;
     float x = orientation == Side::LEFT ? -wheelDistance : wheelDistance;
 
-    position.x = x;
-    position.y = 0;
-    position.z = 0;
+    position = glm::vec3(x, 0.f, 0.f);
 }
 
 void Wheel::loadImage() {

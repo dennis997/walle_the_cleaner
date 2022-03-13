@@ -7,7 +7,8 @@
 #include "../scenes/robot/Robot.h"
 #include "../scenes/robot/Body.h"
 #include "../scenes/robot/Wheel.h"
-#include "../scenes/robot/Arm.h"
+#include "../scenes/robot/arm/LowerArm.h"
+#include "../scenes/robot/arm/UpperArm.h"
 #include "../scenes/robot/Neck.h"
 #include "../scenes/robot/Eye.h"
 #include "../scenes/sky/Sky.h"
@@ -37,14 +38,18 @@ inline void buildSceneGraph() {
     robot.add(new Wheel(Side::LEFT));
     robot.add(new Wheel(Side::RIGHT));
 
-
     Body* body = new Body();
-    Arm* leftArm = new Arm(Side::LEFT);
-    Arm* rightArm = new Arm(Side::RIGHT);
-    leftArm->add(new Finger(Side::LEFT));
-    rightArm->add(new Finger(Side::RIGHT));
-    body->add(leftArm);
-    body->add(rightArm);
+    UpperArm* rightUpperArm = new UpperArm(Side::RIGHT);
+    LowerArm* rightLowerArm = new LowerArm(Side::RIGHT);
+    rightLowerArm->add(new Finger(Side::RIGHT));
+    rightUpperArm->add(rightLowerArm);
+    body->add(rightUpperArm);
+
+    UpperArm* leftUpperArm = new UpperArm(Side::LEFT);
+    LowerArm* leftLowerArm = new LowerArm(Side::LEFT);
+    leftLowerArm->add(new Finger(Side::LEFT));
+    leftUpperArm->add(leftLowerArm);
+    body->add(leftUpperArm);
 
     Neck* neck = new Neck();
     neck->add(new Eye(Side::LEFT));

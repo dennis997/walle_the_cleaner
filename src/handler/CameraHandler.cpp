@@ -19,6 +19,7 @@ void CameraHandler::executeStep(const unsigned int frameIndex) {
 void CameraHandler::setEgoPerspective() {
     currentPerspective = Perspective::EGO;
     glEnable(GL_LIGHT1);
+    glDisable(GL_LIGHT2);
 
     lookAt.up.x = 0;
     lookAt.up.y = 1;

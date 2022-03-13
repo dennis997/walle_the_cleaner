@@ -17,7 +17,7 @@ void Robot::draw(const unsigned int frameIndex) const {
     glPopMatrix();
     {
         glTranslatef(position.x, position.y, position.z);
-        glRotatef(yAngle + 45, 0, 1, 0);        // 45 degrees because std orientation = half a quadrant with look to 0,0,0
+        glRotatef(225, 0, 1, 0);        // 45 degrees because std orientation = half a quadrant with look to 0,0,0
         Scene::draw(frameIndex);
     }
     glPopMatrix();

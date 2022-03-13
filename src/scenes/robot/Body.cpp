@@ -8,27 +8,27 @@ Body::Body() {
     size = parameters->getRobotSize() / 8.f;
 
     loadImage();
+    model.load("res/blender_files/body/body.obj");
 }
 
 void Body::draw(const unsigned int frameIndex) const {
     glPushMatrix();
     {
-        glTranslatef(0, size * 2, 0);
+        glColor3f(1, 1, 1);
+        glTranslatef(0, .25f, 0);
         Scene::draw(frameIndex);
+        glScalef(.2f, .2f,.2f);
 
-        glColor3f(1, 1, 0);
         glEnable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, bodyImageId);
-
-        glutSolidCube(.2f);
-
+        glBindTexture(GL_TEXTURE_2D, imageId);
+        //model.draw();
         glDisable(GL_TEXTURE_2D);
     }
     glPopMatrix();
 }
 
 void Body::loadImage() {
-    bodyImageId = SOIL_load_OGL_texture("res/textures/robot/body.png",
+    imageId = SOIL_load_OGL_texture("res/textures/robot/body.png",
                                        SOIL_LOAD_AUTO,
                                        SOIL_CREATE_NEW_ID,
                                        SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB);

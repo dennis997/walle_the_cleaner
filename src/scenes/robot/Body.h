@@ -3,14 +3,17 @@
 
 #include "../../model/Scene.h"
 #include "../../vendor/glut.h"
+#include "../../vendor/Model.h"
 
 
 class Body: public Scene {
 private:
     float size;
 
-    unsigned int bodyImageId;
+    unsigned int imageId;
     void loadImage();
+
+    Model model;
 
 public:
     Body();
