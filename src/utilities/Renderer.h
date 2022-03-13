@@ -96,6 +96,31 @@ void initLight_1() {
     glEnable(GL_LIGHT1);
 }
 
+void initLight_2() {
+    Parameter* parameters = Parameter::getInstance();
+
+    GLfloat light_position[] = {0.f, 1.8f, -.2f, 1.f};  // 1.8 = camera distance to robot + 0.1
+
+    GLfloat light_direction[] = { 0.f, -.25f, -1.f};
+    GLfloat light_ambient[] = { 1.f, 1.f, 1.f, 1.f }; // intensity of light
+    GLfloat light_diffuse[] = { 0.952f, 0.843f, 0.207f, 1.f }; // color of light
+    GLfloat light_specular[] = { 1.f, 1.f, 1.f, 1.f };
+
+    glLightfv(GL_LIGHT2, GL_POSITION, light_position);
+    glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, light_direction);
+    glLightfv(GL_LIGHT2, GL_AMBIENT, light_ambient);
+    glLightfv(GL_LIGHT2, GL_DIFFUSE, light_diffuse);
+    glLightfv(GL_LIGHT2, GL_SPECULAR, light_specular);
+    glLightf(GL_LIGHT2, GL_CONSTANT_ATTENUATION, 1.f);
+    glLightf(GL_LIGHT2, GL_LINEAR_ATTENUATION, 0.1f);
+    glLightf(GL_LIGHT2, GL_QUADRATIC_ATTENUATION, 0.3f);
+    glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 20.f);
+    glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 10.f);
+
+    glEnable(GL_LIGHT2);
+}
+
+
 /**
  * Init render configurations
  */
@@ -125,6 +150,7 @@ void initRenderer(int argc, char** argv) {
     glEnable(GL_COLOR_MATERIAL);
     initLight_0();
     initLight_1();
+    initLight_2();
     glColorMaterial ( GL_FRONT_AND_BACK, GL_AMBIENT_AND_DIFFUSE ) ;
     glEnable(GL_DEPTH_TEST);
     glClearDepth(1.0);

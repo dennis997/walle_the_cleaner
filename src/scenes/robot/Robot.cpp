@@ -9,13 +9,15 @@ Robot::Robot() {
     position = parameter->getStartPosition();
     currentOrientation = parameter->getStartOrientation();
     yAngle = parameter->getYAngle();
+    lightOn = true;
+
 }
 
 void Robot::draw(const unsigned int frameIndex) const {
     glPopMatrix();
     {
         glTranslatef(position.x, position.y, position.z);
-        glRotatef(yAngle + 45, 0, 1, 0);
+        glRotatef(yAngle + 45, 0, 1, 0);        // 45 degrees because std orientation = half a quadrant with look to 0,0,0
         Scene::draw(frameIndex);
     }
     glPopMatrix();
@@ -46,23 +48,28 @@ void Robot::moveBack() {
 void Robot::moveLeft() {
     Parameter* parameter = Parameter::getInstance();
     yAngle += parameter->getMovementAngle();
-
     calcViewPoint(yAngle);
+    movedForward = !movedForward;
 }
 
 void Robot::moveRight() {
     Parameter* parameter = Parameter::getInstance();
     yAngle -= parameter->getMovementAngle();
-
     calcViewPoint(yAngle);
+    movedForward = !movedForward;
 }
 
 const glm::vec3 &Robot::getCurrentOrientation() const {
     return currentOrientation;
 }
 
+const int Robot::getYAngle() const {
+    return yAngle;
+}
+
 void Robot::calcViewPoint(int degree) {
-    float currentDegree = 0.0175f * degree;
+    Parameter* parameter = Parameter::getInstance();
+    float currentDegree = parameter->getRadiantApprox() * degree;
 
     currentOrientation.x = cos(currentDegree) + sin(currentDegree);
     currentOrientation.z = cos(currentDegree) - sin(currentDegree);
@@ -78,5 +85,23 @@ bool Robot::restrictMovement() {
         position.z < 0 + offsetBoarder)
         return true;
     return false;
+}
+
+void Robot::toggleLight(Perspective currentPerspective) {
+    if (lightOn) {
+        if (currentPerspective == Perspective::EGO)
+            glDisable(GL_LIGHT1);
+        if (currentPerspective == Perspective::THIRDPERSON)
+            glDisable(GL_LIGHT2);
+        lightOn = false;
+    }
+    else {
+        if (currentPerspective == Perspective::EGO)
+            glEnable(GL_LIGHT1);
+        if (currentPerspective == Perspective::THIRDPERSON)
+            glEnable(GL_LIGHT2);
+        lightOn = true;
+    }
+
 }
 

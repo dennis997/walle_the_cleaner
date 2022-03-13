@@ -17,6 +17,7 @@ private:
     glm::vec3 currentOrientation;
     int yAngle;
     bool movedForward;
+    bool lightOn;
 
 public:
     Robot();
@@ -30,21 +31,11 @@ public:
     void moveRight();
     void calcViewPoint(int currentDegree);
     bool restrictMovement();
-    bool checkPointOnLine(std::pair<glm::vec3, glm::vec3>, glm::vec3);
+    void toggleLight(Perspective currentPerspective);
 
     const glm::vec3 &getCurrentOrientation() const;
+    const int getYAngle() const;
+
 };
-
-//    dxc = currPoint.x - point1.x;
-//    dyc = currPoint.y - point1.y;
-//
-//    dxl = point2.x - point1.x;
-//    dyl = point2.y - point1.y;
-//
-//    cross = dxc * dyl - dyc * dxl;
-//
-//    vif (cross != 0)
-//    return false;
-
 
 #endif //WALL_E_ROBOT_H

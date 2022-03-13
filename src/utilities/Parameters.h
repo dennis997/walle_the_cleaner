@@ -13,12 +13,13 @@ private:
     float fieldSize = 10;
 
     // roboter
-    glm::vec3 startOrientation = glm::vec3(fieldSize/2, .0f, (fieldSize/2)+1);
+    glm::vec3 startOrientation = glm::vec3(1, .0f, 1);
     glm::vec3 startPosition = glm::vec3(fieldSize / 2,0,fieldSize / 2);
 
-    float movementSpeed = 0.1;
-    float movementAngle = 5.0;
+    float movementSpeed = 0.1f;
+    float movementAngle = 5.0f;
     int yAngle = 0;
+    float radiantApprox = 0.0175f; // 0.0175 = for approx. conversion to radiant (~pi/180)
 
     float robotSize = 1.f;
 
@@ -63,6 +64,10 @@ public:
 
     float getRobotSize() const {
         return robotSize;
+    }
+
+    float getRadiantApprox() const {
+        return radiantApprox;
     }
 };
 

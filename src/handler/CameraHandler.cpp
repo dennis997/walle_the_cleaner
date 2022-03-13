@@ -1,10 +1,12 @@
 #include "CameraHandler.h"
 #include "../vendor/glut.h"
 #include "../utilities/SceneGraph.h"
+#include <math.h>
+#include "iostream"
 
 CameraHandler::CameraHandler() {
     // default
-    setDebugPerspective();
+    setThirdPersonPerspective();
 }
 
 void CameraHandler::executeStep(const unsigned int frameIndex) {
@@ -28,6 +30,7 @@ void CameraHandler::setEgoPerspective() {
 void CameraHandler::setBirdPerspective() {
     currentPerspective = Perspective::BIRD;
     glDisable(GL_LIGHT1);
+    glDisable(GL_LIGHT2);
 
     Parameter* parameters = Parameter::getInstance();
     int fieldSize = parameters->getFieldSize();
@@ -55,23 +58,32 @@ void CameraHandler::update() {
             lookAt.center.y = .5; // TODO set robot head y value when its present
         break;
 
-        case Perspective::DEBUG:
-            lookAt.position = robot.getPosition() + glm::vec3(.0f, .3f, -1.7f);
+        case Perspective::THIRDPERSON:
+            float offsetX = 1.7f * robot.getCurrentOrientation().x;
+            float offsetZ = 1.7f * robot.getCurrentOrientation().z;
+
+            lookAt.position.x = robot.getPosition().x - offsetX;
+            lookAt.position.z = robot.getPosition().z - offsetZ;
             lookAt.center = robot.getCurrentOrientation() + robot.getPosition();
 
             lookAt.position.y = .5; // TODO set robot head y value when its present
             lookAt.center.y = .5; // TODO set robot head y value when its present
-            break;
+        break;
     }
 }
 
-void CameraHandler::setDebugPerspective() {
-    currentPerspective = Perspective::DEBUG;
+void CameraHandler::setThirdPersonPerspective() {
+    currentPerspective = Perspective::THIRDPERSON;
     glDisable(GL_LIGHT1);
+    glEnable(GL_LIGHT2);
 
     lookAt.up.x = 0;
     lookAt.up.y = 1;
     lookAt.up.z = 0;
 
     update();
+}
+
+Perspective CameraHandler::getCurrentPerspective() {
+    return currentPerspective;
 }

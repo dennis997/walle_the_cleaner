@@ -34,6 +34,14 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
         case 'r':
             cameraHandler->setEgoPerspective();
             break;
+
+        case 't':
+            cameraHandler->setThirdPersonPerspective();
+            break;
+
+        case 'l':
+            robot.toggleLight(cameraHandler->getCurrentPerspective());
+            break;
     }
 }
 
