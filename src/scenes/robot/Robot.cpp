@@ -89,10 +89,6 @@ bool Robot::restrictMovement() {
 
 void Robot::toggleLight(Perspective currentPerspective) {
     if (lightOn) {
-        if (currentPerspective == Perspective::EGO)
-            glDisable(GL_LIGHT1);
-            glDisable(GL_LIGHT2);
-        if (currentPerspective == Perspective::THIRDPERSON)
             glDisable(GL_LIGHT1);
             glDisable(GL_LIGHT2);
         lightOn = false;
