@@ -31,32 +31,38 @@ void Robot::moveForward() {
     std::cout << "X: " << position.x << "| Z: " << position.z << std::endl;
     Parameter* parameter = Parameter::getInstance();
     if (!restrictMovement() || !movedForward) {
+        prevPos = position;
         position += currentOrientation * parameter->getMovementSpeed();
         movedForward = true;
     }
+    else
+        position = prevPos;
 }
 
 void Robot::moveBack() {
     std::cout << "X: " << position.x << "| Z: " << position.z << std::endl;
     Parameter* parameter = Parameter::getInstance();
     if (!restrictMovement() || movedForward) {
+        prevPos = position;
         position -= currentOrientation * parameter->getMovementSpeed();
         movedForward = false;
     }
+    else
+        position = prevPos;
 }
 
 void Robot::moveLeft() {
     Parameter* parameter = Parameter::getInstance();
     yAngle += parameter->getMovementAngle();
     calcViewPoint(yAngle);
-    movedForward = !movedForward;
+    //movedForward = !movedForward;
 }
 
 void Robot::moveRight() {
     Parameter* parameter = Parameter::getInstance();
     yAngle -= parameter->getMovementAngle();
     calcViewPoint(yAngle);
-    movedForward = !movedForward;
+    //movedForward = !movedForward;
 }
 
 const glm::vec3 &Robot::getCurrentOrientation() const {
@@ -77,7 +83,7 @@ void Robot::calcViewPoint(int degree) {
 
 bool Robot::restrictMovement() {
     Parameter* parameter = Parameter::getInstance();
-    float offsetBoarder = 0.8f;
+    float offsetBoarder = 0.5f;
 
     if (position.x > parameter->getFieldSize() - offsetBoarder ||
         position.z > parameter->getFieldSize() -offsetBoarder ||
