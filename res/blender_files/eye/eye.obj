@@ -1,6 +1,6 @@
 # Blender v2.82 (sub 7) OBJ File: 'WallE.blend'
 # www.blender.org
-mtllib eye_right.mtl
+mtllib eye.mtl
 o RightHead_Cube.009
 v -0.436348 -0.128939 0.243841
 v -0.436348 0.128939 0.243841
