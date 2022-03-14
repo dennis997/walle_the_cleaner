@@ -5,22 +5,19 @@
 
 TrashCube::TrashCube(float x, float y, float z) {
     this->position = glm::vec3(x,y,z);
-
+    model.load("res/blender_files/body/body.obj");
     loadImage();
 }
 
 void TrashCube::draw(const unsigned int frameIndex) {
-    Scene::draw(frameIndex);
-
-    Parameter * parameter = Parameter::getInstance();
-
     glPushMatrix();
     {
         glTranslatef(position.x,position.y,position.z);
-
+        Scene::draw(frameIndex);
+        glScalef(.18f, .18f,.18f);
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, imageId);
-        Cube(parameter->getTrashCubeSize());
+        model.draw();
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
     }

@@ -7,9 +7,8 @@
 #include "../../utilities/Parameters.h"
 
 
-Carriage::Carriage(Robot* robot, Surface* surface): visible{false}, robot{robot}, surface{surface} {
-    Parameter* parameters = Parameter::getInstance();
-    trashCubeSize = parameters->getTrashCubeSize();
+Carriage::Carriage(Robot* robot, Surface* surface): visible(false), robot(robot), surface(surface) {
+    model.load("res/blender_files/body/body.obj");
 
     calculate();
     loadImage();
@@ -17,16 +16,16 @@ Carriage::Carriage(Robot* robot, Surface* surface): visible{false}, robot{robot}
 }
 
 void Carriage::draw(const unsigned int frameIndex) {
-    Scene::draw(frameIndex);
-
     glPushMatrix();
     {
+        Scene::draw(frameIndex);
         glTranslatef(position.x, position.y, position.z);
 
         if (robot->hasCube()) {
+            glScalef(.18f, .18f,.18f);
             glEnable(GL_TEXTURE_2D);
             glBindTexture(GL_TEXTURE_2D, imageId);
-            Cube(trashCubeSize);
+            model.draw();
             glBindTexture(GL_TEXTURE_2D, 0);
             glDisable(GL_TEXTURE_2D);
         }

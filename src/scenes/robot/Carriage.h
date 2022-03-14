@@ -15,6 +15,7 @@ private:
     bool visible;
     Robot* robot;
     Surface* surface;
+    Model model;
 
     void loadImage();
     void calculate();
