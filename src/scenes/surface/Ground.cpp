@@ -8,7 +8,8 @@ Ground::Ground() {
 
     groundHeight = 0;
     slices = 100;
-    size = parameters->getFieldSize();
+    groundSize = parameters->getFieldSize();
+    disposalSiteSize = groundSize/4;
 
     loadImage();
 }
@@ -20,7 +21,7 @@ void Ground::draw(const unsigned int frameIndex) const {
 }
 
 void Ground::loadImage() {
-    surfaceImage = SOIL_load_OGL_texture("res/textures/bottom_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+    surfaceImage = SOIL_load_OGL_texture("res/textures/bottom_texture2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                                          SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB |
                                          SOIL_FLAG_COMPRESS_TO_DXT);
 }
@@ -36,29 +37,28 @@ void Ground::drawPlate() const {
         glDisable(GL_LIGHT0);
 
         // divide ground into n slices
-        float sliceSize = size / slices;
-        for (float x = .0f; x < size - sliceSize; x += sliceSize) {
-            for (float z = .0f; z < size - sliceSize; z += sliceSize) {
+        float sliceSize = groundSize / slices;
+        for (float x = .0f; x < groundSize - sliceSize; x += sliceSize) {
+            for (float z = .0f; z < groundSize - sliceSize; z += sliceSize) {
                 glBegin(GL_TRIANGLE_STRIP);
 
                 glNormal3f(0.0f, 1.0f, 0.0f);
-                glTexCoord2f(x / size, z / size);
+                glTexCoord2f(x / groundSize, z / groundSize);
                 glVertex3f(x, groundHeight, z);
 
-                glTexCoord2f((x + sliceSize) / size, z / size);
+                glTexCoord2f((x + sliceSize) / groundSize, z / groundSize);
                 glVertex3f(x + sliceSize, groundHeight, z);
 
-                glTexCoord2f(x / size, (z + sliceSize) / size);
+                glTexCoord2f(x / groundSize, (z + sliceSize) / groundSize);
                 glVertex3f(x, groundHeight, z + sliceSize);
 
-                glTexCoord2f((x + sliceSize) / size, (z + sliceSize) / size);
+                glTexCoord2f((x + sliceSize) / groundSize, (z + sliceSize) / groundSize);
                 glVertex3f(x + sliceSize, groundHeight, z + sliceSize);
                 glEnd();
             }
         }
 
         glEnable(GL_LIGHT0);
-
 
         glDisable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, 0);
