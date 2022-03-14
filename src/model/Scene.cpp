@@ -4,6 +4,11 @@
 #include "Scene.h"
 #include "../vendor/glut.h"
 
+/**
+ * Red      -> X-Axis
+ * Blue     -> Z-Axis
+ * Green    -> Y-Axis
+ */
 void Scene::drawDebug(const float size) const {
     glPushMatrix();
     {
