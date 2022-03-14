@@ -20,7 +20,7 @@ add_executable(wall_e src/main.cpp
         src/scenes/sky/Sun.cpp
         src/model/Scene.cpp
         src/handler/CameraHandler.cpp
-)
+        src/vendor/Cube.h)
 
 include(ExternalProject)
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)

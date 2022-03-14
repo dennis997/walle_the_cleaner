@@ -11,6 +11,8 @@ class Parameter {
 private:
     inline static Parameter* instance;
     float fieldSize = 10;
+    int numberOfTrashcubes = 7;
+    float trashCubeSize = 0.25;
 
     // roboter
     glm::vec3 startOrientation = glm::vec3(1, .0f, 1);
@@ -69,6 +71,22 @@ public:
     float getRadiantApprox() const {
         return radiantApprox;
     }
+    int getNumberOfTrashcubes() const {
+        return numberOfTrashcubes;
+    }
+
+    void setNumberOfTrashcubes(int numberOfTrashcubes) {
+        Parameter::numberOfTrashcubes = numberOfTrashcubes;
+    }
+
+    float getTrashCubeSize() const {
+        return trashCubeSize;
+    }
+
+    void setTrashCubeSize(float trashCubeSize) {
+        Parameter::trashCubeSize = trashCubeSize;
+    }
+
 };
 
 #endif //WALL_E_PARAMETERS_H
