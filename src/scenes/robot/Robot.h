@@ -21,7 +21,7 @@ private:
     bool lightOn;
     float movementSpeed;
     float angleSpeed;
-
+    bool pickedUpTrashCube;
 
 public:
     Robot();
@@ -39,6 +39,14 @@ public:
 
     const glm::vec3 &getCurrentOrientation() const;
     const bool getLightStatus() const;
+
+    bool isTrashCubePickedUp() const {
+        return pickedUpTrashCube;
+    }
+
+    void setPickedUpTrashCube(bool pickedUpTrashCube) {
+        Robot::pickedUpTrashCube = pickedUpTrashCube;
+    }
 
 };
 

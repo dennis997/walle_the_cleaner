@@ -20,7 +20,7 @@ void CameraHandler::setEgoPerspective() {
     currentPerspective = Perspective::EGO;
     glDisable(GL_LIGHT2);
 
-    if (robot.getLightStatus())
+    if (robot->getLightStatus())
         glEnable(GL_LIGHT1);
 
     lookAt.up.x = 0;
@@ -54,7 +54,7 @@ void CameraHandler::setBirdPerspective() {
 void CameraHandler::setThirdPersonPerspective() {
     currentPerspective = Perspective::THIRDPERSON;
     glDisable(GL_LIGHT1);
-    if (robot.getLightStatus())
+    if (robot->getLightStatus())
         glEnable(GL_LIGHT2);
 
     lookAt.up.x = 0;
@@ -67,20 +67,20 @@ void CameraHandler::setThirdPersonPerspective() {
 void CameraHandler::update() {
     switch (currentPerspective) {
         case Perspective::EGO:
-            lookAt.position = robot.getPosition();
-            lookAt.center = robot.getCurrentOrientation() + robot.getPosition();
+            lookAt.position = robot->getPosition();
+            lookAt.center = robot->getCurrentOrientation() + robot->getPosition();
 
             lookAt.position.y = .5;
             lookAt.center.y = .5;
             break;
 
         case Perspective::THIRDPERSON:
-            float offsetX = 1.7f * robot.getCurrentOrientation().x;
-            float offsetZ = 1.7f * robot.getCurrentOrientation().z;
+            float offsetX = 1.7f * robot->getCurrentOrientation().x;
+            float offsetZ = 1.7f * robot->getCurrentOrientation().z;
 
-            lookAt.position.x = robot.getPosition().x - offsetX;
-            lookAt.position.z = robot.getPosition().z - offsetZ;
-            lookAt.center = robot.getCurrentOrientation() + robot.getPosition();
+            lookAt.position.x = robot->getPosition().x - offsetX;
+            lookAt.position.z = robot->getPosition().z - offsetZ;
+            lookAt.center = robot->getCurrentOrientation() + robot->getPosition();
 
             lookAt.position.y = 1.25f;
             lookAt.center.y = .5;

@@ -20,10 +20,15 @@ class Surface: public Scene {
 private:
     std::multimap<float, TrashCube*> trashCubes;
     Robot * robot;
+    void calculateDistances();
+
 public:
-    Surface(Robot robot);
+    Surface(Robot * robot);
     void draw(unsigned int frameIndex) const override;
     void createRandomCubes();
+    void despawnNextTrashCube();
+    void layDownTrashCube();
+    void pickUpOrLayDown();
 
 };
 
