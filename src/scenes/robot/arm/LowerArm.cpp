@@ -2,16 +2,19 @@
 
 #include "../../../vendor/glut.h"
 #include "../../../utilities/Parameters.h"
+#include "../../../model/animation/Translate.h"
+#include "../../../model/animation/Rotate.h"
 
-LowerArm::LowerArm() {
+LowerArm::LowerArm(Side side): orientation(side) {
     armLength = .5f;
 
     calculate();
     model.load("res/blender_files/lower_arm/lower_arm.obj");
     loadImage();
+    initAnimation();
 }
 
-void LowerArm::draw(const unsigned int frameIndex) const {
+void LowerArm::draw(const unsigned int frameIndex) {
     glPushMatrix();
     {
         glScalef(.2f, .2f, .2f);
@@ -27,7 +30,6 @@ void LowerArm::draw(const unsigned int frameIndex) const {
     glPopMatrix();
 }
 
-
 void LowerArm::loadImage() {
     imageId = SOIL_load_OGL_texture("res/textures/robot/body.png",
                                        SOIL_LOAD_AUTO,
@@ -41,4 +43,12 @@ void LowerArm::calculate() {
 
 float LowerArm::getArmLength() const {
     return armLength;
+}
+
+void LowerArm::initAnimation() {
+    Step* first = new Step(new Translate(glm::vec3(.55f, 0.f, .0f)), 1000.f);
+    Step* second = new Step(new Rotate(90, glm::vec3(orientation == Side::LEFT ? 1.f : -1.f, .0f, .0f)), 500.f, 1000.f);
+
+    animationExecutor.addAnimationStep(first);
+    animationExecutor.addAnimationStep(second);
 }

@@ -13,7 +13,7 @@ Eye::Eye(Side eyeSide) {
     loadImage();
 }
 
-void Eye::draw(const unsigned int frameIndex) const {
+void Eye::draw(const unsigned int frameIndex) {
     Scene::draw(frameIndex);
 
     glPushMatrix();

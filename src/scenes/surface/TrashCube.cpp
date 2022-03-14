@@ -2,7 +2,7 @@
 
 #include "../../vendor/glut.h"
 
-void TrashCube::draw(const unsigned int frameIndex) const {
+void TrashCube::draw(const unsigned int frameIndex) {
     Scene::draw(frameIndex);
 
     float x = 5;

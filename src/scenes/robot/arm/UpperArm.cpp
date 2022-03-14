@@ -2,6 +2,8 @@
 
 #include "../../../vendor/glut.h"
 #include "../../../utilities/Parameters.h"
+#include "../../../model/animation/Translate.h"
+#include "../../../model/animation/Rotate.h"
 
 UpperArm::UpperArm(Side armSide) {
     orientation = armSide;
@@ -9,9 +11,11 @@ UpperArm::UpperArm(Side armSide) {
     calculate();
     model.load("res/blender_files/upper_arm/upper_arm.obj");
     loadImage();
+
+    initAnimation();
 }
 
-void UpperArm::draw(const unsigned int frameIndex) const {
+void UpperArm::draw(const unsigned int frameIndex) {
     glPushMatrix();
     {
         glTranslatef(position.x, position.y, position.z);
@@ -47,4 +51,19 @@ void UpperArm::calculate() {
     float x = orientation == Side::LEFT ? -distance : distance;
 
     position = glm::vec3(x, .1f, 0.f);
+}
+
+void UpperArm::initAnimation() {
+    Step* firstStep = new Step(new Rotate(20, glm::vec3(0.f, 1.0f, .0f)), 1000.f, 1000.f);
+
+/*
+    Step* firstStep = new Step(new Translate(glm::vec3(.1f, 0.f, .0f)), 1000.f);
+    Step* secondStep = new Step(new Translate(glm::vec3(.0f, 0.f, -.1f)), 1000.f, 1000.f);
+*/
+
+    animationExecutor.addAnimationStep(firstStep);
+}
+
+Side UpperArm::getOrientation() const {
+    return orientation;
 }

@@ -20,6 +20,10 @@ add_executable(wall_e src/main.cpp
         src/scenes/sky/Sun.cpp
         src/model/Scene.cpp
         src/handler/CameraHandler.cpp
+        src/utilities/AnimationExecutor.cpp
+        src/model/animation/Action.cpp
+        src/model/animation/Rotate.cpp
+        src/model/animation/Translate.cpp
 )
 
 if (APPLE)

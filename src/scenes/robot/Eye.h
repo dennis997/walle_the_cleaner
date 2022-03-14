@@ -4,7 +4,7 @@
 #include "../../model/Scene.h"
 #include "glm/vec3.hpp"
 #include "../../vendor/Model.h"
-#include "../../api/orientation.h"
+#include "../../api/api.h"
 
 class Eye: public Scene {
 private:
@@ -19,7 +19,7 @@ private:
 public:
     Eye(Side);
 
-    void draw(unsigned int frameIndex) const override;
+    void draw(unsigned int frameIndex) override;
 };
 
 

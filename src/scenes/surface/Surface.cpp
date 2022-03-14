@@ -1,5 +1,5 @@
 #include "Surface.h"
 
-void Surface::draw(const unsigned int frameIndex) const {
+void Surface::draw(const unsigned int frameIndex) {
     Scene::draw(frameIndex);
 }

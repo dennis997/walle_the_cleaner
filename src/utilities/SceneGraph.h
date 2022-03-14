@@ -35,27 +35,30 @@ inline void buildSceneGraph() {
     sky.add(new Wall(BACK));
     sky.add(new Wall(FRONT));
 
-    robot.add(new Wheel(Side::LEFT));
-    robot.add(new Wheel(Side::RIGHT));
 
+    // right arm
     Body* body = new Body();
     UpperArm* rightUpperArm = new UpperArm(Side::RIGHT);
-    LowerArm* rightLowerArm = new LowerArm();
-    rightLowerArm->add(new Finger());
+    LowerArm* rightLowerArm = new LowerArm(Side::RIGHT);
+    rightLowerArm->add(new Finger(Side::RIGHT));
     rightUpperArm->add(rightLowerArm);
     body->add(rightUpperArm);
 
+    // left arm
     UpperArm* leftUpperArm = new UpperArm(Side::LEFT);
-    LowerArm* leftLowerArm = new LowerArm();
-    leftLowerArm->add(new Finger());
+    LowerArm* leftLowerArm = new LowerArm(Side::LEFT);
+    leftLowerArm->add(new Finger(Side::LEFT));
     leftUpperArm->add(leftLowerArm);
     body->add(leftUpperArm);
 
+    // neck and eyes
     Neck* neck = new Neck();
     neck->add(new Eye(Side::LEFT));
     neck->add(new Eye(Side::RIGHT));
     body->add(neck);
 
+    robot.add(new Wheel(Side::LEFT));
+    robot.add(new Wheel(Side::RIGHT));
     robot.add(body);
 }
 

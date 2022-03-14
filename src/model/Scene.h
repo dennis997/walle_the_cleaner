@@ -2,14 +2,15 @@
 #define WALL_E_THE_CLEANER_COMPONENT_H
 
 #include <list>
+#include "../utilities/AnimationExecutor.h"
 
 /**
  * A scene is a node in the scene graph.
  *
  * It can be either a leaf with zero children or a component with n children.
- * Both types are able to draw things to the rendered scene in the draw method.
+ * Both types are able to draw things to the rendered scene in the execute method.
  *
- * To debug a scene call drawDebug(.5) in your draw method.
+ * To debug a scene call drawDebug(.5) in your execute method.
  */
 class Scene {
 private:
@@ -18,6 +19,8 @@ private:
 protected:
     std::list<Scene *> children;
     const Scene* parent = nullptr;
+    AnimationExecutor animationExecutor;
+
 
     /**
      * Draws a debug coordinate system
@@ -47,7 +50,9 @@ public:
      *
      * @param frameIndex frame counter incremented by the renderer
      */
-    virtual void draw(unsigned int frameIndex) const;
+    virtual void draw(unsigned int frameIndex);
+
+    void startAnimation(unsigned int frameIndex);
 };
 
 #endif //WALL_E_THE_CLEANER_COMPONENT_H

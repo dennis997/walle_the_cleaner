@@ -13,7 +13,7 @@ Sun::Sun() {
     loadImage();
 }
 
-void Sun::draw(unsigned int frameIndex) const {
+void Sun::draw(unsigned int frameIndex) {
     drawSun(frameIndex);
     Scene::draw(frameIndex);
 }

@@ -13,7 +13,7 @@ Ground::Ground() {
     loadImage();
 }
 
-void Ground::draw(const unsigned int frameIndex) const {
+void Ground::draw(const unsigned int frameIndex) {
     drawDebug(1);
     drawPlate();
     Scene::draw(frameIndex);

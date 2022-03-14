@@ -2,7 +2,7 @@
 #define WALL_E_ROBOT_H
 
 #include "../../model/Scene.h"
-#include "../../api/orientation.h"
+#include "../../api/api.h"
 #include "../../utilities/Parameters.h"
 #include "glm/glm.hpp"
 #include "../../utilities/HandlerManager.h"
@@ -10,7 +10,7 @@
 
 /**
  * Includes following scenes:
-w */
+ */
 class Robot: public Scene {
 private:
     glm::vec3 position;
@@ -26,7 +26,7 @@ private:
 public:
     Robot();
 
-    void draw(unsigned int frameIndex) const override;
+    void draw(unsigned int frameIndex) override;
     const glm::vec3 &getPosition() const;
 
     void moveForward();

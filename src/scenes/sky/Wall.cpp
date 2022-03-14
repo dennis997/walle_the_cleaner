@@ -11,7 +11,7 @@ Wall::Wall(const WallSide wallSide) {
     loadImage(wallSide);
 }
 
-void Wall::draw(unsigned int frameIndex) const {
+void Wall::draw(unsigned int frameIndex) {
     glPushMatrix();
     {
         glColor3f(1, 1, 1);

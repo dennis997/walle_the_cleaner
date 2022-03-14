@@ -1,6 +1,6 @@
 #include "Sky.h"
 
-void Sky::draw(const unsigned int frameIndex) const {
+void Sky::draw(const unsigned int frameIndex) {
     drawSky();
     Scene::draw(frameIndex);
 }

@@ -19,7 +19,7 @@ private:
 public:
     Sun();
 
-    void draw(unsigned int frameIndex) const override;
+    void draw(unsigned int frameIndex) override;
 };
 
 

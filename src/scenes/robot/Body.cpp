@@ -5,7 +5,7 @@ Body::Body() {
     model.load("res/blender_files/body/body.obj");
 }
 
-void Body::draw(const unsigned int frameIndex) const {
+void Body::draw(const unsigned int frameIndex) {
     glPushMatrix();
     {
         glTranslatef(0, .25f, 0);

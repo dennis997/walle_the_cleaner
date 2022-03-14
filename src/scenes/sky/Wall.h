@@ -26,7 +26,7 @@ public:
     Wall(WallSide wallSide);
 
 
-    void draw(unsigned int frameIndex) const override;
+    void draw(unsigned int frameIndex) override;
 };
 
 

@@ -35,8 +35,10 @@ void Scene::drawDebug(const float size) const {
     glPopMatrix();
 }
 
-void Scene::draw(const unsigned int frameIndex) const {
-    for (const Scene *scene: children) {
+void Scene::draw(const unsigned int frameIndex) {
+    animationExecutor.animate(frameIndex);
+
+    for (Scene *scene: children) {
         scene->draw(frameIndex);
     }
 }
@@ -48,6 +50,13 @@ void Scene::add(Scene *component) {
 
 void Scene::setParent(const Scene * parent) {
     this->parent = parent;
+}
+
+void Scene::startAnimation(const unsigned int frameIndex) {
+    animationExecutor.start(frameIndex);
+    for (Scene *scene: children) {
+        scene->startAnimation(frameIndex);
+    }
 }
 
 #endif //WALL_E_COMPONENT

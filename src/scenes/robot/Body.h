@@ -16,7 +16,7 @@ private:
 public:
     Body();
 
-    void draw(unsigned int frameIndex) const override;
+    void draw(unsigned int frameIndex) override;
 };
 
 #endif //WALL_E_BODY_H

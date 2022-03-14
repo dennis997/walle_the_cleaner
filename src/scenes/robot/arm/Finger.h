@@ -4,23 +4,24 @@
 #include "../../../model/Scene.h"
 #include "glm/vec3.hpp"
 #include "../../../vendor/Model.h"
-#include "../../../api/orientation.h"
+#include "../../../api/api.h"
 
 class Finger: public Scene {
 private:
     glm::vec3 position;
-
     unsigned int eyeImageId;
     Model model;
+    const Side orientation;
 
     void loadImage();
     void calculate();
+    void initAnimation();
 
 
 public:
-    Finger();
+    Finger(Side side);
 
-    void draw(unsigned int frameIndex) const override;
+    void draw(unsigned int frameIndex) override;
 };
 
 
