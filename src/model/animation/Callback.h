@@ -12,6 +12,7 @@ struct CallbackFunction {
 class Callback: public Action {
 private:
     bool isExecuted;
+    bool isReversed;
     CallbackFunction callback;
 
 public:
