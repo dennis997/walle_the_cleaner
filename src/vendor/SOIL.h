@@ -225,7 +225,7 @@ unsigned int
 /**
 	Loads an image from RAM into an OpenGL texture.
 	\param buffer the image data in RAM just as if it were still in a file
-	\param buffer_length the size of the buffer in bytes
+	\param buffer_length the groundSize of the buffer in bytes
 	\param force_channels 0-image format, 1-luminous, 2-luminous/alpha, 3-RGB, 4-RGBA
 	\param reuse_texture_ID 0-generate a new texture ID, otherwise reuse the texture ID (overwriting the old texture)
 	\param flags can be any of SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_MIPMAPS | SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MULTIPLY_ALPHA | SOIL_FLAG_INVERT_Y | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_DDS_LOAD_DIRECT
@@ -244,17 +244,17 @@ unsigned int
 /**
 	Loads 6 images from memory into an OpenGL cubemap texture.
 	\param x_pos_buffer the image data in RAM to upload as the +x cube face
-	\param x_pos_buffer_length the size of the above buffer
+	\param x_pos_buffer_length the groundSize of the above buffer
 	\param x_neg_buffer the image data in RAM to upload as the +x cube face
-	\param x_neg_buffer_length the size of the above buffer
+	\param x_neg_buffer_length the groundSize of the above buffer
 	\param y_pos_buffer the image data in RAM to upload as the +x cube face
-	\param y_pos_buffer_length the size of the above buffer
+	\param y_pos_buffer_length the groundSize of the above buffer
 	\param y_neg_buffer the image data in RAM to upload as the +x cube face
-	\param y_neg_buffer_length the size of the above buffer
+	\param y_neg_buffer_length the groundSize of the above buffer
 	\param z_pos_buffer the image data in RAM to upload as the +x cube face
-	\param z_pos_buffer_length the size of the above buffer
+	\param z_pos_buffer_length the groundSize of the above buffer
 	\param z_neg_buffer the image data in RAM to upload as the +x cube face
-	\param z_neg_buffer_length the size of the above buffer
+	\param z_neg_buffer_length the groundSize of the above buffer
 	\param force_channels 0-image format, 1-luminous, 2-luminous/alpha, 3-RGB, 4-RGBA
 	\param reuse_texture_ID 0-generate a new texture ID, otherwise reuse the texture ID (overwriting the old texture)
 	\param flags can be any of SOIL_FLAG_POWER_OF_TWO | SOIL_FLAG_MIPMAPS | SOIL_FLAG_TEXTURE_REPEATS | SOIL_FLAG_MULTIPLY_ALPHA | SOIL_FLAG_INVERT_Y | SOIL_FLAG_COMPRESS_TO_DXT | SOIL_FLAG_DDS_LOAD_DIRECT
@@ -283,7 +283,7 @@ unsigned int
 /**
 	Loads 1 image from RAM and splits it into an OpenGL cubemap texture.
 	\param buffer the image data in RAM just as if it were still in a file
-	\param buffer_length the size of the buffer in bytes
+	\param buffer_length the groundSize of the buffer in bytes
 	\param face_order the order of the faces in the file, any combination of NSWEUD, for North, South, Up, etc.
 	\param force_channels 0-image format, 1-luminous, 2-luminous/alpha, 3-RGB, 4-RGBA
 	\param reuse_texture_ID 0-generate a new texture ID, otherwise reuse the texture ID (overwriting the old texture)
