@@ -11,6 +11,7 @@ add_executable(wall_e src/main.cpp
         src/scenes/robot/Robot.cpp
         src/scenes/robot/Body.cpp
         src/scenes/robot/Wheel.cpp
+        src/scenes/robot/Carriage.cpp
         src/scenes/robot/arm/LowerArm.cpp
         src/scenes/robot/arm/UpperArm.cpp
         src/scenes/robot/arm/Finger.cpp
@@ -20,7 +21,14 @@ add_executable(wall_e src/main.cpp
         src/scenes/sky/Sun.cpp
         src/model/Scene.cpp
         src/handler/CameraHandler.cpp
-        src/vendor/Cube.h)
+        src/utilities/AnimationExecutor.cpp
+        src/model/animation/Action.cpp
+        src/model/animation/Rotate.cpp
+        src/model/animation/Translate.cpp
+        src/model/animation/Visibility.cpp
+        src/model/animation/Callback.cpp
+)
+
 
 include(ExternalProject)
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)

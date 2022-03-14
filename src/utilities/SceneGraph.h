@@ -16,10 +16,11 @@
 #include "../scenes/surface/TrashCube.h"
 #include "../scenes/sky/Wall.h"
 #include "../scenes/robot/arm/Finger.h"
+#include "../scenes/robot/Carriage.h"
 
 // top level nodes
-inline Robot * robot = new Robot;
-inline Surface surface(robot);
+inline Robot *robot = new Robot;
+inline Surface *surface = new Surface(robot);
 inline Sky sky;
 
 /**
@@ -27,8 +28,8 @@ inline Sky sky;
  */
 inline void buildSceneGraph() {
     //surface.add(new TrashCube(5,0.25/2,5));
-    surface.add(new Ground);
-    surface.createRandomCubes();
+    surface->add(new Ground);
+    surface->createRandomCubes();
 
     sky.add(new Sun);
     sky.add(new Wall(LEFT));
@@ -39,25 +40,29 @@ inline void buildSceneGraph() {
     robot->add(new Wheel(Side::LEFT));
     robot->add(new Wheel(Side::RIGHT));
 
+    // right arm
     Body* body = new Body();
     UpperArm* rightUpperArm = new UpperArm(Side::RIGHT);
-    LowerArm* rightLowerArm = new LowerArm();
-    rightLowerArm->add(new Finger());
+    LowerArm* rightLowerArm = new LowerArm(Side::RIGHT);
+    rightLowerArm->add(new Finger(robot));
     rightUpperArm->add(rightLowerArm);
     body->add(rightUpperArm);
 
+    // left arm
     UpperArm* leftUpperArm = new UpperArm(Side::LEFT);
-    LowerArm* leftLowerArm = new LowerArm();
-    leftLowerArm->add(new Finger());
+    LowerArm* leftLowerArm = new LowerArm(Side::LEFT);
+    leftLowerArm->add(new Finger(robot));
     leftUpperArm->add(leftLowerArm);
     body->add(leftUpperArm);
 
+    // neck and eyes
     Neck* neck = new Neck();
     neck->add(new Eye(Side::LEFT));
     neck->add(new Eye(Side::RIGHT));
     body->add(neck);
 
     robot->add(body);
+    robot->add(new Carriage(robot, surface));
 }
 
 /**
@@ -67,7 +72,7 @@ inline void buildSceneGraph() {
  */
 inline void printSceneGraph(const unsigned int frameIndex) {
     sky.draw(frameIndex);
-    surface.draw(frameIndex);
+    surface->draw(frameIndex);
     robot->draw(frameIndex);
 }
 

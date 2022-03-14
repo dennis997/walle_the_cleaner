@@ -8,7 +8,7 @@ Wheel::Wheel(const Side orientation): orientation(orientation) {
     loadImage();
 }
 
-void Wheel::draw(unsigned int frameIndex) const {
+void Wheel::draw(unsigned int frameIndex) {
     Scene::draw(frameIndex);
 
     glPushMatrix();

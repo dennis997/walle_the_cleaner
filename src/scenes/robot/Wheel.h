@@ -5,7 +5,7 @@
 #include <glm/glm.hpp>
 
 #include "../../vendor/Model.h"
-#include "../../api/orientation.h"
+#include "../../api/api.h"
 
 class Wheel: public Scene {
 private:
@@ -21,7 +21,7 @@ private:
 public:
     Wheel(Side orientation);
 
-    void draw(unsigned int frameIndex) const override;
+    void draw(unsigned int frameIndex) override;
 };
 
 

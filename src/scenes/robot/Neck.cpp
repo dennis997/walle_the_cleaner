@@ -10,7 +10,7 @@ Neck::Neck() {
     calculate();
 }
 
-void Neck::draw(const unsigned int frameIndex) const {
+void Neck::draw(const unsigned int frameIndex) {
     glPushMatrix();
     {
         glTranslatef(position.x, position.y, position.z);

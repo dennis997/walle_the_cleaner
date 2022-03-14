@@ -13,7 +13,7 @@ class Sky: public Scene {
 private:
 
 public:
-    void draw(unsigned int frameIndex) const override;
+    void draw(unsigned int frameIndex) override;
     void calculate() const;
     void drawSky() const;
 };

@@ -3,7 +3,7 @@
 
 #include "../utilities/HandlerManager.h"
 
-void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerManager) {
+void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerManager, const unsigned int frameIndex) {
     CameraHandler* cameraHandler = handlerManager->getCameraHandler();
 
     switch(key) {
@@ -44,7 +44,11 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
             break;
 
         case 'g':
-            surface.pickUpOrLayDown();
+            robot->startAnimation(frameIndex);
+            break;
+
+        case 'c':
+            robot->toggleSticky();
             break;
     }
 }

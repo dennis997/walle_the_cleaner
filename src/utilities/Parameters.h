@@ -1,7 +1,7 @@
 #ifndef WALL_E_PARAMETERS_H
 #define WALL_E_PARAMETERS_H
 
-#include "../api/orientation.h"
+#include "../api/api.h"
 #include "glm/vec3.hpp"
 
 /**
@@ -24,7 +24,7 @@ private:
     int yAngle = 0;
     float radiantApprox = 0.0175f; // 0.0175 = for approx. conversion to radiant (~pi/180)
 
-    float robotSize = 1.f;
+    int waitDuration = 10; // in milliseconds
 
 
 public:
@@ -65,12 +65,12 @@ public:
         return yAngle;
     }
 
-    float getRobotSize() const {
-        return robotSize;
-    }
-
     float getRadiantApprox() const {
         return radiantApprox;
+    }
+
+    int getWaitDuration() const {
+        return waitDuration;
     }
     int getNumberOfTrashcubes() const {
         return numberOfTrashcubes;

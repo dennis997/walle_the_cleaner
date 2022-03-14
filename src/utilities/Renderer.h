@@ -10,22 +10,24 @@
 #include "../vendor/SOIL.h"
 #include "Parameters.h"
 
-int waitDuration = 10; // in milliseconds
+Parameter* parameters = Parameter::getInstance();
 
 HandlerManager* _handlerManager = nullptr;
+unsigned int _frameIndex;
 
 /**
  * Callback every frame for the scene graph components
  */
 void animate(int frameIndex) {
     std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now();
+    _frameIndex = frameIndex;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     _handlerManager->invokeHandlers(frameIndex);
 
     printSceneGraph(frameIndex);
 
     glutPostRedisplay();
-    glutTimerFunc(waitDuration, animate, ++frameIndex);
+    glutTimerFunc(parameters->getWaitDuration(), animate, ++frameIndex);
 
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     std::cout << "Frametime: " << std::chrono::duration_cast<std::chrono::milliseconds> (end - begin).count() << "[ms]" << std::endl;
@@ -58,7 +60,7 @@ void reshape(int width, int height) {
  * Global light initialization
  */
 void initLight_0() {
-    Parameter* parameters = Parameter::getInstance();
+
     float fieldSize = parameters->getFieldSize();
 
     GLfloat light_position[] = {fieldSize / 2.f, 2.f, fieldSize / 2.f,0.f};
@@ -136,9 +138,9 @@ void initRenderer(int argc, char** argv) {
     glutCreateWindow("Wall-E");
     glutDisplayFunc(renderScene);
     glutReshapeFunc(reshape);
-    glutTimerFunc(waitDuration,animate,0);
+    glutTimerFunc(parameters->getWaitDuration(),animate,0);
     glutKeyboardFunc([](unsigned char key, int x, int y) {
-        keyInputListener(key, x, y, _handlerManager);
+        keyInputListener(key, x, y, _handlerManager, _frameIndex);
     });
 
     glShadeModel(GL_SMOOTH);

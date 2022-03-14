@@ -33,7 +33,7 @@ private:
     float groundHeight;
 
     /**
-     * Number of polygons that are used to draw the ground
+     * Number of polygons that are used to execute the ground
      */
     int slices;
 
@@ -41,7 +41,7 @@ private:
     float undergroundSize;
 
     /**
-     * Actual draw method that draws one object. For this example a 2d plate
+     * Actual execute method that draws one object. For this example a 2d plate
      */
     void drawPlate() const;
 
@@ -54,7 +54,7 @@ private:
     void calculate(float groundSize, float groundHeight);
 
     /**
-     * Initial Construction of Groundplate to draw later
+     * Initial Construction of Groundplate to execute later
      */
     void loadImage();
 
@@ -66,7 +66,7 @@ public:
      *
      * @param frameIndex counter from the renderer
      */
-    void draw(unsigned int frameIndex) const override;
+    void draw(unsigned int frameIndex) override;
 };
 
 

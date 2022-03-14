@@ -14,10 +14,13 @@ class TrashCube: public Scene {
 private:
     glm::vec3 position;
 
+    unsigned int imageId;
+    void loadImage();
+
 public:
   //  TrashCube();
     TrashCube(float x, float y, float z);
-    void draw(unsigned int frameIndex) const override;
+    void draw(unsigned int frameIndex) override;
     const glm::vec3 &getPosition() const;
     void setPosition(const glm::vec3 &position);
 };
