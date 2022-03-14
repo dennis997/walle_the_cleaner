@@ -10,7 +10,7 @@ Robot::Robot() {
     currentOrientation = parameter->getStartOrientation();
     angleSpeed = parameter->getMovementAngle();
 
-
+    pickedUpTrashCube = false;
     yAngle = parameter->getYAngle();
     lightOn = false;
 }
@@ -104,3 +104,5 @@ const bool Robot::getLightStatus() const {
 const glm::vec3 &Robot::getPosition() const {
     return position;
 }
+
+

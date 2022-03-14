@@ -18,7 +18,7 @@
 #include "../scenes/robot/arm/Finger.h"
 
 // top level nodes
-inline Robot robot;
+inline Robot * robot = new Robot;
 inline Surface surface(robot);
 inline Sky sky;
 
@@ -36,8 +36,8 @@ inline void buildSceneGraph() {
     sky.add(new Wall(BACK));
     sky.add(new Wall(FRONT));
 
-    robot.add(new Wheel(Side::LEFT));
-    robot.add(new Wheel(Side::RIGHT));
+    robot->add(new Wheel(Side::LEFT));
+    robot->add(new Wheel(Side::RIGHT));
 
     Body* body = new Body();
     UpperArm* rightUpperArm = new UpperArm(Side::RIGHT);
@@ -57,7 +57,7 @@ inline void buildSceneGraph() {
     neck->add(new Eye(Side::RIGHT));
     body->add(neck);
 
-    robot.add(body);
+    robot->add(body);
 }
 
 /**
@@ -68,7 +68,7 @@ inline void buildSceneGraph() {
 inline void printSceneGraph(const unsigned int frameIndex) {
     sky.draw(frameIndex);
     surface.draw(frameIndex);
-    robot.draw(frameIndex);
+    robot->draw(frameIndex);
 }
 
 #endif //WALL_E_SCENEGRAPH_H
