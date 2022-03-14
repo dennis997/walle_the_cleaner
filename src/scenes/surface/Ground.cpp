@@ -21,7 +21,7 @@ void Ground::draw(const unsigned int frameIndex) const {
 }
 
 void Ground::loadImage() {
-    surfaceImage = SOIL_load_OGL_texture("res/textures/bottom_texture2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
+    surfaceImage = SOIL_load_OGL_texture("res/textures/bottom_texture.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                                          SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB |
                                          SOIL_FLAG_COMPRESS_TO_DXT);
 }
