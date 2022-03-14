@@ -51,11 +51,14 @@ void reshape(int width, int height) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glViewport(0, 0, width, height);
-    gluPerspective(60., 1, 0.1, 20.);
+    gluPerspective(60., 1, 0.1, 30.);
     glMatrixMode(GL_MODELVIEW);
 }
 
 
+/**
+ * Global light initialization
+ */
 void initLight_0() {
 
     float fieldSize = parameters->getFieldSize();
@@ -74,6 +77,10 @@ void initLight_0() {
     glEnable(GL_LIGHT0);
 }
 
+
+/**
+ * Light initialization for ego person camera perspective
+ */
 void initLight_1() {
     Parameter* parameters = Parameter::getInstance();
 
@@ -94,10 +101,10 @@ void initLight_1() {
     glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.3f);
     glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 20.f);
     glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, 10.f);
-
-    //glEnable(GL_LIGHT1);
 }
-
+ /**
+  * Light initialization for 3rd person camera perspective
+  */
 void initLight_2() {
     Parameter* parameters = Parameter::getInstance();
 
@@ -118,8 +125,6 @@ void initLight_2() {
     glLightf(GL_LIGHT2, GL_QUADRATIC_ATTENUATION, 0.3f);
     glLightf(GL_LIGHT2, GL_SPOT_CUTOFF, 20.f);
     glLightf(GL_LIGHT2, GL_SPOT_EXPONENT, 10.f);
-
-    //glEnable(GL_LIGHT2);
 }
 
 
@@ -127,10 +132,6 @@ void initLight_2() {
  * Init render configurations
  */
 void initRenderer(int argc, char** argv) {
-    #ifdef __APPLE__
-    #else
-       // glewInit();
-    #endif
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowSize(800,800);
@@ -141,7 +142,6 @@ void initRenderer(int argc, char** argv) {
     glutKeyboardFunc([](unsigned char key, int x, int y) {
         keyInputListener(key, x, y, _handlerManager, _frameIndex);
     });
-
 
     glShadeModel(GL_SMOOTH);
     glEnable(GL_BLEND);

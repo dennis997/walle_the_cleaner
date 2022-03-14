@@ -11,6 +11,7 @@ add_executable(wall_e src/main.cpp
         src/scenes/robot/Robot.cpp
         src/scenes/robot/Body.cpp
         src/scenes/robot/Wheel.cpp
+        src/scenes/robot/Carriage.cpp
         src/scenes/robot/arm/LowerArm.cpp
         src/scenes/robot/arm/UpperArm.cpp
         src/scenes/robot/arm/Finger.cpp
@@ -24,11 +25,9 @@ add_executable(wall_e src/main.cpp
         src/model/animation/Action.cpp
         src/model/animation/Rotate.cpp
         src/model/animation/Translate.cpp
+        src/model/animation/Visibility.cpp
 )
 
-if (APPLE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework GLUT -framework OpenGL")
-endif(APPLE)
 
 include(ExternalProject)
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)

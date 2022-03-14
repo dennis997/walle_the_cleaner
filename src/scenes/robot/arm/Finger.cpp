@@ -1,12 +1,13 @@
 #include "Finger.h"
 
 #include "../../../vendor/glut.h"
+#include "../../../vendor/Cube.h"
 #include "LowerArm.h"
 #include "../../../model/animation/Rotate.h"
 #include "../../../model/animation/Translate.h"
 
 
-Finger::Finger(const Side side): orientation(side) {
+Finger::Finger(const Robot* robot): robot(robot) {
     model.load("res/blender_files/finger/finger.obj");
     loadImage();
     calculate();

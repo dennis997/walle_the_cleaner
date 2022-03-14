@@ -10,7 +10,10 @@
 class Parameter {
 private:
     inline static Parameter* instance;
-    float fieldSize = 10;
+    float fieldSize = 10.f;
+    int numberOfTrashcubes = 7;
+    float trashCubeSize = 0.25f;
+    float gapSize = 4.f;
 
     // roboter
     glm::vec3 startOrientation = glm::vec3(1, .0f, 1);
@@ -69,6 +72,26 @@ public:
     int getWaitDuration() const {
         return waitDuration;
     }
+    int getNumberOfTrashcubes() const {
+        return numberOfTrashcubes;
+    }
+
+    void setNumberOfTrashcubes(int numberOfTrashcubes) {
+        Parameter::numberOfTrashcubes = numberOfTrashcubes;
+    }
+
+    float getTrashCubeSize() const {
+        return trashCubeSize;
+    }
+
+    void setTrashCubeSize(float trashCubeSize) {
+        Parameter::trashCubeSize = trashCubeSize;
+    }
+
+    float getGapSize() const {
+        return gapSize;
+    }
+
 };
 
 #endif //WALL_E_PARAMETERS_H

@@ -5,13 +5,15 @@
 #include "glm/vec3.hpp"
 #include "../../../vendor/Model.h"
 #include "../../../api/api.h"
+#include "../Robot.h"
 
 class Finger: public Scene {
 private:
     glm::vec3 position;
     unsigned int eyeImageId;
     Model model;
-    const Side orientation;
+    const Robot* robot;
+
 
     void loadImage();
     void calculate();
@@ -19,7 +21,7 @@ private:
 
 
 public:
-    Finger(Side side);
+    Finger(const Robot* robot);
 
     void draw(unsigned int frameIndex) override;
 };

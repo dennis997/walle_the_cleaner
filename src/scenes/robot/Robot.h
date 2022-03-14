@@ -22,23 +22,29 @@ private:
     float movementSpeed;
     float angleSpeed;
 
+    bool restrictMovement();
 
 public:
     Robot();
 
     void draw(unsigned int frameIndex) override;
-    const glm::vec3 &getPosition() const;
 
+    // movement
     void moveForward();
     void moveBack();
     void moveLeft();
     void moveRight();
+
+    // camera
     void calcViewPoint(int currentDegree);
-    bool restrictMovement();
+
+    // actions
     void toggleLight(Perspective currentPerspective);
 
+    // getter
     const glm::vec3 &getCurrentOrientation() const;
     const bool getLightStatus() const;
+    const glm::vec3 &getPosition() const;
 
 };
 
