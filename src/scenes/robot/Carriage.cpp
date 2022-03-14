@@ -46,10 +46,6 @@ void Carriage::calculate() {
     position = glm::vec3(0.f, .3f, 0.3f);
 }
 
-void Carriage::callback() {
-
-}
-
 void Carriage::initAnimation() {
     CallbackFunction callback{};
     callback.callback = [&](){
@@ -57,6 +53,5 @@ void Carriage::initAnimation() {
     };
 
     Step* secondStep = new Step(new Callback(callback), 30.f, 2600.f);
-
-    animationExecutor.addAnimationStep(secondStep);
+    grabAnimation.addAnimationStep(secondStep);
 }

@@ -44,14 +44,14 @@ inline void buildSceneGraph() {
     Body* body = new Body();
     UpperArm* rightUpperArm = new UpperArm(Side::RIGHT);
     LowerArm* rightLowerArm = new LowerArm(Side::RIGHT);
-    rightLowerArm->add(new Finger(robot));
+    rightLowerArm->add(new Finger(robot, Side::RIGHT));
     rightUpperArm->add(rightLowerArm);
     body->add(rightUpperArm);
 
     // left arm
     UpperArm* leftUpperArm = new UpperArm(Side::LEFT);
     LowerArm* leftLowerArm = new LowerArm(Side::LEFT);
-    leftLowerArm->add(new Finger(robot));
+    leftLowerArm->add(new Finger(robot, Side::LEFT));
     leftUpperArm->add(leftLowerArm);
     body->add(leftUpperArm);
 

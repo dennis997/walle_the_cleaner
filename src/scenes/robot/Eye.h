@@ -15,6 +15,7 @@ private:
 
     void loadImage();
     void calculate();
+    void initAnimation();
 
 public:
     Eye(Side);

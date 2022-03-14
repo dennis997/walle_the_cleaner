@@ -5,7 +5,7 @@
 
 float frameSleepDuration;
 
-AnimationExecutor::AnimationExecutor(): startFrameIndex(0), maxDelay(0) {
+AnimationExecutor::AnimationExecutor(): startFrameIndex{0}, maxDelay{0} {
     // average frame calculation time offset -> bit hacky
     float timeOffset = 7.f;
 
@@ -25,16 +25,14 @@ void AnimationExecutor::start(unsigned int frameIndex) {
 void AnimationExecutor::execute(unsigned int frameIndex) {
     float timePassed = (frameIndex - startFrameIndex) * frameSleepDuration;
 
-    for (int i = 0; i < steps.size(); i++) {
 
-        Step* step = steps.at(i);
-
+    for (const auto &step : steps) {
         if (step->state == State::START || step->state == State::END) {
             continue;
         }
 
         // subtract delay from max delay of all steps when the animation is reversed
-        float animationDelay = step->state == State::RUNNING ? step->delay : maxDelay - step->delay;
+        float animationDelay = step->state == State::RUNNING ? step->delay : maxDelay -step->delay;
 
         // if delay is passed calculate update
         if (animationDelay > timePassed) {

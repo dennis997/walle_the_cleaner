@@ -54,14 +54,11 @@ void UpperArm::calculate() {
 }
 
 void UpperArm::initAnimation() {
-    Step* firstStep = new Step(new Rotate(20, glm::vec3(0.f, 1.0f, .0f)), 1000.f, 1000.f);
+    Step* rotateArm = new Step(new Rotate(20, glm::vec3(0.f, 1.0f, .0f)), 1000.f, 1000.f);
+    grabAnimation.addAnimationStep(rotateArm);
 
-/*
-    Step* firstStep = new Step(new Translate(glm::vec3(.1f, 0.f, .0f)), 1000.f);
-    Step* secondStep = new Step(new Translate(glm::vec3(.0f, 0.f, -.1f)), 1000.f, 1000.f);
-*/
-
-    animationExecutor.addAnimationStep(firstStep);
+    Step* liftArm = new Step(new Rotate(60, glm::vec3(.0f,  -1.f, .0f)), 500.f, 0.f);
+    idleAnimation.addAnimationStep(liftArm);
 }
 
 Side UpperArm::getOrientation() const {

@@ -21,8 +21,6 @@ private:
     void calculate();
     void initAnimation();
 
-    void callback();
-
 public:
     Carriage(Robot* robot, Surface* surface);
     void draw(unsigned int frameIndex) override;

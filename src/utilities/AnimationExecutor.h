@@ -13,6 +13,7 @@ private:
     unsigned int startFrameIndex;
     void execute(unsigned int frameIndex);
     float maxDelay;
+    bool loop;
 
 public:
     AnimationExecutor();

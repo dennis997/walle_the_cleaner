@@ -1,6 +1,8 @@
 #include "Eye.h"
 
 #include "../../vendor/glut.h"
+#include "../../model/animation/Translate.h"
+#include "../../model/animation/Rotate.h"
 
 Eye::Eye(Side eyeSide) {
     orientation = eyeSide;
@@ -11,6 +13,7 @@ Eye::Eye(Side eyeSide) {
     calculate();
     model.load(filename.c_str());
     loadImage();
+    initAnimation();
 }
 
 void Eye::draw(const unsigned int frameIndex) {
@@ -50,4 +53,10 @@ void Eye::calculate() {
     float x = orientation == Side::LEFT ? -eyeDistance : eyeDistance;
 
     position = glm::vec3(x, .8f, 0.3f);
+}
+
+void Eye::initAnimation() {
+    Step* firstStep = new Step(new Rotate(10, glm::vec3(0.f, .0f, orientation == Side::LEFT ? 1.f : .5f)), 500.f, 750.f);
+
+    idleAnimation.addAnimationStep(firstStep);
 }
