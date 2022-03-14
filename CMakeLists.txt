@@ -20,10 +20,6 @@ add_executable(wall_e src/main.cpp
         src/handler/RoboterHandler.cpp
 )
 
-if (APPLE)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework GLUT -framework OpenGL")
-endif(APPLE)
-
 include(ExternalProject)
 set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
 
@@ -39,9 +35,7 @@ add_dependencies(wall_e glm)
 
 FILE(COPY res DESTINATION ${CMAKE_BINARY_DIR})
 
-if(UNIX AND NOT APPLE)
-    target_link_libraries(wall_e -lglut)
-    target_link_libraries(wall_e -lGL)
-    target_link_libraries(wall_e -lGLU)
-    target_link_libraries(wall_e -lSOIL)
-endif(UNIX AND NOT APPLE)
+target_link_libraries(wall_e -lglut)
+target_link_libraries(wall_e -lGL)
+target_link_libraries(wall_e -lGLU)
+target_link_libraries(wall_e -lSOIL)
