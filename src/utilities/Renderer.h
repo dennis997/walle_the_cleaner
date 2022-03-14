@@ -28,7 +28,7 @@ void animate(int frameIndex) {
     glutTimerFunc(waitDuration, animate, ++frameIndex);
 
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    //std::cout << "Frametime: " << std::chrono::duration_cast<std::chrono::milliseconds> (end - begin).count() << "[ms]" << std::endl;
+    std::cout << "Frametime: " << std::chrono::duration_cast<std::chrono::milliseconds> (end - begin).count() << "[ms]" << std::endl;
 }
 
 /**
@@ -49,7 +49,7 @@ void reshape(int width, int height) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glViewport(0, 0, width, height);
-    gluPerspective(45., 1, 0.1, 20.);
+    gluPerspective(60., 1, 0.1, 20.);
     glMatrixMode(GL_MODELVIEW);
 }
 
@@ -60,7 +60,7 @@ void initLight_0() {
 
     GLfloat light_position[] = {fieldSize / 2.f, 2.f, fieldSize / 2.f,0.f};
     GLfloat light_ambient[] = { .5f, .4f, .25f, 1.f }; // intensity of light
-    GLfloat light_diffuse[] = { 0.960f, 0.788f, 0.435f, 1.f }; // color of light
+    GLfloat light_diffuse[] = { 0.60f, .5f, 0.f, 1.f }; // color of light
 
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);

@@ -1,28 +1,26 @@
-#ifndef WALL_E_WHEEL_H
-#define WALL_E_WHEEL_H
+#ifndef WALL_E_EYE_H
+#define WALL_E_EYE_H
 
 #include "../../model/Scene.h"
-#include <glm/glm.hpp>
-
+#include "glm/vec3.hpp"
 #include "../../vendor/Model.h"
 #include "../../api/orientation.h"
 
-class Wheel: public Scene {
+class Eye: public Scene {
 private:
-    glm::vec3 position;
     Side orientation;
+    glm::vec3 position;
+    unsigned int eyeImageId;
     Model model;
-    unsigned int wheelImgId;
 
-
-    void calculate();
     void loadImage();
+    void calculate();
 
 public:
-    Wheel(Side orientation);
+    Eye(Side);
 
     void draw(unsigned int frameIndex) const override;
 };
 
 
-#endif //WALL_E_WHEEL_H
+#endif

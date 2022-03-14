@@ -2,7 +2,6 @@
 #define WALL_E_CAMERAHANDLER_H
 
 #include "../model/Handler.h"
-#include "../api/vertex.h"
 #include "glm/vec3.hpp"
 
 struct LookAt {

@@ -3,7 +3,6 @@
 
 
 #include "../../model/Scene.h"
-#include "../../api/vertex.h"
 
 /**
  * Includes following scenes:

@@ -8,7 +8,6 @@ int main(int argc, char **argv) {
     auto* handlerManager = new HandlerManager();
     setHandlerManager(handlerManager);
 
-
     startRendering();
 
     return 0;
