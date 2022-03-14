@@ -4,6 +4,7 @@
 #include "../../model/Scene.h"
 #include <map>
 #include <cmath>
+#include <iostream>
 #include "TrashCube.h"
 #include "../../scenes/robot/Robot.h"
 #include "../../utilities/Parameters.h"
