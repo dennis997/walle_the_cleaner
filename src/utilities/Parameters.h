@@ -12,7 +12,7 @@ private:
     inline static Parameter* instance;
     float fieldSize = 10.f;
     int numberOfTrashcubes = 7;
-    float trashCubeSize = 0.25f;
+    float trashCubeSize = 0.275f;
     float gapSize = 4.f;
 
     // roboter
@@ -25,7 +25,7 @@ private:
     float radiantApprox = 0.0175f; // 0.0175 = for approx. conversion to radiant (~pi/180)
 
     int waitDuration = 10; // in milliseconds
-
+    float idleDuration = 5000.f; // in milliseconds
 
 public:
     /**
@@ -92,6 +92,9 @@ public:
         return gapSize;
     }
 
+    float getIdleDuration() const {
+        return idleDuration / waitDuration;
+    }
 };
 
 #endif //WALL_E_PARAMETERS_H

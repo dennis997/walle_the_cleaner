@@ -36,7 +36,8 @@ void Scene::drawDebug(const float size) const {
 }
 
 void Scene::draw(const unsigned int frameIndex) {
-    animationExecutor.animate(frameIndex);
+    grabAnimation.animate(frameIndex);
+    idleAnimation.animate(frameIndex);
 
     for (Scene *scene: children) {
         scene->draw(frameIndex);
@@ -52,12 +53,20 @@ void Scene::setParent(const Scene * parent) {
     this->parent = parent;
 }
 
-void Scene::startAnimation(const unsigned int frameIndex) {
-    animationExecutor.start(frameIndex);
+void Scene::startGrabAnimation(const unsigned int frameIndex) {
+    grabAnimation.start(frameIndex);
     for (Scene *scene: children) {
-        scene->startAnimation(frameIndex);
+        scene->startGrabAnimation(frameIndex);
     }
 }
+
+void Scene::startIdleAnimation(unsigned int frameIndex) {
+    idleAnimation.start(frameIndex);
+    for (Scene *scene: children) {
+        scene->startIdleAnimation(frameIndex);
+    }
+}
+
 
 #endif //WALL_E_COMPONENT
 

@@ -46,9 +46,9 @@ float LowerArm::getArmLength() const {
 }
 
 void LowerArm::initAnimation() {
-    Step* first = new Step(new Translate(glm::vec3(.55f, 0.f, .0f)), 1000.f);
+    Step* stretchArm = new Step(new Translate(glm::vec3(.55f, 0.f, .0f)), 1000.f);
     Step* second = new Step(new Rotate(90, glm::vec3(orientation == Side::LEFT ? 1.f : -1.f, .0f, .0f)), 500.f, 1000.f);
 
-    animationExecutor.addAnimationStep(first);
-    animationExecutor.addAnimationStep(second);
+    grabAnimation.addAnimationStep(stretchArm);
+    grabAnimation.addAnimationStep(second);
 }

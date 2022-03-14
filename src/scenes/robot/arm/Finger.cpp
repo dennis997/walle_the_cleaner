@@ -7,7 +7,7 @@
 #include "../../../model/animation/Translate.h"
 
 
-Finger::Finger(const Robot* robot): robot(robot) {
+Finger::Finger(const Robot* robot, const Side &side): robot{robot}, orientation{side} {
     model.load("res/blender_files/finger/finger.obj");
     loadImage();
     calculate();
@@ -49,6 +49,6 @@ void Finger::initAnimation() {
     Step* firstStep = new Step(new Translate(glm::vec3(0.f, 0.2f, .0f)), 100.f, 2000.f);
     Step* secondStep = new Step(new Rotate(90, glm::vec3(0.f, .0f, 1.f)), 500.f, 2000.f);
 
-    animationExecutor.addAnimationStep(firstStep);
-    animationExecutor.addAnimationStep(secondStep);
+    grabAnimation.addAnimationStep(firstStep);
+    grabAnimation.addAnimationStep(secondStep);
 }

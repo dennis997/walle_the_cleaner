@@ -19,14 +19,17 @@ private:
     int yAngle, stickyAngle;
     bool movedForward;
     bool lightOn;
-    float movementSpeed;
-    float angleSpeed;
+    float movementSpeed, angleSpeed;
     bool carryCube;
-
+    AnimationExecutor idleAnimation;
     bool isSticky;
+    int lastMovementFrameIndex;
+    float idleDuration;
 
     bool restrictMovement();
     float getAngle();
+    void handleIdle(unsigned int frameIndex);
+
 
 public:
     Robot();

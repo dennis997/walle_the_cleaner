@@ -13,6 +13,7 @@ private:
     unsigned int eyeImageId;
     Model model;
     const Robot* robot;
+    Side orientation;
 
 
     void loadImage();
@@ -21,7 +22,7 @@ private:
 
 
 public:
-    Finger(const Robot* robot);
+    Finger(const Robot* robot, const Side &side);
 
     void draw(unsigned int frameIndex) override;
 };
