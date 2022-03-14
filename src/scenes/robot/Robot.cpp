@@ -1,21 +1,24 @@
 #include "Robot.h"
 #include "math.h"
-#include <iostream>
 #include "../../vendor/glut.h"
 
 Robot::Robot() {
     Parameter* parameter = Parameter::getInstance();
 
     position = parameter->getStartPosition();
+    movementSpeed = parameter->getMovementSpeed();
     currentOrientation = parameter->getStartOrientation();
+    angleSpeed = parameter->getMovementAngle();
+
+
     yAngle = parameter->getYAngle();
     lightOn = false;
-
 }
 
 void Robot::draw(const unsigned int frameIndex) const {
     glPopMatrix();
     {
+        glColor3f(1, 1, 1);
         glTranslatef(position.x, position.y, position.z);
         glRotatef(yAngle + 45, 0, 1, 0);        // 45 degrees because std orientation = half a quadrant with look to 0,0,0
         Scene::draw(frameIndex);
@@ -23,16 +26,10 @@ void Robot::draw(const unsigned int frameIndex) const {
     glPopMatrix();
 }
 
-const glm::vec3 &Robot::getPosition() const {
-    return position;
-}
-
 void Robot::moveForward() {
-    std::cout << "X: " << position.x << "| Z: " << position.z << std::endl;
-    Parameter* parameter = Parameter::getInstance();
     if (!restrictMovement() || !movedForward) {
         prevPos = position;
-        position += currentOrientation * parameter->getMovementSpeed();
+        position += currentOrientation * movementSpeed;
         movedForward = true;
     }
     else
@@ -40,11 +37,9 @@ void Robot::moveForward() {
 }
 
 void Robot::moveBack() {
-    std::cout << "X: " << position.x << "| Z: " << position.z << std::endl;
-    Parameter* parameter = Parameter::getInstance();
     if (!restrictMovement() || movedForward) {
         prevPos = position;
-        position -= currentOrientation * parameter->getMovementSpeed();
+        position -= currentOrientation * movementSpeed;
         movedForward = false;
     }
     else
@@ -52,25 +47,19 @@ void Robot::moveBack() {
 }
 
 void Robot::moveLeft() {
-    Parameter* parameter = Parameter::getInstance();
-    yAngle += parameter->getMovementAngle();
+    yAngle += angleSpeed;
     calcViewPoint(yAngle);
     //movedForward = !movedForward;
 }
 
 void Robot::moveRight() {
-    Parameter* parameter = Parameter::getInstance();
-    yAngle -= parameter->getMovementAngle();
+    yAngle -= angleSpeed;
     calcViewPoint(yAngle);
     //movedForward = !movedForward;
 }
 
 const glm::vec3 &Robot::getCurrentOrientation() const {
     return currentOrientation;
-}
-
-const int Robot::getYAngle() const {
-    return yAngle;
 }
 
 void Robot::calcViewPoint(int degree) {
@@ -86,7 +75,7 @@ bool Robot::restrictMovement() {
     float offsetBoarder = 0.5f;
 
     if (position.x > parameter->getFieldSize() - offsetBoarder ||
-        position.z > parameter->getFieldSize() -offsetBoarder ||
+        position.z > parameter->getFieldSize() - offsetBoarder ||
         position.x < 0 + offsetBoarder ||
         position.z < 0 + offsetBoarder)
         return true;
@@ -106,10 +95,12 @@ void Robot::toggleLight(Perspective currentPerspective) {
             glEnable(GL_LIGHT2);
         lightOn = true;
     }
-
 }
 
 const bool Robot::getLightStatus() const {
     return lightOn;
 }
 
+const glm::vec3 &Robot::getPosition() const {
+    return position;
+}

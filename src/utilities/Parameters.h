@@ -2,7 +2,6 @@
 #define WALL_E_PARAMETERS_H
 
 #include "../api/orientation.h"
-#include "../api/vertex.h"
 #include "glm/vec3.hpp"
 
 /**

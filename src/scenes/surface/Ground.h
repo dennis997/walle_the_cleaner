@@ -3,7 +3,6 @@
 
 #include <GL/glu.h>
 #include "../../model/Scene.h"
-#include "../../api/vertex.h"
 #include "../../vendor/glut.h"
 #include "glm/vec3.hpp"
 

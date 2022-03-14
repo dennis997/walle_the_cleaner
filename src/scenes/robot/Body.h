@@ -2,16 +2,21 @@
 #define WALL_E_BODY_H
 
 #include "../../model/Scene.h"
+#include "../../vendor/glut.h"
+#include "../../vendor/Model.h"
+
 
 class Body: public Scene {
 private:
-    float size;
+    unsigned int imageId;
+    void loadImage();
+
+    Model model;
 
 public:
     Body();
 
     void draw(unsigned int frameIndex) const override;
 };
-
 
 #endif //WALL_E_BODY_H

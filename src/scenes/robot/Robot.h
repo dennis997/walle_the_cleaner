@@ -4,7 +4,6 @@
 #include "../../model/Scene.h"
 #include "../../api/orientation.h"
 #include "../../utilities/Parameters.h"
-#include "../../api/vertex.h"
 #include "glm/glm.hpp"
 #include "../../utilities/HandlerManager.h"
 
@@ -20,6 +19,8 @@ private:
     int yAngle;
     bool movedForward;
     bool lightOn;
+    float movementSpeed;
+    float angleSpeed;
 
 
 public:
@@ -37,7 +38,6 @@ public:
     void toggleLight(Perspective currentPerspective);
 
     const glm::vec3 &getCurrentOrientation() const;
-    const int getYAngle() const;
     const bool getLightStatus() const;
 
 };
