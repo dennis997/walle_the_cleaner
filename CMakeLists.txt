@@ -26,6 +26,7 @@ add_executable(wall_e src/main.cpp
         src/model/animation/Rotate.cpp
         src/model/animation/Translate.cpp
         src/model/animation/Visibility.cpp
+        src/model/animation/Callback.cpp
 )
 
 

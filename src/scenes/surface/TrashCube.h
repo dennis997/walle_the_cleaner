@@ -14,6 +14,9 @@ class TrashCube: public Scene {
 private:
     glm::vec3 position;
 
+    unsigned int imageId;
+    void loadImage();
+
 public:
   //  TrashCube();
     TrashCube(float x, float y, float z);

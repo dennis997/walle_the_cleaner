@@ -21,6 +21,7 @@ private:
     bool lightOn;
     float movementSpeed;
     float angleSpeed;
+    bool carryCube;
 
     bool restrictMovement();
 
@@ -45,7 +46,8 @@ public:
     const glm::vec3 &getCurrentOrientation() const;
     const bool getLightStatus() const;
     const glm::vec3 &getPosition() const;
-
+    bool hasCube() const;
+    void setHasCube(bool hasCube);
 };
 
 #endif //WALL_E_ROBOT_H

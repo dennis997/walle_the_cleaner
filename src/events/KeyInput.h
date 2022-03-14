@@ -8,22 +8,22 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
 
     switch(key) {
         case 'w':
-            robot.moveForward();
+            robot->moveForward();
             cameraHandler->update();
             break;
 
         case 'a':
-            robot.moveLeft();
+            robot->moveLeft();
             cameraHandler->update();
             break;
 
         case 's':
-            robot.moveBack();
+            robot->moveBack();
             cameraHandler->update();
             break;
 
         case 'd':
-            robot.moveRight();
+            robot->moveRight();
             cameraHandler->update();
             break;
 
@@ -40,11 +40,11 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
             break;
 
         case 'l':
-            robot.toggleLight(cameraHandler->getCurrentPerspective());
+            robot->toggleLight(cameraHandler->getCurrentPerspective());
             break;
 
         case 'g':
-            robot.startAnimation(frameIndex);
+            robot->startAnimation(frameIndex);
             break;
     }
 }

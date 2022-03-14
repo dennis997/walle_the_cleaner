@@ -27,8 +27,8 @@ namespace animation {
          */
         float delay;
 
-        Step(Action *action, float duration) : action(action), duration(duration), delay(0.f) {}
-        Step(Action *action, float duration, float delay) : action(action), duration(duration), delay(delay) {}
+        Step(Action *action, float duration) : action(action), duration(duration), delay(0.f), state(State::START) {}
+        Step(Action *action, float duration, float delay) : action(action), duration(duration), delay(delay), state(State::START) {}
     };
 }
 

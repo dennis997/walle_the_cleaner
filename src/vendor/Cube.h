@@ -1,61 +1,85 @@
-/* Wuerfel_mit_Normalen.cpp  (inkl. Normalen)                  */
-/* Autor: W.-D. Groch                                          */
-/* letzte Aenderung:	Groch   02.07.2014                     */
-/* ----------------------------------------------------------- */
+#ifndef WALL_E_CUBE
+#define WALL_E_CUBE
+
 #include "../GL/freeglut.h"
 
-static void Cube(GLfloat fSeitenL)
+inline void Cube(GLfloat size)
 {
-    glBegin(GL_POLYGON);   //Vorderseite
+    // front side
+    glBegin(GL_POLYGON);
     glNormal3f(0.0f, 0.0f, 1.0f);
-    glVertex3f(-fSeitenL/2.0f,-fSeitenL/2.0f,+fSeitenL/2.0f);
-    glVertex3f(+fSeitenL/2.0f,-fSeitenL/2.0f,+fSeitenL/2.0f);
-    glVertex3f(+fSeitenL/2.0f,+fSeitenL/2.0f,+fSeitenL/2.0f);
-    glVertex3f(-fSeitenL/2.0f,+fSeitenL/2.0f,+fSeitenL/2.0f);
+    glTexCoord3f(-1.f, -1.f, 1.f);
+    glVertex3f(-size / 2.0f, -size / 2.0f, +size / 2.0f);
+    glTexCoord3f(1.f, -1.f, 1.f);
+    glVertex3f(+size / 2.0f, -size / 2.0f, +size / 2.0f);
+    glTexCoord3f(1.f, 1.f, 1.f);
+    glVertex3f(+size / 2.0f, +size / 2.0f, +size / 2.0f);
+    glTexCoord3f(-1.f, 1.f, 1.f);
+    glVertex3f(-size / 2.0f, +size / 2.0f, +size / 2.0f);
     glEnd();
 
 
     glBegin(GL_POLYGON);   //Rechte Seite
     glNormal3f(1.0f, 0.0f, 0.0f);
-    glVertex3f(+fSeitenL/2.0f,-fSeitenL/2.0f,+fSeitenL/2.0f);
-    glVertex3f(+fSeitenL/2.0f,-fSeitenL/2.0f,-fSeitenL/2.0f);
-    glVertex3f(+fSeitenL/2.0f,+fSeitenL/2.0f,-fSeitenL/2.0f);
-    glVertex3f(+fSeitenL/2.0f,+fSeitenL/2.0f,+fSeitenL/2.0f);
+    glTexCoord3f(1.f, -1.f, 1.f);
+    glVertex3f(+size / 2.0f, -size / 2.0f, +size / 2.0f);
+    glTexCoord3f(1.f, -1.f, -1.f);
+    glVertex3f(+size / 2.0f, -size / 2.0f, -size / 2.0f);
+    glTexCoord3f(1.f, 1.f, -1.f);
+    glVertex3f(+size / 2.0f, +size / 2.0f, -size / 2.0f);
+    glTexCoord3f(1.f, 1.f, 1.f);
+    glVertex3f(+size / 2.0f, +size / 2.0f, +size / 2.0f);
     glEnd();
 
 
     glBegin(GL_POLYGON);   //Rueckseite
     glNormal3f(0.0f, 0.0f, -1.0f);
-    glVertex3f(+fSeitenL/2.0f,+fSeitenL/2.0f,-fSeitenL/2.0f);
-    glVertex3f(+fSeitenL/2.0f,-fSeitenL/2.0f,-fSeitenL/2.0f);
-    glVertex3f(-fSeitenL/2.0f,-fSeitenL/2.0f,-fSeitenL/2.0f);
-    glVertex3f(-fSeitenL/2.0f,+fSeitenL/2.0f,-fSeitenL/2.0f);
+    glTexCoord3f(1.f, 1.f, -1.f);
+    glVertex3f(+size / 2.0f, +size / 2.0f, -size / 2.0f);
+    glTexCoord3f(1.f, -1.f, -1.f);
+    glVertex3f(+size / 2.0f, -size / 2.0f, -size / 2.0f);
+    glTexCoord3f(-1.f, -1.f, -1.f);
+    glVertex3f(-size / 2.0f, -size / 2.0f, -size / 2.0f);
+    glTexCoord3f(-1.f, 1.f, -1.f);
+    glVertex3f(-size / 2.0f, +size / 2.0f, -size / 2.0f);
     glEnd();
 
 
     glBegin(GL_POLYGON);   //Linke Seite
     glNormal3f(-1.0f, 0.0f, 0.0f);
-    glVertex3f(-fSeitenL/2.0f,+fSeitenL/2.0f,-fSeitenL/2.0f);
-    glVertex3f(-fSeitenL/2.0f,-fSeitenL/2.0f,-fSeitenL/2.0f);
-    glVertex3f(-fSeitenL/2.0f,-fSeitenL/2.0f,+fSeitenL/2.0f);
-    glVertex3f(-fSeitenL/2.0f,+fSeitenL/2.0f,+fSeitenL/2.0f);
+    glTexCoord3f(-1.f, 1.f, -1.f);
+    glVertex3f(-size / 2.0f, +size / 2.0f, -size / 2.0f);
+    glTexCoord3f(-1.f, -1.f, -1.f);
+    glVertex3f(-size / 2.0f, -size / 2.0f, -size / 2.0f);
+    glTexCoord3f(-1.f, -1.f, 1.f);
+    glVertex3f(-size / 2.0f, -size / 2.0f, +size / 2.0f);
+    glTexCoord3f(-1.f, 1.f, 1.f);
+    glVertex3f(-size / 2.0f, +size / 2.0f, +size / 2.0f);
     glEnd();
 
     glBegin(GL_POLYGON);   //Deckflaeche
     glNormal3f(0.0f, 1.0f, 0.0f);
-    glVertex3f(-fSeitenL/2.0f,+fSeitenL/2.0f,+fSeitenL/2.0f);
-    glVertex3f(+fSeitenL/2.0f,+fSeitenL/2.0f,+fSeitenL/2.0f);
-    glVertex3f(+fSeitenL/2.0f,+fSeitenL/2.0f,-fSeitenL/2.0f);
-    glVertex3f(-fSeitenL/2.0f,+fSeitenL/2.0f,-fSeitenL/2.0f);
+    glTexCoord3f(-1.f, 1.f, 1.f);
+    glVertex3f(-size / 2.0f, +size / 2.0f, +size / 2.0f);
+    glTexCoord3f(1.f, 1.f, 1.f);
+    glVertex3f(+size / 2.0f, +size / 2.0f, +size / 2.0f);
+    glTexCoord3f(1.f, 1.f, -1.f);
+    glVertex3f(+size / 2.0f, +size / 2.0f, -size / 2.0f);
+    glTexCoord3f(-1.f, 1.f, -1.f);
+    glVertex3f(-size / 2.0f, +size / 2.0f, -size / 2.0f);
     glEnd();
 
     glBegin(GL_POLYGON);   //Bodenflaeche
     glNormal3f(0.0f, -1.0f, 0.0f);
-    glVertex3f(-fSeitenL/2.0f,-fSeitenL/2.0f,-fSeitenL/2.0f);
-    glVertex3f(+fSeitenL/2.0f,-fSeitenL/2.0f,-fSeitenL/2.0f);
-    glVertex3f(+fSeitenL/2.0f,-fSeitenL/2.0f,+fSeitenL/2.0f);
-    glVertex3f(-fSeitenL/2.0f,-fSeitenL/2.0f,+fSeitenL/2.0f);
+    glTexCoord3f(-1.f, -1.f, -1.f);
+    glVertex3f(-size / 2.0f, -size / 2.0f, -size / 2.0f);
+    glTexCoord3f(1.f, -1.f, -1.f);
+    glVertex3f(+size / 2.0f, -size / 2.0f, -size / 2.0f);
+    glTexCoord3f(1.f, -1.f, 1.f);
+    glVertex3f(+size / 2.0f, -size / 2.0f, +size / 2.0f);
+    glTexCoord3f(-1.f, -1.f, 1.f);
+    glVertex3f(-size / 2.0f, -size / 2.0f, +size / 2.0f);
     glEnd();
-
-    return;
 }
+
+#endif

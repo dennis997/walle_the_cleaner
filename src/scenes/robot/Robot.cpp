@@ -9,9 +9,9 @@ Robot::Robot() {
     movementSpeed = parameter->getMovementSpeed();
     currentOrientation = parameter->getStartOrientation();
     angleSpeed = parameter->getMovementAngle();
-
-
     yAngle = parameter->getYAngle();
+
+    carryCube = false;
     lightOn = false;
 }
 
@@ -103,4 +103,13 @@ const bool Robot::getLightStatus() const {
 
 const glm::vec3 &Robot::getPosition() const {
     return position;
+}
+
+
+bool Robot::hasCube() const {
+    return carryCube;
+}
+
+void Robot::setHasCube(bool hasCube) {
+    this->carryCube = hasCube;
 }

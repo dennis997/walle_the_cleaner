@@ -3,7 +3,6 @@
 
 #include "../../model/Scene.h"
 #include <map>
-#include <stdlib.h>
 #include <cmath>
 #include "TrashCube.h"
 #include "../../scenes/robot/Robot.h"
@@ -16,14 +15,18 @@
  * - ....
  */
 class Surface: public Scene {
-
 private:
     std::multimap<float, TrashCube*> trashCubes;
     Robot * robot;
+    void calculateDistances();
+
 public:
-    Surface(Robot robot);
+    Surface(Robot* robot);
     void draw(unsigned int frameIndex) override;
     void createRandomCubes();
+    void despawnNextTrashCube();
+    void layDownTrashCube();
+    void pickUpOrLayDown();
 
 };
 

@@ -20,7 +20,7 @@
 
 // top level nodes
 inline Robot *robot = new Robot;
-inline Surface surface(*robot);
+inline Surface *surface = new Surface(robot);
 inline Sky sky;
 
 /**
@@ -28,8 +28,8 @@ inline Sky sky;
  */
 inline void buildSceneGraph() {
     //surface.add(new TrashCube(5,0.25/2,5));
-    surface.add(new Ground);
-    surface.createRandomCubes();
+    surface->add(new Ground);
+    surface->createRandomCubes();
 
     sky.add(new Sun);
     sky.add(new Wall(LEFT));
@@ -37,6 +37,8 @@ inline void buildSceneGraph() {
     sky.add(new Wall(BACK));
     sky.add(new Wall(FRONT));
 
+    robot->add(new Wheel(Side::LEFT));
+    robot->add(new Wheel(Side::RIGHT));
 
     // right arm
     Body* body = new Body();
@@ -59,12 +61,8 @@ inline void buildSceneGraph() {
     neck->add(new Eye(Side::RIGHT));
     body->add(neck);
 
-    robot->add(new Wheel(Side::LEFT));
-    robot->add(new Wheel(Side::RIGHT));
     robot->add(body);
-    robot->add(new Carriage);
-
-
+    robot->add(new Carriage(robot, surface));
 }
 
 /**
@@ -74,7 +72,7 @@ inline void buildSceneGraph() {
  */
 inline void printSceneGraph(const unsigned int frameIndex) {
     sky.draw(frameIndex);
-    surface.draw(frameIndex);
+    surface->draw(frameIndex);
     robot->draw(frameIndex);
 }
 

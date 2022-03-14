@@ -5,6 +5,7 @@
 #include "glm/vec3.hpp"
 #include "../../vendor/Model.h"
 #include "../../api/api.h"
+#include "../surface/Surface.h"
 
 class Carriage: public Scene {
 private:
@@ -12,13 +13,17 @@ private:
     unsigned int imageId;
     float trashCubeSize;
     bool visible;
+    Robot* robot;
+    Surface* surface;
 
     void loadImage();
     void calculate();
     void initAnimation();
 
+    void callback();
+
 public:
-    Carriage();
+    Carriage(Robot* robot, Surface* surface);
     void draw(unsigned int frameIndex) override;
 };
 
