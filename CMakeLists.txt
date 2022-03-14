@@ -20,7 +20,7 @@ add_executable(wall_e src/main.cpp
         src/scenes/sky/Sun.cpp
         src/model/Scene.cpp
         src/handler/CameraHandler.cpp
-)
+        src/vendor/Cube.h)
 
 if (APPLE)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -framework GLUT -framework OpenGL")

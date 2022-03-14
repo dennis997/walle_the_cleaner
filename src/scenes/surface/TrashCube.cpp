@@ -1,18 +1,27 @@
 #include "TrashCube.h"
 
-#include "../../vendor/glut.h"
+//#include "../../vendor/glut.h"
 
 void TrashCube::draw(const unsigned int frameIndex) const {
     Scene::draw(frameIndex);
 
-    float x = 5;
-    float y = 5;
-    float z = 10;
-
+    Parameter * parameter = Parameter::getInstance();
 
     glPushMatrix();
-    glTranslatef(x,y,z);
+    glTranslatef(position.x,position.y,position.z);
     glColor3f(1,1,1);
-    glutSolidCube(.1);
+    Cube(parameter->getTrashCubeSize());
     glPopMatrix();
+}
+
+TrashCube::TrashCube(float x, float y, float z) {
+    this->position = glm::vec3(x,y,z);
+}
+
+const glm::vec3 &TrashCube::getPosition() const {
+    return position;
+}
+
+void TrashCube::setPosition(const glm::vec3 &position) {
+    TrashCube::position = position;
 }

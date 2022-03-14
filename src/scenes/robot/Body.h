@@ -4,7 +4,7 @@
 #include "../../model/Scene.h"
 #include "../../vendor/glut.h"
 #include "../../vendor/Model.h"
-
+#include <GL/freeglut.h>
 
 class Body: public Scene {
 private:
