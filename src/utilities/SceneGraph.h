@@ -18,16 +18,17 @@
 #include "../scenes/robot/arm/Finger.h"
 
 // top level nodes
-inline Surface surface;
 inline Robot robot;
+inline Surface surface(robot);
 inline Sky sky;
 
 /**
  * Add shapes to top level nodes or underneath nodes
  */
 inline void buildSceneGraph() {
-    surface.add(new TrashCube);
+    //surface.add(new TrashCube(5,0.25/2,5));
     surface.add(new Ground);
+    surface.createRandomCubes();
 
     sky.add(new Sun);
     sky.add(new Wall(LEFT));
