@@ -42,7 +42,8 @@ void Wall::draw(unsigned int frameIndex) const {
 
 
 void Wall::calculate(const WallSide wallSide, const float fieldSize) {
-    float gap = 4;
+    Parameter* parameter = Parameter::getInstance();
+    float gap = parameter->getGapSize();
 
     switch (wallSide) {
         case LEFT:
