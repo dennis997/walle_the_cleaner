@@ -25,7 +25,7 @@ private:
     /**
      * Texture ID for mapping waste disposal site texture
      */
-    GLuint wasteDisposalImage;
+    GLuint lavaImage;
 
     /**
      * Y-Coord for the ground
@@ -38,8 +38,7 @@ private:
     int slices;
 
     float groundSize;
-
-    float disposalSiteSize;
+    float undergroundSize;
 
     /**
      * Actual draw method that draws one object. For this example a 2d plate
