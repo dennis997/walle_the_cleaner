@@ -20,7 +20,7 @@ void TrashCube::draw(const unsigned int frameIndex) {
 
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, imageId);
-        Cube(parameter->getTrashCubeSize());;
+        Cube(parameter->getTrashCubeSize());
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
     }

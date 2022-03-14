@@ -18,6 +18,8 @@ public:
      * @param animationNormal number between 0 and 1
      */
     virtual void update(float animationNormal) = 0;
+
+    virtual void notify(const animation::State state) = 0;
 };
 
 

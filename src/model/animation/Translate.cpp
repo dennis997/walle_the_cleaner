@@ -13,3 +13,5 @@ void Translate::execute() const {
 void Translate::update(float animationNormal) {
     currentDirection = direction * animationNormal;
 }
+
+void Translate::notify(const animation::State state) {}

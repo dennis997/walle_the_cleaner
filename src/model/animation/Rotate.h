@@ -13,9 +13,10 @@ private:
 
 public:
     Rotate(const float angle, const glm::vec3 &axis);
-    void execute() const override;
 
+    void execute() const override;
     void update(float animationNormal) override;
+    void notify(const animation::State state) override;
 };
 
 

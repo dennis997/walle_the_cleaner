@@ -16,14 +16,17 @@ private:
     glm::vec3 position;
     glm::vec3 prevPos;
     glm::vec3 currentOrientation;
-    int yAngle;
+    int yAngle, stickyAngle;
     bool movedForward;
     bool lightOn;
     float movementSpeed;
     float angleSpeed;
     bool carryCube;
 
+    bool isSticky;
+
     bool restrictMovement();
+    float getAngle();
 
 public:
     Robot();
@@ -48,6 +51,8 @@ public:
     const glm::vec3 &getPosition() const;
     bool hasCube() const;
     void setHasCube(bool hasCube);
+
+    void toggleSticky();
 };
 
 #endif //WALL_E_ROBOT_H

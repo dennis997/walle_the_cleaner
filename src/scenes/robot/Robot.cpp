@@ -13,6 +13,7 @@ Robot::Robot() {
 
     carryCube = false;
     lightOn = false;
+    stickyAngle = 45.f;
 }
 
 void Robot::draw(const unsigned int frameIndex) {
@@ -20,7 +21,7 @@ void Robot::draw(const unsigned int frameIndex) {
     {
         glColor3f(1, 1, 1);
         glTranslatef(position.x, position.y, position.z);
-        glRotatef(45, 0, 1, 0);        // 45 degrees because std orientation = half a quadrant with look to 0,0,0
+        glRotatef(getAngle(), 0, 1, 0);
         Scene::draw(frameIndex);
     }
     glPopMatrix();
@@ -112,4 +113,24 @@ bool Robot::hasCube() const {
 
 void Robot::setHasCube(bool hasCube) {
     this->carryCube = hasCube;
+}
+
+void Robot::toggleSticky() {
+    isSticky = !isSticky;
+
+    if (isSticky) {
+        stickyAngle = yAngle + stickyAngle;
+    }
+}
+
+/**
+ * 45 degrees because std orientation = half a quadrant with look to 0,0,0
+ * @return
+ */
+float Robot::getAngle() {
+    if (isSticky) {
+        return stickyAngle;
+    }
+
+    return stickyAngle + yAngle;
 }

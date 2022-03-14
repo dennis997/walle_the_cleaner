@@ -46,6 +46,10 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
         case 'g':
             robot->startAnimation(frameIndex);
             break;
+
+        case 'c':
+            robot->toggleSticky();
+            break;
     }
 }
 

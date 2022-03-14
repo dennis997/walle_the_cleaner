@@ -12,7 +12,6 @@ struct CallbackFunction {
 class Callback: public Action {
 private:
     bool isExecuted;
-    bool isReversed;
     CallbackFunction callback;
 
 public:
@@ -20,6 +19,7 @@ public:
 
     void execute() const override;
     void update(float animationNormal) override;
+    void notify(const animation::State state) override;
 };
 
 

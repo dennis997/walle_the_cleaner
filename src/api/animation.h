@@ -3,7 +3,6 @@
 
 #include <glm/glm.hpp>
 #include "../vendor/glut.h"
-#include "../model/animation/Action.h"
 
 class Action;
 

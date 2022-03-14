@@ -11,9 +11,10 @@ private:
 
 public:
     Translate(const glm::vec3 &direction);
-    void execute() const override;
 
+    void execute() const override;
     void update(float animationNormal) override;
+    void notify(const animation::State state) override;
 };
 
 

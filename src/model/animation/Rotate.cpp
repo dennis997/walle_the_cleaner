@@ -15,3 +15,6 @@ void Rotate::execute() const {
 void Rotate::update(float animationNormal) {
     currentAngle = angle * animationNormal;
 }
+
+void Rotate::notify(const animation::State state) {
+}

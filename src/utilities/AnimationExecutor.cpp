@@ -1,6 +1,8 @@
 #include "AnimationExecutor.h"
 #include "Parameters.h"
 
+#include "../model/animation/Action.h"
+
 float frameSleepDuration;
 
 AnimationExecutor::AnimationExecutor(): startFrameIndex(0), maxDelay(0) {
@@ -16,6 +18,7 @@ void AnimationExecutor::start(unsigned int frameIndex) {
     // animate reverse if the animation is at the end
     for (auto &step: steps) {
         step->state = step->state == State::START ? State::RUNNING : State::RUNNING_REV;
+        step->action->notify(step->state);
     }
 }
 
@@ -50,6 +53,7 @@ void AnimationExecutor::execute(unsigned int frameIndex) {
             step->action->update(_relativeTime);
         } else {
             step->state = step->state == State::RUNNING_REV ? State::START : State::END;
+            step->action->notify(step->state);
         }
     }
 }

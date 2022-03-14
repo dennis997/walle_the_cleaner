@@ -10,9 +10,10 @@ private:
 
 public:
     Visibility();
-    void execute() const override;
 
+    void execute() const override;
     void update(float animationNormal) override;
+    void notify(const animation::State state) override;
 };
 
 

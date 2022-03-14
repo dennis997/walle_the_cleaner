@@ -13,3 +13,5 @@ void Visibility::execute() const {
 void Visibility::update(float animationNormal) {
     currentAlpha = animationNormal;
 }
+
+void Visibility::notify(const animation::State state) {}
