@@ -43,7 +43,7 @@ void Carriage::loadImage() {
 
 
 void Carriage::calculate() {
-    position = glm::vec3(0.f, .3f, 0.3f);
+    position = glm::vec3(0.f, .25f, 0.325f);
 }
 
 void Carriage::initAnimation() {

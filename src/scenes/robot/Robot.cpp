@@ -148,7 +148,7 @@ float Robot::getAngle() {
 
 int idleCounter = 0;
 void Robot::handleIdle(const unsigned int frameIndex) {
-    if (lastMovementFrameIndex == -1) {
+    if (lastMovementFrameIndex == -1 || carryCube) {
         lastMovementFrameIndex = frameIndex;
         return;
     }
