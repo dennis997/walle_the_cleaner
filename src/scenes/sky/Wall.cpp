@@ -5,10 +5,10 @@
 #include "../../vendor/SOIL.h"
 #include <string>
 
-Wall::Wall(const WallSide wallSide) {
+Wall::Wall(const WallSide wallSide): side{wallSide} {
     Parameter *parameters = Parameter::getInstance();
-    calculate(wallSide, parameters->getFieldSize());
-    loadImage(wallSide);
+    calculate(parameters->getFieldSize());
+    loadImage();
 }
 
 void Wall::draw(unsigned int frameIndex) {
@@ -20,7 +20,7 @@ void Wall::draw(unsigned int frameIndex) {
         glTranslatef(0,-2,0);
         glBegin(GL_QUADS);
         {
-            glNormal3f(0, 0, 0);
+            glNormal3f(vertex_normal.x, vertex_normal.y, vertex_normal.z);
             glTexCoord2f(0, 0);
             glVertex3f(vertices[0], vertices[1], vertices[2]);
             glTexCoord2f(1, 0);
@@ -41,11 +41,11 @@ void Wall::draw(unsigned int frameIndex) {
 }
 
 
-void Wall::calculate(const WallSide wallSide, const float fieldSize) {
+void Wall::calculate(const float fieldSize) {
     Parameter* parameter = Parameter::getInstance();
     float gap = parameter->getGapSize();
 
-    switch (wallSide) {
+    switch (side) {
         case LEFT:
             vertices = {-gap, 0, -gap,
                         -gap, 0, gap + fieldSize,
@@ -81,10 +81,10 @@ void Wall::calculate(const WallSide wallSide, const float fieldSize) {
     }
 }
 
-void Wall::loadImage(const WallSide wallSide) {
+void Wall::loadImage() {
     std::string imageName;
 
-    switch (wallSide) {
+    switch (side) {
         case LEFT:
             imageName = "left.png";
             break;

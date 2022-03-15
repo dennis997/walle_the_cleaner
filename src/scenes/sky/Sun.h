@@ -9,9 +9,10 @@ class Sun: public Scene {
 private:
     glm::vec3 position;
     float radius;
+    float fieldSize;
 
     void drawSun(unsigned int frameIndex) const;
-    void calculate(int size);
+    void calculate();
 
     unsigned int sunImageId;
     void loadImage();

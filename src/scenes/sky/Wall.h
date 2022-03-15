@@ -16,11 +16,10 @@ private:
     std::vector<float> vertices;
     glm::vec3 vertex_normal;
     GLuint img_id;
+    WallSide side;
 
-    int slices;
-
-    void calculate(WallSide wallSide, float size);
-    void loadImage(WallSide wallSide);
+    void calculate(float size);
+    void loadImage();
 
 public:
     Wall(WallSide wallSide);

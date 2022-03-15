@@ -16,7 +16,6 @@ Ground::Ground() {
 }
 
 void Ground::draw(const unsigned int frameIndex) {
-    drawDebug(1);
     drawPlate();
     Scene::draw(frameIndex);
 }
@@ -67,7 +66,6 @@ void Ground::drawPlate() const {
         }
 
         glEnable(GL_LIGHT0);
-
         glDisable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, 0);
     }
@@ -75,36 +73,30 @@ void Ground::drawPlate() const {
 
 
     // Underground Lava
-
     glPushMatrix();
     {
-        glColor3f(1,1,1);
+        glColor3f(.6f,.5f,.5f);
 
         glBindTexture(GL_TEXTURE_2D, lavaImage);
         glEnable(GL_TEXTURE_2D);
-        glDisable(GL_LIGHT0);
-
         glBegin(GL_QUADS);
+        {
+            glNormal3f(0.0f, 1.0f, 0.0f);
 
-        glNormal3f(0.0f, 1.0f, 0.0f);
+            glTexCoord2f(0.0, 0.0);
+            glVertex3f(-gap, groundHeight - 0.5, -gap);
 
-        glTexCoord2f(0.0, 0.0);
-        glVertex3f(-gap, groundHeight - 0.5, -gap);
+            glTexCoord2f(1.0, 0.0);
+            glVertex3f(undergroundSize + gap, groundHeight - 0.5, - gap);
 
-        glTexCoord2f(1.0, 0.0);
-        glVertex3f(undergroundSize + gap, groundHeight - 0.5, - gap);
+            glTexCoord2f(1.0, 1.0);
+            glVertex3f(undergroundSize + gap, groundHeight - 0.5, undergroundSize + gap);
 
-        glTexCoord2f(1.0, 1.0);
-        glVertex3f(undergroundSize + gap, groundHeight - 0.5, undergroundSize + gap);
-
-        glTexCoord2f(0.0, 1.0);
-        glVertex3f(-gap, groundHeight - 0.5, undergroundSize + gap);
-
+            glTexCoord2f(0.0, 1.0);
+            glVertex3f(-gap, groundHeight - 0.5, undergroundSize + gap);
+        }
         glEnd();
     }
-
-
-    glEnable(GL_LIGHT0);
 
     glDisable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0);

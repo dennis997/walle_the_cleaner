@@ -12,6 +12,7 @@ TrashCube::TrashCube(float x, float y, float z) {
 void TrashCube::draw(const unsigned int frameIndex) {
     glPushMatrix();
     {
+        glColor3f(.409f,.409f,.409f);
         glTranslatef(position.x,position.y,position.z);
         Scene::draw(frameIndex);
         glScalef(.18f, .18f,.18f);
