@@ -3,8 +3,9 @@
 #include "../../vendor/glut.h"
 #include "../../vendor/SOIL.h"
 
-TrashCube::TrashCube(float x, float y, float z) {
+TrashCube::TrashCube(float x, float y, float z, float angle) {
     this->position = glm::vec3(x,y,z);
+    this->angle = angle;
     model.load("res/blender_files/body/body.obj");
     loadImage();
 }
@@ -14,6 +15,7 @@ void TrashCube::draw(const unsigned int frameIndex) {
     {
         glColor3f(.409f,.409f,.409f);
         glTranslatef(position.x,position.y,position.z);
+        glRotatef(angle,0,1,0);
         Scene::draw(frameIndex);
         glScalef(.18f, .18f,.18f);
         glEnable(GL_TEXTURE_2D);
