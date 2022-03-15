@@ -4,7 +4,7 @@
 
 Wheel::Wheel(const Side orientation): orientation(orientation) {
     calculate();
-    model.load("res/blender_files/Wheel.obj");
+    model.load("res/blender_files/wheel/wheel.obj");
     loadImage();
 }
 

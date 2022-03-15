@@ -22,7 +22,7 @@ private:
     float movementSpeed = 0.1f;
     float movementAngle = 5.0f;
     int yAngle = 0;
-    float radiantApprox = 0.0175f; // 0.0175 = for approx. conversion to radiant (~pi/180)
+    float radiantApprox = M_PI / 180.f;
 
     int waitDuration = 10; // in milliseconds
     float idleDuration = 5000.f; // in milliseconds

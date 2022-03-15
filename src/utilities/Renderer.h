@@ -126,7 +126,7 @@ void initLight_2() {
 void initRenderer(int argc, char** argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowSize(800,800);
+    glutInitWindowSize(1080,1080);
     glutCreateWindow("Wall-E");
     glutDisplayFunc(renderScene);
     glutReshapeFunc(reshape);
