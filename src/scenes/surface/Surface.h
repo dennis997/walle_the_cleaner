@@ -20,6 +20,7 @@ private:
     std::multimap<float, TrashCube*> trashCubes;
     Robot * robot;
     void calculateDistances();
+    float roundoff(float value, unsigned char prec);
 
 public:
     Surface(Robot* robot);
