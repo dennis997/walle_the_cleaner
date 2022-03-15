@@ -60,7 +60,15 @@ void Surface::calculateDistances() {
 
 void Surface::layDownTrashCube() {
     Parameter *parameter = Parameter::getInstance();
-    TrashCube *trashCube = new TrashCube(roundoff(robot->getPosition().x,2), parameter->getTrashCubeSize() / 2, roundoff(robot->getPosition().z,2));
+
+    float distanceVecX = roundoff(roundoff(robot->getCurrentOrientation().x,2) + roundoff(robot->getPosition().x,2),2);
+    float distanceVecZ = roundoff(roundoff(robot->getCurrentOrientation().z,2) + roundoff(robot->getPosition().z,2),2);
+
+    float VecAndRobotX = distanceVecX + roundoff(robot->getPosition().x,2);
+    float VecAndRobotZ = distanceVecZ + roundoff(robot->getPosition().z,2);
+
+
+    TrashCube *trashCube = new TrashCube(VecAndRobotX, parameter->getTrashCubeSize() / 2, VecAndRobotZ);
     trashCubes.insert(std::pair<float, TrashCube *>(0.0, trashCube));
     this->add(trashCube);
 }
