@@ -4,6 +4,7 @@
 #include "../../model/Scene.h"
 #include <map>
 #include <cmath>
+#include <iostream>
 #include "TrashCube.h"
 #include "../../scenes/robot/Robot.h"
 #include "../../utilities/Parameters.h"
@@ -19,6 +20,7 @@ private:
     std::multimap<float, TrashCube*> trashCubes;
     Robot * robot;
     void calculateDistances();
+    float roundoff(float value, unsigned char prec);
 
 public:
     Surface(Robot* robot);
