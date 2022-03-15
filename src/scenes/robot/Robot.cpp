@@ -2,6 +2,8 @@
 #include "math.h"
 #include "../../vendor/glut.h"
 
+const float DEFAULT_ANGLE = 45.f;
+
 Robot::Robot() {
     Parameter* parameter = Parameter::getInstance();
 
@@ -14,7 +16,7 @@ Robot::Robot() {
 
     carryCube = false;
     lightOn = false;
-    stickyAngle = 45.f;
+    stickyAngle = DEFAULT_ANGLE;
 }
 
 void Robot::draw(const unsigned int frameIndex) {
@@ -130,7 +132,7 @@ void Robot::toggleSticky() {
     isSticky = !isSticky;
 
     if (isSticky) {
-        stickyAngle = yAngle + stickyAngle;
+        stickyAngle = yAngle + DEFAULT_ANGLE;
     }
 }
 
@@ -143,7 +145,7 @@ float Robot::getAngle() {
         return stickyAngle;
     }
 
-    return stickyAngle + yAngle;
+    return DEFAULT_ANGLE + yAngle;
 }
 
 int idleCounter = 0;

@@ -38,10 +38,8 @@ void animate(int frameIndex) {
  */
 void renderScene() {
     glLoadIdentity();
-    glClear( GL_DEPTH_BUFFER_BIT);
+    glClear( GL_DEPTH_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glutSwapBuffers();
-
-    unsigned int vertex_buffer;
 }
 
 /**
@@ -134,7 +132,7 @@ void initRenderer(int argc, char** argv) {
     glutReshapeFunc(reshape);
     glutTimerFunc(parameters->getWaitDuration(),animate,0);
     glutKeyboardFunc([](unsigned char key, int x, int y) {
-        keyInputListener(key, x, y, _handlerManager, _frameIndex);
+        keyInputListener(key, _handlerManager, _frameIndex);
     });
 
     glShadeModel(GL_SMOOTH);

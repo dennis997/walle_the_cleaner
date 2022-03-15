@@ -3,7 +3,7 @@
 
 #include "../utilities/HandlerManager.h"
 
-void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerManager, const unsigned int frameIndex) {
+void keyInputListener(unsigned char key, HandlerManager *handlerManager, const unsigned int frameIndex) {
     CameraHandler* cameraHandler = handlerManager->getCameraHandler();
 
     switch(key) {

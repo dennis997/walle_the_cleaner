@@ -99,7 +99,7 @@ void Wall::loadImage() {
             break;
     }
 
-    imageName.insert(0, "res/textures/skybox/sky/");
+    imageName.insert(0, "res/textures/skybox/");
 
     img_id = SOIL_load_OGL_texture(imageName.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                                          SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_INVERT_Y |

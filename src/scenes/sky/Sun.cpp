@@ -48,7 +48,7 @@ void Sun::calculate() {
 }
 
 void Sun::loadImage() {
-    sunImageId = SOIL_load_OGL_texture("res/textures/inferno.png",
+    sunImageId = SOIL_load_OGL_texture("res/textures/sun.png",
                                          SOIL_LOAD_AUTO,
                                          SOIL_CREATE_NEW_ID,
                                          SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB);
