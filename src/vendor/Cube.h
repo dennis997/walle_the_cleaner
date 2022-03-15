@@ -8,14 +8,14 @@ inline void Cube(GLfloat size)
     // front side
     glBegin(GL_POLYGON);
     glNormal3f(0.0f, 0.0f, 1.0f);
-    glTexCoord3f(-1.f, -1.f, 1.f);
     glVertex3f(-size / 2.0f, -size / 2.0f, +size / 2.0f);
-    glTexCoord3f(1.f, -1.f, 1.f);
+    glTexCoord3f(-1.f, -1.f, 1.f);
     glVertex3f(+size / 2.0f, -size / 2.0f, +size / 2.0f);
-    glTexCoord3f(1.f, 1.f, 1.f);
+    glTexCoord3f(1.f, -1.f, 1.f);
     glVertex3f(+size / 2.0f, +size / 2.0f, +size / 2.0f);
-    glTexCoord3f(-1.f, 1.f, 1.f);
+    glTexCoord3f(1.f, 1.f, 1.f);
     glVertex3f(-size / 2.0f, +size / 2.0f, +size / 2.0f);
+    glTexCoord3f(-1.f, 1.f, 1.f);
     glEnd();
 
 
@@ -30,7 +30,6 @@ inline void Cube(GLfloat size)
     glTexCoord3f(1.f, 1.f, 1.f);
     glVertex3f(+size / 2.0f, +size / 2.0f, +size / 2.0f);
     glEnd();
-
 
     glBegin(GL_POLYGON);   //Rueckseite
     glNormal3f(0.0f, 0.0f, -1.0f);

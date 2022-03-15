@@ -5,10 +5,10 @@
 #include "../../vendor/SOIL.h"
 #include <string>
 
-Wall::Wall(const WallSide wallSide) {
+Wall::Wall(const WallSide wallSide): side{wallSide} {
     Parameter *parameters = Parameter::getInstance();
-    calculate(wallSide, parameters->getFieldSize());
-    loadImage(wallSide);
+    calculate(parameters->getFieldSize());
+    loadImage();
 }
 
 void Wall::draw(unsigned int frameIndex) {
@@ -20,14 +20,14 @@ void Wall::draw(unsigned int frameIndex) {
         glTranslatef(0,-2,0);
         glBegin(GL_QUADS);
         {
-            glNormal3f(0, 0, 0);
+            glNormal3f(vertex_normal.x, vertex_normal.y, vertex_normal.z);
             glTexCoord2f(0, 0);
             glVertex3f(vertices[0], vertices[1], vertices[2]);
-            glTexCoord2f(1, 0);
-            glVertex3f(vertices[3], vertices[4], vertices[5]);
             glTexCoord2f(0, 1);
-            glVertex3f(vertices[6], vertices[7], vertices[8]);
+            glVertex3f(vertices[3], vertices[4], vertices[5]);
             glTexCoord2f(1, 1);
+            glVertex3f(vertices[6], vertices[7], vertices[8]);
+            glTexCoord2f(1, 0);
             glVertex3f(vertices[9], vertices[10], vertices[11]);
         }
         glEnd();
@@ -41,50 +41,50 @@ void Wall::draw(unsigned int frameIndex) {
 }
 
 
-void Wall::calculate(const WallSide wallSide, const float fieldSize) {
+void Wall::calculate(const float fieldSize) {
     Parameter* parameter = Parameter::getInstance();
     float gap = parameter->getGapSize();
 
-    switch (wallSide) {
+    switch (side) {
         case LEFT:
             vertices = {-gap, 0, -gap,
                         -gap, 0, gap + fieldSize,
-                        -gap, fieldSize, gap + fieldSize,
-                        -gap, fieldSize, -gap,
+                        -gap, fieldSize + gap, gap + fieldSize,
+                        -gap, fieldSize + gap, -gap,
             };
             vertex_normal = glm::vec3(-1.f, .0f, .0f);
             break;
         case RIGHT:
             vertices = {gap + fieldSize, 0, -gap,
                         gap + fieldSize, 0, gap + fieldSize,
-                        gap + fieldSize, fieldSize, gap + fieldSize,
-                        gap + fieldSize, fieldSize, -gap,
+                        gap + fieldSize, fieldSize + gap, gap + fieldSize,
+                        gap + fieldSize, fieldSize + gap , -gap,
             };
             vertex_normal = glm::vec3(1.f, .0f, .0f);
             break;
         case BACK:
             vertices = {-gap, 0, -gap,
                         gap + fieldSize, 0, -gap,
-                        gap + fieldSize, fieldSize, -gap,
-                        -gap, fieldSize, -gap,
+                        gap + fieldSize, fieldSize + gap, -gap,
+                        -gap, fieldSize + gap, -gap,
             };
             vertex_normal = glm::vec3(.0f, .0f, 1.f);
             break;
         case FRONT:
             vertices = {-gap, 0, gap + fieldSize,
                         gap + fieldSize, 0, gap + fieldSize,
-                        gap + fieldSize, fieldSize, gap + fieldSize,
-                        -gap, fieldSize, gap + fieldSize,
+                        gap + fieldSize, fieldSize + gap, gap + fieldSize,
+                        -gap, fieldSize + gap, gap + fieldSize,
             };
             vertex_normal = glm::vec3(.0f, 0.f, -1.f);
             break;
     }
 }
 
-void Wall::loadImage(const WallSide wallSide) {
+void Wall::loadImage() {
     std::string imageName;
 
-    switch (wallSide) {
+    switch (side) {
         case LEFT:
             imageName = "left.png";
             break;
@@ -99,7 +99,7 @@ void Wall::loadImage(const WallSide wallSide) {
             break;
     }
 
-    imageName.insert(0, "res/textures/skybox/");
+    imageName.insert(0, "res/textures/skybox/sky/");
 
     img_id = SOIL_load_OGL_texture(imageName.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID,
                                          SOIL_FLAG_MIPMAPS | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_INVERT_Y |

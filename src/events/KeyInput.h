@@ -44,7 +44,7 @@ void keyInputListener(unsigned char key, int x, int y, HandlerManager *handlerMa
             break;
 
         case 'g':
-            robot->startAnimation(frameIndex);
+            robot->startGrabAnimation(frameIndex);
             break;
 
         case 'c':

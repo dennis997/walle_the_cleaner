@@ -15,12 +15,11 @@ private:
     bool visible;
     Robot* robot;
     Surface* surface;
+    Model model;
 
     void loadImage();
     void calculate();
     void initAnimation();
-
-    void callback();
 
 public:
     Carriage(Robot* robot, Surface* surface);

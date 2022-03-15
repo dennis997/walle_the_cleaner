@@ -19,7 +19,8 @@ private:
 protected:
     std::list<Scene *> children;
     const Scene* parent = nullptr;
-    AnimationExecutor animationExecutor;
+
+    AnimationExecutor grabAnimation, idleAnimation;
 
 
     /**
@@ -52,7 +53,9 @@ public:
      */
     virtual void draw(unsigned int frameIndex);
 
-    void startAnimation(unsigned int frameIndex);
+    void startGrabAnimation(unsigned int frameIndex);
+
+    void startIdleAnimation(unsigned int frameIndex);
 };
 
 #endif //WALL_E_THE_CLEANER_COMPONENT_H

@@ -60,19 +60,17 @@ void reshape(int width, int height) {
  * Global light initialization
  */
 void initLight_0() {
-
     float fieldSize = parameters->getFieldSize();
 
     GLfloat light_position[] = {fieldSize / 2.f, 2.f, fieldSize / 2.f,0.f};
-    GLfloat light_ambient[] = { .5f, .4f, .25f, 1.f }; // intensity of light
-    GLfloat light_diffuse[] = { 0.60f, .5f, 0.f, 1.f }; // color of light
+    GLfloat light_ambient[] = { 1.0f, 1.0f, 1.0f, 1.f }; // intensity of light
+    GLfloat light_diffuse[] = { 1.0f, 1.f, 1.f, 1.f }; // color of light
+    GLfloat light_specular[] = { 1.f, 1.f, 1.f };
 
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
     glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
-    glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 1.f);
-    glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, .0f);
-    glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.f);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 
     glEnable(GL_LIGHT0);
 }
@@ -89,13 +87,11 @@ void initLight_1() {
     GLfloat light_direction[] = { 0.f, -.25f, -1.f};
     GLfloat light_ambient[] = { .5f, .5f, .5f, 1.f }; // intensity of light
     GLfloat light_diffuse[] = { 0.952f, 0.843f, 0.207f, 1.f }; // color of light
-    GLfloat light_specular[] = { 1.f, 1.f, 1.f, 1.f };
 
     glLightfv(GL_LIGHT1, GL_POSITION, light_position);
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, light_direction);
     glLightfv(GL_LIGHT1, GL_AMBIENT, light_ambient);
     glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
-    glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular);
     glLightf(GL_LIGHT1, GL_CONSTANT_ATTENUATION, 1.f);
     glLightf(GL_LIGHT1, GL_LINEAR_ATTENUATION, 0.1f);
     glLightf(GL_LIGHT1, GL_QUADRATIC_ATTENUATION, 0.3f);
@@ -113,13 +109,11 @@ void initLight_2() {
     GLfloat light_direction[] = { 0.f, -.25f, -1.f};
     GLfloat light_ambient[] = { 1.f, 1.f, 1.f, 1.f }; // intensity of light
     GLfloat light_diffuse[] = { 0.952f, 0.843f, 0.207f, 1.f }; // color of light
-    GLfloat light_specular[] = { 1.f, 1.f, 1.f, 1.f };
 
     glLightfv(GL_LIGHT2, GL_POSITION, light_position);
     glLightfv(GL_LIGHT2, GL_SPOT_DIRECTION, light_direction);
     glLightfv(GL_LIGHT2, GL_AMBIENT, light_ambient);
     glLightfv(GL_LIGHT2, GL_DIFFUSE, light_diffuse);
-    glLightfv(GL_LIGHT2, GL_SPECULAR, light_specular);
     glLightf(GL_LIGHT2, GL_CONSTANT_ATTENUATION, 1.f);
     glLightf(GL_LIGHT2, GL_LINEAR_ATTENUATION, 0.1f);
     glLightf(GL_LIGHT2, GL_QUADRATIC_ATTENUATION, 0.3f);
@@ -147,7 +141,6 @@ void initRenderer(int argc, char** argv) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glLightModelf(GL_LIGHT_MODEL_COLOR_CONTROL,GL_SEPARATE_SPECULAR_COLOR);
     glEnable(GL_LIGHTING);
     glEnable(GL_COLOR_MATERIAL);
     initLight_0();

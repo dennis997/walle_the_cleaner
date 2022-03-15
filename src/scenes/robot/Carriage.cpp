@@ -8,8 +8,7 @@
 
 
 Carriage::Carriage(Robot* robot, Surface* surface): visible(false), robot(robot), surface(surface) {
-    Parameter* parameters = Parameter::getInstance();
-    trashCubeSize = parameters->getTrashCubeSize();
+    model.load("res/blender_files/body/body.obj");
 
     calculate();
     loadImage();
@@ -17,16 +16,16 @@ Carriage::Carriage(Robot* robot, Surface* surface): visible(false), robot(robot)
 }
 
 void Carriage::draw(const unsigned int frameIndex) {
-    Scene::draw(frameIndex);
-
     glPushMatrix();
     {
+        Scene::draw(frameIndex);
         glTranslatef(position.x, position.y, position.z);
 
         if (robot->hasCube()) {
+            glScalef(.18f, .18f,.18f);
             glEnable(GL_TEXTURE_2D);
             glBindTexture(GL_TEXTURE_2D, imageId);
-            Cube(trashCubeSize);
+            model.draw();
             glBindTexture(GL_TEXTURE_2D, 0);
             glDisable(GL_TEXTURE_2D);
         }
@@ -44,11 +43,7 @@ void Carriage::loadImage() {
 
 
 void Carriage::calculate() {
-    position = glm::vec3(0.f, .3f, 0.3f);
-}
-
-void Carriage::callback() {
-
+    position = glm::vec3(0.f, .25f, 0.325f);
 }
 
 void Carriage::initAnimation() {
@@ -58,6 +53,5 @@ void Carriage::initAnimation() {
     };
 
     Step* secondStep = new Step(new Callback(callback), 30.f, 2600.f);
-
-    animationExecutor.addAnimationStep(secondStep);
+    grabAnimation.addAnimationStep(secondStep);
 }

@@ -10,6 +10,7 @@ Robot::Robot() {
     currentOrientation = parameter->getStartOrientation();
     angleSpeed = parameter->getMovementAngle();
     yAngle = parameter->getYAngle();
+    idleDuration = parameter->getIdleDuration();
 
     carryCube = false;
     lightOn = false;
@@ -17,6 +18,8 @@ Robot::Robot() {
 }
 
 void Robot::draw(const unsigned int frameIndex) {
+    handleIdle(frameIndex);
+
     glPopMatrix();
     {
         glColor3f(1, 1, 1);
@@ -28,6 +31,8 @@ void Robot::draw(const unsigned int frameIndex) {
 }
 
 void Robot::moveForward() {
+    lastMovementFrameIndex = -1;
+
     if (!restrictMovement() || !movedForward) {
         prevPos = position;
         position += currentOrientation * movementSpeed;
@@ -38,6 +43,8 @@ void Robot::moveForward() {
 }
 
 void Robot::moveBack() {
+    lastMovementFrameIndex = -1;
+
     if (!restrictMovement() || movedForward) {
         prevPos = position;
         position -= currentOrientation * movementSpeed;
@@ -48,12 +55,16 @@ void Robot::moveBack() {
 }
 
 void Robot::moveLeft() {
+    lastMovementFrameIndex = -1;
+
     yAngle += angleSpeed;
     calcViewPoint(yAngle);
     //movedForward = !movedForward;
 }
 
 void Robot::moveRight() {
+    lastMovementFrameIndex = -1;
+
     yAngle -= angleSpeed;
     calcViewPoint(yAngle);
     //movedForward = !movedForward;
@@ -133,4 +144,17 @@ float Robot::getAngle() {
     }
 
     return stickyAngle + yAngle;
+}
+
+int idleCounter = 0;
+void Robot::handleIdle(const unsigned int frameIndex) {
+    if (lastMovementFrameIndex == -1 || carryCube) {
+        lastMovementFrameIndex = frameIndex;
+        return;
+    }
+
+    if (frameIndex - lastMovementFrameIndex > idleDuration) {
+        startIdleAnimation(frameIndex);
+        lastMovementFrameIndex = -1.f;
+    }
 }

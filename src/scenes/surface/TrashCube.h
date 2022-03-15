@@ -6,6 +6,8 @@
 #include "../../model/Scene.h"
 #include "../../vendor/Cube.h"
 #include "../../utilities/Parameters.h"
+#include "../../vendor/Model.h"
+
 /**
  * Includes following scenes:
  * - ....
@@ -16,6 +18,7 @@ private:
 
     unsigned int imageId;
     void loadImage();
+    Model model;
 
 public:
   //  TrashCube();
