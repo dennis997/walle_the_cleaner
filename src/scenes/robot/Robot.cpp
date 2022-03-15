@@ -33,7 +33,7 @@ void Robot::draw(const unsigned int frameIndex) {
 }
 
 void Robot::moveForward() {
-    lastMovementFrameIndex = -1;
+    resetIdleTimer();
 
     if (!restrictMovement() || !movedForward) {
         prevPos = position;
@@ -45,7 +45,7 @@ void Robot::moveForward() {
 }
 
 void Robot::moveBack() {
-    lastMovementFrameIndex = -1;
+    resetIdleTimer();
 
     if (!restrictMovement() || movedForward) {
         prevPos = position;
@@ -57,7 +57,8 @@ void Robot::moveBack() {
 }
 
 void Robot::moveLeft() {
-    lastMovementFrameIndex = -1;
+    resetIdleTimer();
+
 
     yAngle += angleSpeed;
     calcViewPoint(yAngle);
@@ -65,7 +66,7 @@ void Robot::moveLeft() {
 }
 
 void Robot::moveRight() {
-    lastMovementFrameIndex = -1;
+    resetIdleTimer();
 
     yAngle -= angleSpeed;
     calcViewPoint(yAngle);
@@ -159,4 +160,8 @@ void Robot::handleIdle(const unsigned int frameIndex) {
         startIdleAnimation(frameIndex);
         lastMovementFrameIndex = -1.f;
     }
+}
+
+void Robot::resetIdleTimer() {
+    lastMovementFrameIndex = -1.f;
 }

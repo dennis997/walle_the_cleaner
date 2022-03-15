@@ -29,6 +29,7 @@ private:
     bool restrictMovement();
     float getAngle();
     void handleIdle(unsigned int frameIndex);
+    void resetIdleTimer();
 
 
 public:
