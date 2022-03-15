@@ -12,6 +12,10 @@
 
 #include "SOIL.h"
 
+/**
+ * https://github.com/WHKnightZ/OpenGL-Load-Model
+ * @author WHKKnightZ
+ */
 class Model {
 private:
     static int count_char(std::string &str, char ch) {
