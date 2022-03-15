@@ -134,6 +134,7 @@ void Robot::toggleSticky() {
 
     if (isSticky) {
         stickyAngle = yAngle + DEFAULT_ANGLE;
+        stickyOrientation = currentOrientation;
     }
 }
 
@@ -168,4 +169,8 @@ void Robot::resetIdleTimer() {
 
 int Robot::getYAngle() const {
     return yAngle;
+}
+
+const glm::vec3 &Robot::getOrientation() const {
+    return isSticky ? stickyOrientation : currentOrientation;
 }

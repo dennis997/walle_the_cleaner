@@ -15,7 +15,7 @@ class Robot: public Scene {
 private:
     glm::vec3 position;
     glm::vec3 prevPos;
-    glm::vec3 currentOrientation;
+    glm::vec3 currentOrientation, stickyOrientation;
     int yAngle, stickyAngle;
 
     bool movedForward;
@@ -28,7 +28,6 @@ private:
     float idleDuration;
 
     bool restrictMovement();
-    float getAngle();
     void handleIdle(unsigned int frameIndex);
     void resetIdleTimer();
 
@@ -57,6 +56,10 @@ public:
     bool hasCube() const;
     void setHasCube(bool hasCube);
     int getYAngle() const;
+    float getAngle();
+
+    const glm::vec3& getOrientation() const;
+
     void toggleSticky();
 };
 
