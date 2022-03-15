@@ -17,6 +17,7 @@ private:
     glm::vec3 prevPos;
     glm::vec3 currentOrientation;
     int yAngle, stickyAngle;
+
     bool movedForward;
     bool lightOn;
     float movementSpeed, angleSpeed;
@@ -55,7 +56,7 @@ public:
     const glm::vec3 &getPosition() const;
     bool hasCube() const;
     void setHasCube(bool hasCube);
-
+    int getYAngle() const;
     void toggleSticky();
 };
 

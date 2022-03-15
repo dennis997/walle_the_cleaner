@@ -165,3 +165,7 @@ void Robot::handleIdle(const unsigned int frameIndex) {
 void Robot::resetIdleTimer() {
     lastMovementFrameIndex = -1.f;
 }
+
+int Robot::getYAngle() const {
+    return yAngle;
+}
