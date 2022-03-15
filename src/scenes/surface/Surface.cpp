@@ -70,8 +70,10 @@ void Surface::layDownTrashCube() {
     trashCubePosX = (robot->getPosition().x + trashCubePosX)/2;
     trashCubePosZ = (robot->getPosition().z + trashCubePosZ)/2;
 
-    TrashCube *trashCube = new TrashCube(trashCubePosX, parameter->getTrashCubeSize() / 2, trashCubePosZ);
-    
+
+
+    TrashCube *trashCube = new TrashCube(trashCubePosX, parameter->getTrashCubeSize() / 2, trashCubePosZ,robot->getYAngle()+45.0f);
+
     trashCubes.insert(std::pair<float, TrashCube *>(0.0, trashCube));
     this->add(trashCube);
 }
