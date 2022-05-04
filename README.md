@@ -1,9 +1,9 @@
 # <u> Wall-E the Cleaner </u>
 
 ## Projektmitglieder:
-- Dennis Hilz 764039
-- Matthias Feyll 764775
-- Katharina Renk 764773
+- Dennis Hilz
+- Matthias F.
+- Katharina R.
 
 ## Projektbeschreibung
 Umgesetzt wurde der steuerbare Roboter "Wall-E", der sich durch eine Welt bewegen kann. Herumliegende Trashcubes kann er
